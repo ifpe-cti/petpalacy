@@ -24,36 +24,19 @@ SOFTWARE.
  */
 package br.edu.ifpe.petshop.model.entidades;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Date;
 /**
  *
  * @author Wemerson Diogenes da Silva <wemersondiogenes16@gmail.com>
  */
-@Entity
-public class Cliente implements Serializable {
-
-    @Id
-    @GeneratedValue
+public class Agendamento {
     private int id;
-    private String nome;
-    private String cpf;
-    private String telefone;
-    private Endereco endereco;
-
-    public Cliente() {
-    }
-
-    public Cliente(int id, String nome, String cpf, String telefone, Endereco endereco) {
-        this.id = id;
-        this.nome = nome;
-        this.cpf = cpf;
-        this.telefone = telefone;
-        this.endereco = endereco;
-    }
+    private List<Servico> servico;
+    private Cliente cliente;
+    private Date data;
+    private BigDecimal valorTotal;
 
     public int getId() {
         return id;
@@ -63,57 +46,57 @@ public class Cliente implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public List<Servico> getServico() {
+        return servico;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setServico(List<Servico> servico) {
+        this.servico = servico;
     }
 
-    public String getCpf() {
-        return cpf;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public Date getData() {
+        return data;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setData(Date data) {
+        this.data = data;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
+    public BigDecimal getValorTotal() {
+        return valorTotal;
     }
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+    public void setValorTotal(BigDecimal valorTotal) {
+        this.valorTotal = valorTotal;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 67 * hash + this.id;
+        int hash = 7;
+        hash = 43 * hash + this.id;
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Cliente)) {
+        if (!(obj instanceof Agendamento)) {
             return false;
         }
-        Cliente cliente = (Cliente) obj;
+        Agendamento agendamento = (Agendamento) obj;
 
-        if (cliente.id == id
-                && cliente.cpf == cpf
-                && cliente.nome == nome
-                && cliente.telefone == telefone
-                && cliente.endereco == endereco){
+        if(agendamento.id == id
+                && agendamento.cliente == cliente
+                && agendamento.data == data
+                && agendamento.servico == servico
+                && agendamento.valorTotal == valorTotal) {
             return true;
         }
         return false;
@@ -121,7 +104,8 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "Cliente{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", telefone=" + telefone + ", endereco=" + endereco + '}';
+        return "Agendamento{" + "id=" + id + ", servico=" + servico + ", cliente=" + cliente + ", data=" + data + ", valorTotal=" + valorTotal + '}';
     }
-
+    
+    
 }

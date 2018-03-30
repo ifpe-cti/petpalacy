@@ -24,35 +24,29 @@ SOFTWARE.
  */
 package br.edu.ifpe.petshop.model.entidades;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Date;
 /**
  *
  * @author Wemerson Diogenes da Silva <wemersondiogenes16@gmail.com>
  */
-@Entity
-public class Cliente implements Serializable {
-
-    @Id
-    @GeneratedValue
+public class Servico {
     private int id;
     private String nome;
-    private String cpf;
-    private String telefone;
-    private Endereco endereco;
+    private int duracao;
+    private BigDecimal valor;
+    private List<Date> ListaDeDatas;
 
-    public Cliente() {
+    public Servico() {
     }
 
-    public Cliente(int id, String nome, String cpf, String telefone, Endereco endereco) {
+    public Servico(int id, String nome, int duracao, BigDecimal valor, List<Date> ListaDeDatas) {
         this.id = id;
         this.nome = nome;
-        this.cpf = cpf;
-        this.telefone = telefone;
-        this.endereco = endereco;
+        this.duracao = duracao;
+        this.valor = valor;
+        this.ListaDeDatas = ListaDeDatas;
     }
 
     public int getId() {
@@ -71,57 +65,57 @@ public class Cliente implements Serializable {
         this.nome = nome;
     }
 
-    public String getCpf() {
-        return cpf;
+    public int getDuracao() {
+        return duracao;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setDuracao(int duracao) {
+        this.duracao = duracao;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public BigDecimal getValor() {
+        return valor;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
+    public List<Date> getListaDeDatas() {
+        return ListaDeDatas;
     }
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+    public void setListaDeDatas(List<Date> ListaDeDatas) {
+        this.ListaDeDatas = ListaDeDatas;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 67 * hash + this.id;
+        int hash = 7;
+        hash = 61 * hash + this.id;
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Cliente)) {
+        if (!(obj instanceof Servico)) {
             return false;
         }
-        Cliente cliente = (Cliente) obj;
+        Servico servico = (Servico) obj;
 
-        if (cliente.id == id
-                && cliente.cpf == cpf
-                && cliente.nome == nome
-                && cliente.telefone == telefone
-                && cliente.endereco == endereco){
+        if(servico.id == id
+                && servico.ListaDeDatas == ListaDeDatas
+                && servico.duracao == duracao
+                && servico.nome == nome
+                && servico.valor == valor) {
             return true;
         }
         return false;
     }
-
     @Override
     public String toString() {
-        return "Cliente{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", telefone=" + telefone + ", endereco=" + endereco + '}';
+        return "Servico{" + "id=" + id + ", nome=" + nome + ", duracao=" + duracao + ", valor=" + valor + ", ListaDeDatas=" + ListaDeDatas + '}';
     }
-
+    
+    
 }
