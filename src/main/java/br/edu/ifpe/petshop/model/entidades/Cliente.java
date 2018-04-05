@@ -43,16 +43,20 @@ public class Cliente implements Serializable {
     private String cpf;
     private String telefone;
     private Endereco endereco;
+    private String email;
+    private String senha;
 
     public Cliente() {
     }
 
-    public Cliente(int id, String nome, String cpf, String telefone, Endereco endereco) {
+    public Cliente(int id, String nome, String cpf, String telefone, Endereco endereco, String email, String senha) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
         this.endereco = endereco;
+        this.email = email;
+        this.senha = senha;
     }
 
     public int getId() {
@@ -95,10 +99,26 @@ public class Cliente implements Serializable {
         this.endereco = endereco;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 67 * hash + this.id;
+        int hash = 7;
+        hash = 23 * hash + this.id;
         return hash;
     }
 
@@ -113,7 +133,9 @@ public class Cliente implements Serializable {
                 && cliente.cpf == cpf
                 && cliente.nome == nome
                 && cliente.telefone == telefone
-                && cliente.endereco == endereco){
+                && cliente.endereco == endereco
+                && cliente.email == email
+                && cliente.senha == senha){
             return true;
         }
         return false;
@@ -121,7 +143,9 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "Cliente{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", telefone=" + telefone + ", endereco=" + endereco + '}';
+        return "Cliente{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", telefone=" + telefone + ", endereco=" + endereco + ", email=" + email + ", senha=" + senha + '}';
     }
+
+    
 
 }
