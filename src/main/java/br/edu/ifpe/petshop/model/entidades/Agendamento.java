@@ -27,11 +27,19 @@ package br.edu.ifpe.petshop.model.entidades;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  *
  * @author Wemerson Diogenes da Silva <wemersondiogenes16@gmail.com>
  */
+@Entity
 public class Agendamento {
+    
+    @Id
+    @GeneratedValue
     private int id;
     private List<Servico> servico;
     private Cliente cliente;

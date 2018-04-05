@@ -27,26 +27,34 @@ package br.edu.ifpe.petshop.model.entidades;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  *
  * @author Wemerson Diogenes da Silva <wemersondiogenes16@gmail.com>
  */
+@Entity
 public class Servico {
+    
+    @Id
+    @GeneratedValue
     private int id;
     private String nome;
     private int duracao;
     private BigDecimal valor;
-    private List<Date> ListaDeDatas;
+    private List<Date> listaDeDatas;
 
     public Servico() {
     }
 
-    public Servico(int id, String nome, int duracao, BigDecimal valor, List<Date> ListaDeDatas) {
+    public Servico(int id, String nome, int duracao, BigDecimal valor, List<Date> listaDeDatas) {
         this.id = id;
         this.nome = nome;
         this.duracao = duracao;
         this.valor = valor;
-        this.ListaDeDatas = ListaDeDatas;
+        this.listaDeDatas = listaDeDatas;
     }
 
     public int getId() {
@@ -82,11 +90,11 @@ public class Servico {
     }
 
     public List<Date> getListaDeDatas() {
-        return ListaDeDatas;
+        return listaDeDatas;
     }
 
-    public void setListaDeDatas(List<Date> ListaDeDatas) {
-        this.ListaDeDatas = ListaDeDatas;
+    public void setListaDeDatas(List<Date> listaDeDatas) {
+        this.listaDeDatas = listaDeDatas;
     }
 
     @Override
@@ -104,7 +112,7 @@ public class Servico {
         Servico servico = (Servico) obj;
 
         if(servico.id == id
-                && servico.ListaDeDatas == ListaDeDatas
+                && servico.listaDeDatas == listaDeDatas
                 && servico.duracao == duracao
                 && servico.nome == nome
                 && servico.valor == valor) {
@@ -114,7 +122,7 @@ public class Servico {
     }
     @Override
     public String toString() {
-        return "Servico{" + "id=" + id + ", nome=" + nome + ", duracao=" + duracao + ", valor=" + valor + ", ListaDeDatas=" + ListaDeDatas + '}';
+        return "Servico{" + "id=" + id + ", nome=" + nome + ", duracao=" + duracao + ", valor=" + valor + ", listaDeDatas=" + listaDeDatas + '}';
     }
     
     
