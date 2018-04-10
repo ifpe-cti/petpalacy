@@ -53,11 +53,11 @@ public class Endereco implements Serializable {
         this.bairro = bairro;
     }
 
-    public int getId() {
+    public int getIdEndereco() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setIdEndereco(int id) {
         this.id = id;
     }
 

@@ -28,9 +28,11 @@ import br.edu.ifpe.petshop.model.entidades.Servico;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -47,7 +49,9 @@ public class Empresa implements Serializable {
     private String email;
     private String telefone;
     private String nome;
+    @OneToOne(cascade=CascadeType.ALL)
     private List<Servico> servicos;
+    @OneToOne(cascade=CascadeType.ALL)
     private Endereco endereco;
 
     public Empresa(String cnpj, String senha, String email, String telefone, String nome, List<Servico> servicos, Endereco endereco) {
@@ -60,11 +64,14 @@ public class Empresa implements Serializable {
         this.endereco = endereco;
     }
 
-    public int getId() {
+    public Empresa() {
+    }
+
+    public int getIdEmpresa() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setIdEmpresa(int id) {
         this.id = id;
     }
 
