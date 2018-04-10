@@ -25,9 +25,11 @@ SOFTWARE.
 package br.edu.ifpe.petshop.model.entidades;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -42,6 +44,7 @@ public class Cliente implements Serializable {
     private String nome;
     private String cpf;
     private String telefone;
+    @OneToOne(cascade=CascadeType.ALL)  
     private Endereco endereco;
     private String email;
     private String senha;
@@ -59,11 +62,11 @@ public class Cliente implements Serializable {
         this.senha = senha;
     }
 
-    public int getId() {
+    public int getIdCliente() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setIdCliente(int id) {
         this.id = id;
     }
 

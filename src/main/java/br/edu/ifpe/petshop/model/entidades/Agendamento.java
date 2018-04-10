@@ -24,34 +24,53 @@ SOFTWARE.
  */
 package br.edu.ifpe.petshop.model.entidades;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Date;
+import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
 
 /**
  *
  * @author Wemerson Diogenes da Silva <wemersondiogenes16@gmail.com>
  */
 @Entity
-public class Agendamento {
+public class Agendamento implements Serializable {
     
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
+    @OneToOne(cascade=CascadeType.ALL)
     private List<Servico> servico;
+    @OneToOne(cascade=CascadeType.ALL)
     private Cliente cliente;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date data;
     private BigDecimal valorTotal;
 
-    public int getId() {
-        return id;
+    public Agendamento() {
     }
 
-    public void setId(int id) {
+    public Agendamento(Integer id, List<Servico> servico, Cliente cliente, Date data, BigDecimal valorTotal) {
         this.id = id;
+        this.servico = servico;
+        this.cliente = cliente;
+        this.data = data;
+        this.valorTotal = valorTotal;
+    }
+
+    public void setIdAgen(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public List<Servico> getServico() {
@@ -88,8 +107,8 @@ public class Agendamento {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 43 * hash + this.id;
+        int hash = 3;
+        hash = 67 * hash + Objects.hashCode(id);
         return hash;
     }
 

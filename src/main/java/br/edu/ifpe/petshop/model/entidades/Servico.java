@@ -57,11 +57,11 @@ public class Servico {
         this.listaDeDatas = listaDeDatas;
     }
 
-    public int getId() {
+    public int getIdServico() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setIdServico(int id) {
         this.id = id;
     }
 

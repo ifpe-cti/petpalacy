@@ -64,6 +64,7 @@ Contributor(s):
     <mapping class="br.edu.ifpe.petshop.model.entidades.Endereco" />
     <mapping class="br.edu.ifpe.petshop.model.entidades.Servico" />
     <mapping class="br.edu.ifpe.petshop.model.entidades.Agendamento" />
+    <mapping class="br.edu.ifpe.petshop.model.entidades.Empresa" />
       
   </session-factory>
 </hibernate-configuration>
