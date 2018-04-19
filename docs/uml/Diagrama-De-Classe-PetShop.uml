@@ -1,0 +1,59 @@
+@startuml
+
+left to right direction
+skinparam classAttributeIconSize 0
+
+
+class Cliente {
+    -int id;
+    -String nome;
+    -String cpf;
+    -String telefone
+    -Endereco endereco
+    -String email
+    -String senha
+}
+
+class Endereco {
+    -int id;
+    -String logradouro
+    -String cidade
+    -String bairro
+}
+
+class Servico {
+    -int id
+    -String nome
+    -int duracao
+    -BigDecimal valor
+    -List<Date> listaDeDatas
+}
+
+class Agendamento {
+    -Integer id
+    -List<Servico> servico
+    -Cliente cliente
+    -Empresa empresa
+    -Date data
+    -BigDecimal valorTotal
+}
+
+class Empresa {
+    -int id
+    -String cnpj
+    -String senha
+    -String email
+    -String telefone
+    -String nome
+    -List<Servico> servicos
+    -Endereco endereco
+}
+
+Cliente "1" *-- "1" Endereco
+Empresa "1" *-- "1" Endereco
+Empresa "1" *-- "*" Servico
+Agendamento "1" ..> "1" Empresa
+Agendamento "1" ..> "1" Cliente
+Agendamento "1" ..> "*" Servico
+
+@enduml
