@@ -21,18 +21,42 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package br.edu.ifpe.petshop.infraestrutura.repositorio.interfaces;
+package br.edu.ifpe.petshop.infraestrutura.repositorio.implementacao;
 
+import br.edu.ifpe.petshop.infraestrutura.dao.PersistenciaDAO;
+import br.edu.ifpe.petshop.infraestrutura.repositorio.interfaces.RepositorioEmpresa;
+import br.edu.ifpe.petshop.model.entidades.Empresa;
 import java.util.List;
 
 /**
  *
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
  */
-public interface RepositorioGenerico<E> {
-    public void salvar(E e);
-    public E buscar(Integer codigo);
-    public void editar(E e);
-    public void deletar(E e);
-    public List<E> listar();
+public class RepositorioEmpresaImpDB implements RepositorioEmpresa<Empresa> {
+    
+    @Override
+    public void salvar(Empresa empresa) {
+        PersistenciaDAO.getInstance().salvar(empresa);
+    }
+
+    @Override
+    public void editar(Empresa empresa) {
+        PersistenciaDAO.getInstance().editar(empresa);
+    }
+
+    @Override
+    public Empresa buscar(Integer codigo) {
+        return (Empresa) PersistenciaDAO.getInstance().listar("SELECT em FROM Empresa em WHERE em.codigoEmpresa=" + codigo).get(0);
+    }
+
+    @Override
+    public void deletar(Empresa empresa) {
+        PersistenciaDAO.getInstance().deletar(empresa);
+    }
+
+    @Override
+    public List<Empresa> listar() {
+        return PersistenciaDAO.getInstance().listar("SELECT em FROM Empresa em");
+    }
+    
 }
