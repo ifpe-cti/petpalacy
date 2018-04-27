@@ -22,42 +22,42 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
-package br.edu.ifpe.petshop.infraestrutura.repositorio.implementacao;
+package br.edu.ifpe.petshop.model.repositorio.implementacao;
 
-import br.edu.ifpe.petshop.infraestrutura.dao.PersistenciaDAO;
-import br.edu.ifpe.petshop.infraestrutura.repositorio.interfaces.RepositorioGenerico;
-import br.edu.ifpe.petshop.model.entidades.Servico;
+import br.edu.ifpe.petshop.model.dao.PersistenciaDAO;
+import br.edu.ifpe.petshop.model.repositorio.interfaces.RepositorioAgendamento;
+import br.edu.ifpe.petshop.model.entidades.Agendamento;
 import java.util.List;
 
 /**
  *
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
  */
-public class RepositorioServicoDB implements RepositorioGenerico<Servico> {
+public class RepositorioAgendamentoImpDB implements RepositorioAgendamento<Agendamento> {
     
     @Override
-    public void salvar(Servico servico) {
-        PersistenciaDAO.getInstance().salvar(servico);
+    public void salvar(Agendamento agendamento) {
+        PersistenciaDAO.getInstance().salvar(agendamento);
     }
 
     @Override
-    public void editar(Servico servico) {
-        PersistenciaDAO.getInstance().editar(servico);
+    public void editar(Agendamento agendamento) {
+        PersistenciaDAO.getInstance().editar(agendamento);
     }
 
     @Override
-    public Servico buscar(Integer codigo) {
-        return (Servico) PersistenciaDAO.getInstance().listar("SELECT s FROM Servico s WHERE s.codigoServ=" + codigo).get(0);
+    public Agendamento buscar(Integer codigo) {
+        return (Agendamento) PersistenciaDAO.getInstance().listar("SELECT ag FROM Agendamento ag WHERE ag.codigoAgen=" + codigo).get(0);
     }
 
     @Override
-    public void deletar(Servico servico) {
-        PersistenciaDAO.getInstance().deletar(servico);
+    public void deletar(Agendamento agendamento) {
+        PersistenciaDAO.getInstance().deletar(agendamento);
     }
 
     @Override
-    public List<Servico> listar() {
-        return PersistenciaDAO.getInstance().listar("SELECT s FROM Servico s");
+    public List<Agendamento> listar() {
+        return PersistenciaDAO.getInstance().listar("SELECT ag FROM Agendamento ag");
     }
     
 }

@@ -21,7 +21,7 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package br.edu.ifpe.petshop.infraestrutura.repositorio.interfaces;
+package br.edu.ifpe.petshop.model.repositorio.interfaces;
 
 /**
  *

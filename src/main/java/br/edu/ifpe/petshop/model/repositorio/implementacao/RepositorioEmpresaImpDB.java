@@ -21,10 +21,10 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package br.edu.ifpe.petshop.infraestrutura.repositorio.implementacao;
+package br.edu.ifpe.petshop.model.repositorio.implementacao;
 
-import br.edu.ifpe.petshop.infraestrutura.dao.PersistenciaDAO;
-import br.edu.ifpe.petshop.infraestrutura.repositorio.interfaces.RepositorioEmpresa;
+import br.edu.ifpe.petshop.model.dao.PersistenciaDAO;
+import br.edu.ifpe.petshop.model.repositorio.interfaces.RepositorioEmpresa;
 import br.edu.ifpe.petshop.model.entidades.Empresa;
 import java.util.List;
 
