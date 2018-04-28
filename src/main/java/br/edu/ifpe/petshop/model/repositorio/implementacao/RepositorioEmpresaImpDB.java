@@ -46,7 +46,7 @@ public class RepositorioEmpresaImpDB implements RepositorioEmpresa<Empresa> {
 
     @Override
     public Empresa buscar(Integer codigo) {
-        return (Empresa) PersistenciaDAO.getInstance().listar("SELECT em FROM Empresa em WHERE em.codigoEmpresa=" + codigo).get(0);
+        return (Empresa) PersistenciaDAO.getInstance().listar("SELECT em FROM Empresa em WHERE em.id=" + codigo).get(0);
     }
 
     @Override
@@ -59,4 +59,8 @@ public class RepositorioEmpresaImpDB implements RepositorioEmpresa<Empresa> {
         return PersistenciaDAO.getInstance().listar("SELECT em FROM Empresa em");
     }
     
+    @Override
+    public Empresa buscarCnpj(String cnpj){
+        return (Empresa) PersistenciaDAO.getInstance().listar("SELECT em FROM Empresa em WHERE em.cnpj=" + cnpj).get(0);
+    }
 }
