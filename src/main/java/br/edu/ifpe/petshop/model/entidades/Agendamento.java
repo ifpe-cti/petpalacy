@@ -33,6 +33,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
@@ -46,10 +47,12 @@ public class Agendamento implements Serializable {
     @Id
     @GeneratedValue
     private Integer id;
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToMany(cascade=CascadeType.ALL)
     private List<Servico> servico;
     @OneToOne(cascade=CascadeType.ALL)
     private Cliente cliente;
+    @OneToOne(cascade=CascadeType.ALL)
+    private Empresa empresa;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date data;
     private BigDecimal valorTotal;
@@ -57,19 +60,29 @@ public class Agendamento implements Serializable {
     public Agendamento() {
     }
 
-    public Agendamento(Integer id, List<Servico> servico, Cliente cliente, Date data, BigDecimal valorTotal) {
+    public Agendamento(Integer id, List<Servico> servico, Cliente cliente, Empresa empresa, Date data, BigDecimal valorTotal) {
         this.id = id;
         this.servico = servico;
         this.cliente = cliente;
         this.data = data;
         this.valorTotal = valorTotal;
+        this.empresa = empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+  
+    public Empresa getEmpresa() {
+        return empresa;
     }
 
     public void setIdAgen(Integer id) {
         this.id = id;
     }
 
-    public Integer getId() {
+    public Integer getIdAgen() {
         return id;
     }
 
@@ -107,10 +120,11 @@ public class Agendamento implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 67 * hash + Objects.hashCode(id);
+        int hash = 7;
+        hash = 79 * hash + Objects.hashCode(this.id);
         return hash;
     }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -123,6 +137,7 @@ public class Agendamento implements Serializable {
                 && agendamento.cliente == cliente
                 && agendamento.data == data
                 && agendamento.servico == servico
+                && agendamento.empresa == empresa
                 && agendamento.valorTotal == valorTotal) {
             return true;
         }
@@ -131,7 +146,7 @@ public class Agendamento implements Serializable {
 
     @Override
     public String toString() {
-        return "Agendamento{" + "id=" + id + ", servico=" + servico + ", cliente=" + cliente + ", data=" + data + ", valorTotal=" + valorTotal + '}';
+        return "Agendamento{" + "id=" + id + ", servico=" + servico + ", cliente=" + cliente + ",empresa" + empresa + ", data=" + data + ", valorTotal=" + valorTotal + '}';
     }
     
     

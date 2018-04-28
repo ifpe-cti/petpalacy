@@ -32,6 +32,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -49,7 +50,7 @@ public class Empresa implements Serializable {
     private String email;
     private String telefone;
     private String nome;
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToMany(cascade=CascadeType.ALL)
     private List<Servico> servicos;
     @OneToOne(cascade=CascadeType.ALL)
     private Endereco endereco;
