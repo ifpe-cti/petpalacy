@@ -31,7 +31,7 @@ import javax.persistence.Id;
 
 /**
  *
-  @author 5trj6yruj
+  @author Daniel Calado <danielcalado159@gmail.com>
  */
 @Entity
 public class DatasServico implements Serializable {
@@ -40,14 +40,18 @@ public class DatasServico implements Serializable {
      private Integer id;
      private Date data;
      private String status;
+     private DiaSemana diaSemana;
+     private Status statusData;
 
     public DatasServico() {
     }
 
-    public DatasServico(Integer id, Date data, String status) {
-        this.data = data;
+    public DatasServico(Integer id, Date data, String status, DiaSemana diaSemana, Status statusData) {
         this.id = id;
+        this.data = data;
         this.status = status;
+        this.diaSemana = diaSemana;
+        this.statusData = statusData;
     }
 
     public Integer getId() {
@@ -72,6 +76,27 @@ public class DatasServico implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public DiaSemana getDiaSemana() {
+        return diaSemana;
+    }
+
+    public void setDiaSemana(DiaSemana diaSemana) {
+        this.diaSemana = diaSemana;
+    }
+
+    public Status getStatusData() {
+        return statusData;
+    }
+
+    public void setStatusData(Status statusData) {
+        this.statusData = statusData;
+    }
+
+    @Override
+    public String toString() {
+        return "DatasServico{" + "id=" + id + ", data=" + data + ", status=" + status + ", diaSemana=" + diaSemana + ", statusData=" + statusData + '}';
     }
 
  
