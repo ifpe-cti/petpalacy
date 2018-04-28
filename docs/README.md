@@ -1,4 +1,4 @@
-# PetShop
+# PetPalacy
 
 Sistema para agendamentos de serviços prestados por petshops.
 # Motivação
@@ -19,7 +19,10 @@ Todas as pessoas que possuem animais de estimação que precisão de cuidados e 
 Pessoas que buscam a praticidade de escolher um serviço e o melhor preço no conforto de suas casas.
 # Monetização
 
-...(ainda a definir)
+Será obtida através de uma comissão por agendamentos feitos na plataforma. 
+# Diagrama de classe
+
+![Diagrama](https://github.com/ifpe-cti/petshop/blob/master/docs/uml/Diagrama-De-Classe-PetShop.png)
 
 # Ferramental utilizado
 
@@ -65,4 +68,25 @@ MySql
    * [@kaio-brasil](https://github.com/kaio-brasil) como Kaio Cesar Bezerra da Silva
 
 # Licença
-Licença padrão MIT.
+MIT License
+
+Copyright (c) 2018 Daniel da Silva Calado, Izaquiel Cavalcante da Silva, 
+                   Kaio Cesar Bezerra da Silva e Wemerson Diogenes da Silva
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
