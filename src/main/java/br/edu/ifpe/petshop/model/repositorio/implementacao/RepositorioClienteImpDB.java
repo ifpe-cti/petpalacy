@@ -47,7 +47,7 @@ public class RepositorioClienteImpDB implements RepositorioCliente<Cliente> {
 
     @Override
     public Cliente buscar(Integer codigo) {
-        return (Cliente) PersistenciaDAO.getInstance().listar("SELECT c FROM Cliente c WHERE c.idCliente=" + codigo).get(0);
+        return (Cliente) PersistenciaDAO.getInstance().listar("SELECT c FROM Cliente c WHERE c.id=" + codigo).get(0);
     }
 
     @Override
@@ -65,5 +65,8 @@ public class RepositorioClienteImpDB implements RepositorioCliente<Cliente> {
         return (Cliente) PersistenciaDAO.getInstance().listar("SELECT c FROM Cliente c WHERE c.email="+ email +
                 " AND c.senha="+ senha).get(0);
     }
-    
-}
+    @Override
+    public Cliente buscarCpf(String cpf){
+        return (Cliente) PersistenciaDAO.getInstance().listar("SELECT c FROM Cliente c WHERE c.cpf=" + cpf).get(0);
+    }
+        }

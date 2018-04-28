@@ -28,6 +28,7 @@ package br.edu.ifpe.petshop.model.repositorio.interfaces;
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
  */
 public interface RepositorioCliente<Cliente> extends RepositorioGenerico<Cliente> {
-    public Cliente autenticar(String login, String senha);
     
+    public Cliente autenticar(String login, String senha);
+    public Cliente buscarCpf(String cpf);
 }

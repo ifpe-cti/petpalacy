@@ -47,7 +47,7 @@ public class RepositorioServicoImpDB implements RepositorioServico<Servico> {
 
     @Override
     public Servico buscar(Integer codigo) {
-        return (Servico) PersistenciaDAO.getInstance().listar("SELECT s FROM Servico s WHERE s.codigoServ=" + codigo).get(0);
+        return (Servico) PersistenciaDAO.getInstance().listar("SELECT s FROM Servico s WHERE s.id=" + codigo).get(0);
     }
 
     @Override

@@ -47,7 +47,7 @@ public class RepositorioAgendamentoImpDB implements RepositorioAgendamento<Agend
 
     @Override
     public Agendamento buscar(Integer codigo) {
-        return (Agendamento) PersistenciaDAO.getInstance().listar("SELECT ag FROM Agendamento ag WHERE ag.codigoAgen=" + codigo).get(0);
+        return (Agendamento) PersistenciaDAO.getInstance().listar("SELECT ag FROM Agendamento ag WHERE ag.id=" + codigo).get(0);
     }
 
     @Override

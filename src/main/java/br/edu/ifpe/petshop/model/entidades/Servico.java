@@ -24,19 +24,24 @@ SOFTWARE.
  */
 package br.edu.ifpe.petshop.model.entidades;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author Wemerson Diogenes da Silva <wemersondiogenes16@gmail.com>
  */
 @Entity
-public class Servico {
+public class Servico implements Serializable {
     
     @Id
     @GeneratedValue
@@ -44,12 +49,13 @@ public class Servico {
     private String nome;
     private int duracao;
     private BigDecimal valor;
-    private List<Date> listaDeDatas;
+    @OneToMany(cascade=CascadeType.ALL)
+    private List<DatasServico> listaDeDatas;
 
     public Servico() {
     }
 
-    public Servico(int id, String nome, int duracao, BigDecimal valor, List<Date> listaDeDatas) {
+    public Servico(int id, String nome, int duracao, BigDecimal valor, List<DatasServico> listaDeDatas) {
         this.id = id;
         this.nome = nome;
         this.duracao = duracao;
@@ -89,11 +95,11 @@ public class Servico {
         this.valor = valor;
     }
 
-    public List<Date> getListaDeDatas() {
+    public List<DatasServico> getListaDeDatas() {
         return listaDeDatas;
     }
 
-    public void setListaDeDatas(List<Date> listaDeDatas) {
+    public void setListaDeDatas(List<DatasServico> listaDeDatas) {
         this.listaDeDatas = listaDeDatas;
     }
 
