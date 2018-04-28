@@ -26,6 +26,7 @@ package br.edu.ifpe.petshop.model.repositorio.interfaces;
 /**
  *
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
+ * @param <Empresa>
  */
 public interface RepositorioEmpresa<Empresa> extends RepositorioGenerico<Empresa> {
         public Empresa buscarCnpj(String cnpj);
