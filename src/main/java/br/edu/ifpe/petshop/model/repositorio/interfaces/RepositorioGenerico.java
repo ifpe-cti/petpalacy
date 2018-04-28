@@ -28,6 +28,7 @@ import java.util.List;
 /**
  *
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
+ * @param <E>
  */
 public interface RepositorioGenerico<E> {
     public void salvar(E e);

@@ -34,6 +34,21 @@ import java.util.List;
  */
 public class RepositorioEmpresaImpDB implements RepositorioEmpresa<Empresa> {
     
+    private static RepositorioEmpresaImpDB instance; 
+    
+    private RepositorioEmpresaImpDB(){
+        
+    }
+    
+    public static RepositorioEmpresaImpDB getInstance(){
+        
+        if(instance == null)
+            instance = new RepositorioEmpresaImpDB();
+        
+        return instance;
+    }
+         
+            
     @Override
     public void salvar(Empresa empresa) {
         PersistenciaDAO.getInstance().salvar(empresa);

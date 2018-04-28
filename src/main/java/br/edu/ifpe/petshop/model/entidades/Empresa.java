@@ -23,8 +23,6 @@
  */
 package br.edu.ifpe.petshop.model.entidades;
 
-import br.edu.ifpe.petshop.model.entidades.Endereco;
-import br.edu.ifpe.petshop.model.entidades.Servico;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
