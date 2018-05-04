@@ -33,22 +33,10 @@ import java.util.List;
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
  */
 public class RepositorioEmpresaImpDB implements RepositorioEmpresa<Empresa> {
-    
-    private static RepositorioEmpresaImpDB instance; 
-    
-    private RepositorioEmpresaImpDB(){
-        
+
+    private RepositorioEmpresaImpDB() {
     }
-    
-    public static RepositorioEmpresaImpDB getInstance(){
-        
-        if(instance == null)
-            instance = new RepositorioEmpresaImpDB();
-        
-        return instance;
-    }
-         
-            
+
     @Override
     public void salvar(Empresa empresa) {
         PersistenciaDAO.getInstance().salvar(empresa);
@@ -73,9 +61,9 @@ public class RepositorioEmpresaImpDB implements RepositorioEmpresa<Empresa> {
     public List<Empresa> listar() {
         return PersistenciaDAO.getInstance().listar("SELECT em FROM Empresa em");
     }
-    
+
     @Override
-    public Empresa buscarCnpj(String cnpj){
+    public Empresa buscarCnpj(String cnpj) {
         return (Empresa) PersistenciaDAO.getInstance().listar("SELECT em FROM Empresa em WHERE em.cnpj=" + cnpj).get(0);
     }
 }

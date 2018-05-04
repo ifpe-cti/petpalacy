@@ -21,12 +21,19 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package br.edu.ifpe.petshop.model.repositorio.interfaces;
+package br.edu.ifpe.petshop.model.interfaces;
+
+import java.util.List;
 
 /**
  *
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
+ * @param <E>
  */
-public interface RepositorioServico<Servico> extends RepositorioGenerico<Servico> {
-    
+public interface InterfaceGenerico<E> {
+    public void salvar(E e);
+    public E buscar(Integer codigo);
+    public void editar(E e);
+    public void deletar(E e);
+    public List<E> listar();
 }

@@ -21,14 +21,14 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package br.edu.ifpe.petshop.model.repositorio.interfaces;
+package br.edu.ifpe.petshop.model.interfaces;
 
 /**
  *
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
+ * @param <Empresa>
  */
-public interface RepositorioCliente<Cliente> extends RepositorioGenerico<Cliente> {
-    
-    public Cliente autenticar(String login, String senha);
-    public Cliente buscarCpf(String cpf);
+public interface InterfaceEmpresa<Empresa> extends RepositorioGenerico<Empresa> {
+        public Empresa buscarCnpj(String cnpj);
+
 }

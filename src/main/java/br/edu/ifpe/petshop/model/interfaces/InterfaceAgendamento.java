@@ -21,12 +21,12 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package br.edu.ifpe.petshop.model.repositorio.interfaces;
+package br.edu.ifpe.petshop.model.interfaces;
 
 /**
  *
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
  */
-public interface RepositorioAgendamento<Agendamento> extends RepositorioGenerico<Agendamento> {
+public interface InterfaceAgendamento<Agendamento> extends RepositorioGenerico<Agendamento> {
     
 }
