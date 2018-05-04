@@ -26,33 +26,22 @@
 package br.edu.ifpe.petshop.model.negocio;
 
 import br.edu.ifpe.petshop.model.entidades.Empresa;
-import br.edu.ifpe.petshop.model.negocio.interfaces.EmpresaInterface;
 import br.edu.ifpe.petshop.model.repositorio.implementacao.RepositorioEmpresaImpDB;
+import br.edu.ifpe.petshop.model.interfaces.InterfaceEmpresa;
 import java.util.List;
 
 /**
  *
  * @author izaquiel cavalcante da silva izaquiel_cavalcante@hotmail.com
  */
-public class NegocioEmpresa implements EmpresaInterface<Empresa> {
-
-    private static NegocioEmpresa instance;
+public class NegocioEmpresa implements InterfaceEmpresa<Empresa>{
 
     private RepositorioEmpresaImpDB repoEmp;
 
     private Empresa emp;
 
-    private NegocioEmpresa() {
-        repoEmp = RepositorioEmpresaImpDB.getInstance();
-    }
-
-    private static NegocioEmpresa getInstance() {
-
-        if (instance == null) {
-            instance = new NegocioEmpresa();
-        }
-
-        return instance;
+    public NegocioEmpresa() {
+        repoEmp = new RepositorioEmpresaImpDB();
     }
 
     @Override
