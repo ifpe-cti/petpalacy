@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>br.edu.ifpe</groupId>
-    <artifactId>petshop</artifactId>
+    <artifactId>petpalacy</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>petshop</name>
+    <name>petpalacy</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
