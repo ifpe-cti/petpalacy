@@ -25,9 +25,9 @@
  */
 package br.edu.ifpe.petpalacy.model.negocio;
 
-import br.edu.ifpe.petshop.model.entidades.Empresa;
-import br.edu.ifpe.petshop.model.repositorio.implementacao.RepositorioEmpresaImpDB;
-import br.edu.ifpe.petshop.model.interfaces.InterfaceEmpresa;
+import br.edu.ifpe.petpalacy.model.entidades.Empresa;
+import br.edu.ifpe.petpalacy.model.interfaces.InterfaceEmpresa;
+import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioEmpresaImpDB;
 import java.util.List;
 
 /**
@@ -45,7 +45,7 @@ public class NegocioEmpresa implements InterfaceEmpresa<Empresa>{
     }
 
     @Override
-    public Empresa buscarCNPJ(String cnpj) {
+    public Empresa buscarCnpj(String cnpj) {
         if (cnpj == null) {
             //Imprimir que não foi passada nenhuma informação.
             return null;
@@ -68,7 +68,7 @@ public class NegocioEmpresa implements InterfaceEmpresa<Empresa>{
             //Imprimir que não foi passada nenhuma informação.
         } else {
 
-            if (buscarCNPJ(e.getCnpj()) != null) {
+            if (buscarCnpj(e.getCnpj()) != null) {
                 //Imprimir que esta empresa Já está cadastrada no banco.
             } else {
                 repoEmp.salvar(e);

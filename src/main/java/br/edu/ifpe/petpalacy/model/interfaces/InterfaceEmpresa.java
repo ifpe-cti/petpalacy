@@ -28,7 +28,7 @@ package br.edu.ifpe.petpalacy.model.interfaces;
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
  * @param <Empresa>
  */
-public interface InterfaceEmpresa<Empresa> extends RepositorioGenerico<Empresa> {
+public interface InterfaceEmpresa<Empresa> extends InterfaceGenerico<Empresa> {
         public Empresa buscarCnpj(String cnpj);
 
 }
