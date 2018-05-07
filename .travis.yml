@@ -1,0 +1,10 @@
+language: java
+sudo: false
+cache:
+  directories:
+    - "$HOME/.m2"
+jdk:
+  - oraclejdk8
+script:
+  - set -e
+  - mvn clean package
