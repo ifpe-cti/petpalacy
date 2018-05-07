@@ -23,18 +23,18 @@
  */
 package br.edu.ifpe.petpalacy.model.repositorio.implementacao;
 
-import br.edu.ifpe.petshop.model.dao.PersistenciaDAO;
-import br.edu.ifpe.petshop.model.repositorio.interfaces.RepositorioEmpresa;
-import br.edu.ifpe.petshop.model.entidades.Empresa;
+import br.edu.ifpe.petpalacy.model.dao.PersistenciaDAO;
+import br.edu.ifpe.petpalacy.model.entidades.Empresa;
+import br.edu.ifpe.petpalacy.model.interfaces.InterfaceEmpresa;
 import java.util.List;
 
 /**
  *
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
  */
-public class RepositorioEmpresaImpDB implements RepositorioEmpresa<Empresa> {
+public class RepositorioEmpresaImpDB implements InterfaceEmpresa<Empresa> {
 
-    private RepositorioEmpresaImpDB() {
+    public RepositorioEmpresaImpDB() {
     }
 
     @Override
