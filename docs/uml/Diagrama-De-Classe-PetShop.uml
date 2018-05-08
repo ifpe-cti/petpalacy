@@ -33,11 +33,15 @@ class DatasServico{
 -Date data
 -Date hora
 }
-enum Status{
+enum StatusAgen{
     DISPONIVEL
     AGENDADO
     REALIZADO
     CANCELADO
+}
+enum StatusDataSer{
+    DISPONIVEL
+    AGENDADO
 }
 enum Dia{
     SEGUNDA
@@ -77,6 +81,6 @@ Agendamento "1" ..> "1" Cliente
 Agendamento "1" ..> "*" Servico
 Servico "1" <.. "*" DatasServico
 DatasServico --> Dia
-DatasServico --> Status
-Agendamento --> Status
+DatasServico --> StatusDataSer
+Agendamento --> StatusAgen
 @enduml
