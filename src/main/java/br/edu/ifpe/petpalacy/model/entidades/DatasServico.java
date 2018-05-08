@@ -41,17 +41,17 @@ public class DatasServico implements Serializable {
      private Date data;
      private String status;
      private DiaSemana diaSemana;
-     private Status statusData;
+     private StatusDataSer statusDataSer;
 
     public DatasServico() {
     }
 
-    public DatasServico(Integer id, Date data, String status, DiaSemana diaSemana, Status statusData) {
+    public DatasServico(Integer id, Date data, String status, DiaSemana diaSemana, StatusDataSer statusDataSer) {
         this.id = id;
         this.data = data;
         this.status = status;
         this.diaSemana = diaSemana;
-        this.statusData = statusData;
+        this.statusDataSer = statusDataSer;
     }
 
     public Integer getId() {
@@ -86,19 +86,13 @@ public class DatasServico implements Serializable {
         this.diaSemana = diaSemana;
     }
 
-    public Status getStatusData() {
-        return statusData;
+    public StatusDataSer getStatusDataSer() {
+        return statusDataSer;
     }
 
-    public void setStatusData(Status statusData) {
-        this.statusData = statusData;
+    public void setStatusDataSer(StatusDataSer statusDataSer) {
+        this.statusDataSer = statusDataSer;
     }
 
-    @Override
-    public String toString() {
-        return "DatasServico{" + "id=" + id + ", data=" + data + ", status=" + status + ", diaSemana=" + diaSemana + ", statusData=" + statusData + '}';
-    }
-
- 
      
 }

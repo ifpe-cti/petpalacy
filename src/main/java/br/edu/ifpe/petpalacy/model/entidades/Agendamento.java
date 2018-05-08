@@ -56,27 +56,27 @@ public class Agendamento implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date data;
     private BigDecimal valorTotal;
-    private Status statusAgn;
+    private StatusAgen statusAgen;
 
     public Agendamento() {
     }
 
-    public Agendamento(Integer id, List<Servico> servico, Cliente cliente, Empresa empresa, Date data, BigDecimal valorTotal, Status statusAgn) {
+    public Agendamento(Integer id, List<Servico> servico, Cliente cliente, Empresa empresa, Date data, BigDecimal valorTotal, StatusAgen statusAgen) {
         this.id = id;
         this.servico = servico;
         this.cliente = cliente;
         this.data = data;
         this.valorTotal = valorTotal;
         this.empresa = empresa;
-        this.statusAgn = statusAgn;
+        this.statusAgen = statusAgen;
     }
 
-    public Status getStatusAgn() {
-        return statusAgn;
+    public StatusAgen getStatusAgn() {
+        return statusAgen;
     }
 
-    public void setStatusAgn(Status statusAgn) {
-        this.statusAgn = statusAgn;
+    public void setStatusAgn(StatusAgen statusAgn) {
+        this.statusAgen = statusAgen;
     }
 
     public void setEmpresa(Empresa empresa) {
@@ -148,7 +148,7 @@ public class Agendamento implements Serializable {
                 && agendamento.servico == servico
                 && agendamento.empresa == empresa
                 && agendamento.valorTotal == valorTotal
-                && agendamento.statusAgn == statusAgn) {
+                && agendamento.statusAgen == statusAgen) {
             return true;
         }
         return false;
@@ -158,7 +158,7 @@ public class Agendamento implements Serializable {
     public String toString() {
         return "Agendamento{" + "id=" + id + ", servico=" + servico + ", cliente=" 
                 + cliente + ",empresa" + empresa + ", data=" + data + ", valorTotal=" 
-                + valorTotal + "statusAgn"+ statusAgn + '}';
+                + valorTotal + "statusAgn"+ statusAgen + '}';
     }
     
     
