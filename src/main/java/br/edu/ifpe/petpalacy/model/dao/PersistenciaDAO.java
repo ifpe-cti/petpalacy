@@ -23,7 +23,7 @@
  */
 package br.edu.ifpe.petpalacy.model.dao;
 
-import br.edu.ifpe.petshop.util.HibernateUtil;
+import br.edu.ifpe.petpalacy.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;

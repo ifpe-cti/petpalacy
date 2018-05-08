@@ -5,17 +5,16 @@
  */
 package br.edu.ifpe.petpalacy;
 
-import br.edu.ifpe.petshop.model.entidades.Agendamento;
-import br.edu.ifpe.petshop.model.entidades.Cliente;
-import br.edu.ifpe.petshop.model.entidades.DatasServico;
-import br.edu.ifpe.petshop.model.entidades.Empresa;
-import br.edu.ifpe.petshop.model.entidades.Endereco;
-import br.edu.ifpe.petshop.model.entidades.Servico;
-import br.edu.ifpe.petshop.model.repositorio.implementacao.RepositorioAgendamentoImpDB;
-import br.edu.ifpe.petshop.model.repositorio.implementacao.RepositorioClienteImpDB;
-import br.edu.ifpe.petshop.model.repositorio.implementacao.RepositorioEmpresaImpDB;
-import br.edu.ifpe.petshop.model.repositorio.implementacao.RepositorioServicoImpDB;
-import br.edu.ifpe.petshop.model.repositorio.interfaces.RepositorioServico;
+import br.edu.ifpe.petpalacy.model.entidades.Agendamento;
+import br.edu.ifpe.petpalacy.model.entidades.Cliente;
+import br.edu.ifpe.petpalacy.model.entidades.DatasServico;
+import br.edu.ifpe.petpalacy.model.entidades.Empresa;
+import br.edu.ifpe.petpalacy.model.entidades.Endereco;
+import br.edu.ifpe.petpalacy.model.entidades.Servico;
+import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioAgendamentoImpDB;
+import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioClienteImpDB;
+import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioEmpresaImpDB;
+import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioServicoImpDB;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;

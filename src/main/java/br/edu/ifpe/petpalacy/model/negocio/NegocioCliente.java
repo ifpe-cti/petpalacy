@@ -71,7 +71,7 @@ public class NegocioCliente implements InterfaceCliente<Cliente>{
         if(cliente == null){
             
         }else{
-            if(buscarCpf(cliente.getCpf()!= null)){
+            if(buscarCpf(cliente.getCpf())!= null){
                 
             }else{
                 repCliente.salvar(cliente);

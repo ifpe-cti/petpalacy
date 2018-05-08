@@ -24,16 +24,16 @@ SOFTWARE.
  */
 package br.edu.ifpe.petpalacy.model.repositorio.implementacao;
 
-import br.edu.ifpe.petshop.model.dao.PersistenciaDAO;
-import br.edu.ifpe.petshop.model.repositorio.interfaces.RepositorioCliente;
-import br.edu.ifpe.petshop.model.entidades.Cliente;
+import br.edu.ifpe.petpalacy.model.dao.PersistenciaDAO;
+import br.edu.ifpe.petpalacy.model.entidades.Cliente;
+import br.edu.ifpe.petpalacy.model.interfaces.InterfaceCliente;
 import java.util.List;
 
 /**
  *
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
  */
-public class RepositorioClienteImpDB implements RepositorioCliente<Cliente> {
+public class RepositorioClienteImpDB implements InterfaceCliente<Cliente> {
     
     @Override
     public void salvar(Cliente cliente) {

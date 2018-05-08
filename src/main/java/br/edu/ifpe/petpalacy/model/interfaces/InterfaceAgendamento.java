@@ -26,7 +26,8 @@ package br.edu.ifpe.petpalacy.model.interfaces;
 /**
  *
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
+ * @param <Agendamento>
  */
-public interface InterfaceAgendamento<Agendamento> extends RepositorioGenerico<Agendamento> {
+public interface InterfaceAgendamento<Agendamento> extends InterfaceGenerico<Agendamento> {
     
 }

@@ -26,7 +26,8 @@ package br.edu.ifpe.petpalacy.model.interfaces;
 /**
  *
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
+ * @param <Servico>
  */
-public interface InterfaceServico<Servico> extends RepositorioGenerico<Servico> {
+public interface InterfaceServico<Servico> extends InterfaceGenerico<Servico> {
     
 }

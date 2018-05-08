@@ -26,8 +26,9 @@ package br.edu.ifpe.petpalacy.model.interfaces;
 /**
  *
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
+ * @param <Cliente>
  */
-public interface InterfaceCliente<Cliente> extends RepositorioGenerico<Cliente> {
+public interface InterfaceCliente<Cliente> extends InterfaceGenerico<Cliente> {
     
     public Cliente autenticar(String login, String senha);
     public Cliente buscarCpf(String cpf);

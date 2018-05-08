@@ -24,16 +24,16 @@ SOFTWARE.
  */
 package br.edu.ifpe.petpalacy.model.repositorio.implementacao;
 
-import br.edu.ifpe.petshop.model.dao.PersistenciaDAO;
-import br.edu.ifpe.petshop.model.repositorio.interfaces.RepositorioAgendamento;
-import br.edu.ifpe.petshop.model.entidades.Agendamento;
+import br.edu.ifpe.petpalacy.model.dao.PersistenciaDAO;
+import br.edu.ifpe.petpalacy.model.entidades.Agendamento;
+import br.edu.ifpe.petpalacy.model.interfaces.InterfaceAgendamento;
 import java.util.List;
 
 /**
  *
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
  */
-public class RepositorioAgendamentoImpDB implements RepositorioAgendamento<Agendamento> {
+public class RepositorioAgendamentoImpDB implements InterfaceAgendamento<Agendamento> {
     
     @Override
     public void salvar(Agendamento agendamento) {
