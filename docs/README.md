@@ -36,8 +36,6 @@ HTML
 
 NetBeans
 
-Eclipse
-
 #### Ferramenta de construção
 
 Maven
