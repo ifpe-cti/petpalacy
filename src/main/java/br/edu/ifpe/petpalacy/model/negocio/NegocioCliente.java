@@ -26,7 +26,7 @@ package br.edu.ifpe.petpalacy.model.negocio;
 
 import br.edu.ifpe.petpalacy.model.entidades.Cliente;
 import br.edu.ifpe.petpalacy.model.interfaces.InterfaceCliente;
-import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioClienteImpDB;
+import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioClienteImplDB;
 import java.util.List;
 
 /**
@@ -37,11 +37,11 @@ import java.util.List;
 
 public class NegocioCliente implements InterfaceCliente<Cliente>{
     
-    private RepositorioClienteImpDB repCliente;
+    private RepositorioClienteImplDB repCliente;
     private Cliente cli;
     
     public NegocioCliente(){
-        repCliente = new RepositorioClienteImpDB();
+        repCliente = new RepositorioClienteImplDB();
     }
 
     @Override
@@ -49,7 +49,7 @@ public class NegocioCliente implements InterfaceCliente<Cliente>{
         if(login == null || senha == null){
             return null;
         }
-        return((RepositorioClienteImpDB)repCliente).autenticar(login,senha);
+        return((RepositorioClienteImplDB)repCliente).autenticar(login,senha);
     }
 
     @Override

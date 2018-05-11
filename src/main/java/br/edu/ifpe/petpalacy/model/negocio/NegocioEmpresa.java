@@ -27,7 +27,7 @@ package br.edu.ifpe.petpalacy.model.negocio;
 
 import br.edu.ifpe.petpalacy.model.entidades.Empresa;
 import br.edu.ifpe.petpalacy.model.interfaces.InterfaceEmpresa;
-import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioEmpresaImpDB;
+import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioEmpresaImplDB;
 import java.util.List;
 
 /**
@@ -36,12 +36,20 @@ import java.util.List;
  */
 public class NegocioEmpresa implements InterfaceEmpresa<Empresa>{
 
-    private RepositorioEmpresaImpDB repoEmp;
+    private RepositorioEmpresaImplDB repoEmp;
 
     private Empresa emp;
 
     public NegocioEmpresa() {
-        repoEmp = new RepositorioEmpresaImpDB();
+        repoEmp = new RepositorioEmpresaImplDB();
+    }
+    
+    @Override
+    public Empresa autenticar(String login, String senha) {
+        if(login == null || senha == null){
+            return null;
+        }
+        return((RepositorioEmpresaImplDB)repoEmp).autenticar(login, senha);
     }
 
     @Override

@@ -28,14 +28,6 @@ package br.edu.ifpe.petpalacy.model.entidades;
  */
 
 public enum StatusDataSer{
-       DISPONIVEL(1), AGENDADO(2);
-    
-    private final int valor;
-    
-    private StatusDataSer(int valor){
-        this.valor = valor;
-    }
-    public int getValor(){
-        return valor;
-    }  
+    DISPONIVEL, AGENDADO;
+   
 }

@@ -29,6 +29,8 @@ package br.edu.ifpe.petpalacy.model.interfaces;
  * @param <Empresa>
  */
 public interface InterfaceEmpresa<Empresa> extends InterfaceGenerico<Empresa> {
-        public Empresa buscarCnpj(String cnpj);
+    
+    public Empresa autenticar(String login, String senha);
+    public Empresa buscarCnpj(String cnpj);
 
 }
