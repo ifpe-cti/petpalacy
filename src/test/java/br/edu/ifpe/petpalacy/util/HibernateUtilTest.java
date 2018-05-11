@@ -21,49 +21,38 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package br.edu.ifpe.petpalacy.model.repositorio.implementacao;
+package br.edu.ifpe.petpalacy.util;
 
-import br.edu.ifpe.petpalacy.model.dao.PersistenciaDAO;
-import br.edu.ifpe.petpalacy.model.entidades.Empresa;
-import br.edu.ifpe.petpalacy.model.interfaces.InterfaceEmpresa;
-import java.util.List;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.junit.Ignore;
+import org.junit.Test;
 
 /**
  *
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
  */
-public class RepositorioEmpresaImpDB implements InterfaceEmpresa<Empresa> {
-
-    public RepositorioEmpresaImpDB() {
+public class HibernateUtilTest {
+    @Test
+    @Ignore
+    public void conectarTest() {
+        Session sessao = HibernateUtil.getSessionFactory().openSession();
+        sessao.close();
+        HibernateUtil.getSessionFactory().close();
     }
-
-    @Override
-    public void salvar(Empresa empresa) {
-        PersistenciaDAO.getInstance().salvar(empresa);
+    
+    @Test(expected = HibernateException.class)
+    public void conectarHibernateExceptionTest() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.close();
+        HibernateUtil.getSessionFactory().close();
+    }    
+    
+    @Test(expected = ExceptionInInitializerError.class)
+    public void conectarExceptionInInitializerErrorTest() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.close();
+        HibernateUtil.getSessionFactory().close();
     }
-
-    @Override
-    public void editar(Empresa empresa) {
-        PersistenciaDAO.getInstance().editar(empresa);
-    }
-
-    @Override
-    public Empresa buscar(Integer codigo) {
-        return (Empresa) PersistenciaDAO.getInstance().listar("SELECT em FROM Empresa em WHERE em.id=" + codigo).get(0);
-    }
-
-    @Override
-    public void deletar(Empresa empresa) {
-        PersistenciaDAO.getInstance().deletar(empresa);
-    }
-
-    @Override
-    public List<Empresa> listar() {
-        return PersistenciaDAO.getInstance().listar("SELECT em FROM Empresa em");
-    }
-
-    @Override
-    public Empresa buscarCnpj(String cnpj) {
-        return (Empresa) PersistenciaDAO.getInstance().listar("SELECT em FROM Empresa em WHERE em.cnpj=" + cnpj).get(0);
-    }
+    
 }

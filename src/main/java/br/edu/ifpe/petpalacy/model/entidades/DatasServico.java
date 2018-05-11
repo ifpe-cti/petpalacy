@@ -25,9 +25,17 @@ package br.edu.ifpe.petpalacy.model.entidades;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -35,13 +43,16 @@ import javax.persistence.Id;
  */
 @Entity
 public class DatasServico implements Serializable {
-     @Id
-     @GeneratedValue
-     private Integer id;
-     private Date data;
-     private String status;
-     private DiaSemana diaSemana;
-     private StatusDataSer statusDataSer;
+    @Id
+    @GeneratedValue
+    private Integer id;
+    @Temporal(value = TemporalType.DATE)
+    private Date data;
+    private String status;
+    @Enumerated(EnumType.STRING)
+    private DiaSemana diaSemana;
+    @Enumerated(EnumType.STRING)
+    private StatusDataSer statusDataSer;
 
     public DatasServico() {
     }
@@ -93,6 +104,5 @@ public class DatasServico implements Serializable {
     public void setStatusDataSer(StatusDataSer statusDataSer) {
         this.statusDataSer = statusDataSer;
     }
-
-     
+    
 }

@@ -25,39 +25,39 @@ SOFTWARE.
 package br.edu.ifpe.petpalacy.model.repositorio.implementacao;
 
 import br.edu.ifpe.petpalacy.model.dao.PersistenciaDAO;
-import br.edu.ifpe.petpalacy.model.entidades.Agendamento;
-import br.edu.ifpe.petpalacy.model.interfaces.InterfaceAgendamento;
+import br.edu.ifpe.petpalacy.model.entidades.Servico;
+import br.edu.ifpe.petpalacy.model.interfaces.InterfaceServico;
 import java.util.List;
 
 /**
  *
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
  */
-public class RepositorioAgendamentoImpDB implements InterfaceAgendamento<Agendamento> {
+public class RepositorioServicoImplDB implements InterfaceServico<Servico> {
     
     @Override
-    public void salvar(Agendamento agendamento) {
-        PersistenciaDAO.getInstance().salvar(agendamento);
+    public void salvar(Servico servico) {
+        PersistenciaDAO.getInstance().salvar(servico);
     }
 
     @Override
-    public void editar(Agendamento agendamento) {
-        PersistenciaDAO.getInstance().editar(agendamento);
+    public void editar(Servico servico) {
+        PersistenciaDAO.getInstance().editar(servico);
     }
 
     @Override
-    public Agendamento buscar(Integer codigo) {
-        return (Agendamento) PersistenciaDAO.getInstance().listar("SELECT ag FROM Agendamento ag WHERE ag.id=" + codigo).get(0);
+    public Servico buscar(Integer codigo) {
+        return (Servico) PersistenciaDAO.getInstance().listar("SELECT s FROM Servico s WHERE s.id=" + codigo).get(0);
     }
 
     @Override
-    public void deletar(Agendamento agendamento) {
-        PersistenciaDAO.getInstance().deletar(agendamento);
+    public void deletar(Servico servico) {
+        PersistenciaDAO.getInstance().deletar(servico);
     }
 
     @Override
-    public List<Agendamento> listar() {
-        return PersistenciaDAO.getInstance().listar("SELECT ag FROM Agendamento ag");
+    public List<Servico> listar() {
+        return PersistenciaDAO.getInstance().listar("SELECT s FROM Servico s");
     }
     
 }

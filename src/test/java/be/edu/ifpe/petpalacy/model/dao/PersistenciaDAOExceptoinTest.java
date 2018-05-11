@@ -21,16 +21,40 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package br.edu.ifpe.petpalacy.model.interfaces;
+package be.edu.ifpe.petpalacy.model.dao;
+
+import br.edu.ifpe.petpalacy.model.dao.PersistenciaDAO;
+import br.edu.ifpe.petpalacy.model.entidades.Cliente;
+import org.junit.Test;
 
 /**
  *
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
- * @param <Empresa>
  */
-public interface InterfaceEmpresa<Empresa> extends InterfaceGenerico<Empresa> {
+public class PersistenciaDAOExceptoinTest {
     
-    public Empresa autenticar(String login, String senha);
-    public Empresa buscarCnpj(String cnpj);
+    @Test(expected = RuntimeException.class)
+    public void autenticarRuntimeExceptionTest() {
+        String sql = "SELECT a FROM Cliente a";
+        String email = "joao@ifpe.com"; //Usuario invalido!!
+        String senha = "121212";
+        
+        Cliente cliente  = (Cliente) PersistenciaDAO.getInstance().autenticar(sql, email, senha);
+        
+        System.out.println(cliente.getEmail());
 
+    }
+    
+    @Test(expected = NullPointerException.class)
+    public void autenticarNullPointerExceptionTest() {
+        String sql = "SELECT a FROM Cliente a";
+        String email = null; //Usuario invalido!!
+        String senha = "121212";
+        
+        Cliente cliente  = (Cliente) PersistenciaDAO.getInstance().autenticar(sql, email, senha);
+        
+        System.out.println(cliente.getEmail());
+
+    }
+    
 }

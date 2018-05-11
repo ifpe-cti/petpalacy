@@ -26,7 +26,7 @@ package br.edu.ifpe.petpalacy.model.negocio;
 
 import br.edu.ifpe.petpalacy.model.entidades.Servico;
 import br.edu.ifpe.petpalacy.model.interfaces.InterfaceServico;
-import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioServicoImpDB;
+import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioServicoImplDB;
 import java.util.List;
 
 /**
@@ -37,11 +37,11 @@ import java.util.List;
 
 public class NegocioServico implements InterfaceServico<Servico>{
     
-    private RepositorioServicoImpDB repoServico;
+    private RepositorioServicoImplDB repoServico;
     private Servico serv;
     
     public NegocioServico(){
-        repoServico = new RepositorioServicoImpDB();
+        repoServico = new RepositorioServicoImplDB();
     }
     
     @Override

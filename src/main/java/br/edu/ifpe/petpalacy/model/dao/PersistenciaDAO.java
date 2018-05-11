@@ -116,10 +116,29 @@ public class PersistenciaDAO {
             if(transacao != null) {
                 transacao.rollback();
             }
-            throw ex; //Não estar tratando, esta lançando a excerssao
+            throw ex;
         } finally {
             session.close();
         }
+        
+    }
+    
+    public Object autenticar(String sql, String email, String senha) {
+        Session session = this.sessionFactory.openSession();
+        Object obj = null;
+        
+        try {
+            Query consulta = session.createQuery(sql +" WHERE a.email = :email AND a.senha = :senha");
+            consulta.setString("email", email);
+            consulta.setString("senha", senha);
+            obj = consulta.uniqueResult();
+        } catch(RuntimeException ex) {
+            throw ex;
+        } finally {
+                session.close();
+        }
+        
+        return obj;
         
     }
     

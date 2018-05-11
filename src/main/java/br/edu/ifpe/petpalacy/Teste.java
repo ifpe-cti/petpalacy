@@ -11,10 +11,10 @@ import br.edu.ifpe.petpalacy.model.entidades.DatasServico;
 import br.edu.ifpe.petpalacy.model.entidades.Empresa;
 import br.edu.ifpe.petpalacy.model.entidades.Endereco;
 import br.edu.ifpe.petpalacy.model.entidades.Servico;
-import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioAgendamentoImpDB;
-import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioClienteImpDB;
-import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioEmpresaImpDB;
-import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioServicoImpDB;
+import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioAgendamentoImplDB;
+import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioClienteImplDB;
+import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioEmpresaImplDB;
+import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioServicoImplDB;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,9 +27,10 @@ import java.util.List;
 public class Teste {
     public static void main(String[] args) {
 
-RepositorioClienteImpDB impb = new RepositorioClienteImpDB();
-impb.buscar(1);
-      /*  Endereco end = new Endereco(0, "logradouro", "cidade", "bairro");
+        /*
+        RepositorioClienteImplDB impb = new RepositorioClienteImplDB();
+        impb.buscar(1);
+        Endereco end = new Endereco(0, "logradouro", "cidade", "bairro");
         Cliente cli = new Cliente(0, "nome", "cpf", "telefone", end, "email", "senha");
         impb.salvar(cli);
         

@@ -25,48 +25,39 @@ SOFTWARE.
 package br.edu.ifpe.petpalacy.model.repositorio.implementacao;
 
 import br.edu.ifpe.petpalacy.model.dao.PersistenciaDAO;
-import br.edu.ifpe.petpalacy.model.entidades.Cliente;
-import br.edu.ifpe.petpalacy.model.interfaces.InterfaceCliente;
+import br.edu.ifpe.petpalacy.model.entidades.Agendamento;
+import br.edu.ifpe.petpalacy.model.interfaces.InterfaceAgendamento;
 import java.util.List;
 
 /**
  *
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
  */
-public class RepositorioClienteImpDB implements InterfaceCliente<Cliente> {
+public class RepositorioAgendamentoImplDB implements InterfaceAgendamento<Agendamento> {
     
     @Override
-    public void salvar(Cliente cliente) {
-        PersistenciaDAO.getInstance().salvar(cliente);
+    public void salvar(Agendamento agendamento) {
+        PersistenciaDAO.getInstance().salvar(agendamento);
     }
 
     @Override
-    public void editar(Cliente cliente) {
-        PersistenciaDAO.getInstance().editar(cliente);
+    public void editar(Agendamento agendamento) {
+        PersistenciaDAO.getInstance().editar(agendamento);
     }
 
     @Override
-    public Cliente buscar(Integer codigo) {
-        return (Cliente) PersistenciaDAO.getInstance().listar("SELECT c FROM Cliente c WHERE c.id=" + codigo).get(0);
+    public Agendamento buscar(Integer codigo) {
+        return (Agendamento) PersistenciaDAO.getInstance().listar("SELECT ag FROM Agendamento ag WHERE ag.id=" + codigo).get(0);
     }
 
     @Override
-    public void deletar(Cliente cliente) {
-        PersistenciaDAO.getInstance().deletar(cliente);
+    public void deletar(Agendamento agendamento) {
+        PersistenciaDAO.getInstance().deletar(agendamento);
     }
 
     @Override
-    public List<Cliente> listar() {
-        return PersistenciaDAO.getInstance().listar("SELECT c FROM Cliente c");
+    public List<Agendamento> listar() {
+        return PersistenciaDAO.getInstance().listar("SELECT ag FROM Agendamento ag");
     }
     
-    @Override
-    public Cliente autenticar(String email, String senha) {
-        return (Cliente) PersistenciaDAO.getInstance().listar("SELECT c FROM Cliente c WHERE c.email="+ email +
-                " AND c.senha="+ senha).get(0);
-    }
-    @Override
-    public Cliente buscarCpf(String cpf){
-        return (Cliente) PersistenciaDAO.getInstance().listar("SELECT c FROM Cliente c WHERE c.cpf=" + cpf).get(0);
-    }
-        }
+}
