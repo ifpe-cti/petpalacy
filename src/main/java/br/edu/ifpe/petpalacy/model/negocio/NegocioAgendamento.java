@@ -108,7 +108,13 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
 
     @Override
     public List<Agendamento> listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       List lista = repoAgend.listar();
+        if (lista == null) {
+            //Imprimir nada encontrado.
+            return null;
+        } else {
+            return lista;
+        }
     }
 
 }
