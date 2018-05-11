@@ -32,9 +32,9 @@ import java.util.List;
  *
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
  */
-public class RepositorioEmpresaImpDB implements InterfaceEmpresa<Empresa> {
+public class RepositorioEmpresaImplDB implements InterfaceEmpresa<Empresa> {
 
-    public RepositorioEmpresaImpDB() {
+    public RepositorioEmpresaImplDB() {
     }
 
     @Override
@@ -60,6 +60,11 @@ public class RepositorioEmpresaImpDB implements InterfaceEmpresa<Empresa> {
     @Override
     public List<Empresa> listar() {
         return PersistenciaDAO.getInstance().listar("SELECT em FROM Empresa em");
+    }
+    
+    @Override
+    public Empresa autenticar(String email, String senha) {
+        return (Empresa) PersistenciaDAO.getInstance().autenticar("SELECT a FROM Empresa a", email, senha);
     }
 
     @Override
