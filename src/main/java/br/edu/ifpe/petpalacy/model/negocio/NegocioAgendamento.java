@@ -27,8 +27,10 @@ package br.edu.ifpe.petpalacy.model.negocio;
 
 import br.edu.ifpe.petpalacy.model.entidades.Agendamento;
 import br.edu.ifpe.petpalacy.model.interfaces.InterfaceAgendamento;
-import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioAgendamentoImpDB;
+import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioAgendamentoImplDB;
+import br.edu.ifpe.petpalacy.util.Mensagens;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 
 /**
  *
@@ -36,11 +38,11 @@ import java.util.List;
  */
 public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
 
-    private RepositorioAgendamentoImpDB repoAgend;
+    private RepositorioAgendamentoImplDB repoAgend;
     private Agendamento agenda;
 
     public NegocioAgendamento() {
-        repoAgend = new RepositorioAgendamentoImpDB();
+        repoAgend = new RepositorioAgendamentoImplDB();
     }
 
     @Override
@@ -48,12 +50,16 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
 
         if (e == null) {
             //Imprimir que não foi passada nenhuma informação.
+            Mensagens.getInstance().nenhumaInformacao();
         } else {
 
             if (buscar(e.getIdAgen()) == null) {
                 //Imprimir que este agendamento já está cadastrado no banco.
+                Mensagens.getInstance().jaExisteNoBanco("Agendamento");
+
             } else {
                 repoAgend.salvar(e);
+                Mensagens.getInstance().salvoComSucesso();
             }
         }
     }
@@ -62,6 +68,7 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
     public Agendamento buscar(Integer codigo) {
         if (codigo == null) {
             //Imprimir que não foi passada nenhuma informação.
+
             return null;
         } else {
             agenda = repoAgend.buscar(codigo);
@@ -78,14 +85,17 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
     public void editar(Agendamento e) {
         if (e == null) {
             //Imprimir que não foi passada nenhuma informação.
+            Mensagens.getInstance().nenhumaInformacao();
         } else {
             agenda = repoAgend.buscar(e.getIdAgen());
 
             if (agenda == null) {
                 //Imprimir que não existe esse agendamento cadastrado no banco.
+                 Mensagens.getInstance().jaExisteNoBanco("Agendamento");               
             } else {
                 repoAgend.editar(e);
                 //Imprimir Operação realizada com sucesso.
+                Mensagens.getInstance().alteradoComSucesso();
             }
         }
     }
@@ -96,11 +106,13 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
             //Imprimir que não foi passada nenhuma informação.
         } else {
             agenda = repoAgend.buscar(e.getIdAgen());
-            if(agenda == null){
+            if (agenda == null) {
                 //Imprimir que não existe esse agendamento cadastrado no banco.
-            }else{
-               repoAgend.deletar(e);
-               //Imprimir Operação realizada com sucesso.
+                 Mensagens.getInstance().jaExisteNoBanco("Agendamento");               
+            } else {
+                repoAgend.deletar(e);
+                //Imprimir Operação realizada com sucesso.
+                 Mensagens.getInstance().jaExisteNoBanco("Agendamento");               
             }
         }
 
@@ -108,7 +120,7 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
 
     @Override
     public List<Agendamento> listar() {
-       List lista = repoAgend.listar();
+        List lista = repoAgend.listar();
         if (lista == null) {
             //Imprimir nada encontrado.
             return null;
