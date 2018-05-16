@@ -25,6 +25,7 @@ package be.edu.ifpe.petpalacy.model.dao;
 
 import br.edu.ifpe.petpalacy.model.dao.PersistenciaDAO;
 import br.edu.ifpe.petpalacy.model.entidades.Cliente;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -34,6 +35,7 @@ import org.junit.Test;
 public class PersistenciaDAOExceptoinTest {
     
     @Test(expected = RuntimeException.class)
+    @Ignore
     public void autenticarRuntimeExceptionTest() {
         String sql = "SELECT a FROM Cliente a";
         String email = "joao@ifpe.com"; //Usuario invalido!!
@@ -46,6 +48,7 @@ public class PersistenciaDAOExceptoinTest {
     }
     
     @Test(expected = NullPointerException.class)
+    @Ignore
     public void autenticarNullPointerExceptionTest() {
         String sql = "SELECT a FROM Cliente a";
         String email = null; //Usuario invalido!!
