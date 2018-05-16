@@ -42,6 +42,7 @@ public class HibernateUtilTest {
     }
     
     @Test(expected = HibernateException.class)
+    @Ignore
     public void conectarHibernateExceptionTest() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.close();
@@ -49,6 +50,7 @@ public class HibernateUtilTest {
     }    
     
     @Test(expected = ExceptionInInitializerError.class)
+    @Ignore
     public void conectarExceptionInInitializerErrorTest() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.close();
