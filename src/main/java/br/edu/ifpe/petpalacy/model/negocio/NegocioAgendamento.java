@@ -30,7 +30,6 @@ import br.edu.ifpe.petpalacy.model.interfaces.InterfaceAgendamento;
 import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioAgendamentoImplDB;
 import br.edu.ifpe.petpalacy.util.Mensagens;
 import java.util.List;
-import javax.faces.application.FacesMessage;
 
 /**
  *
@@ -68,12 +67,13 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
     public Agendamento buscar(Integer codigo) {
         if (codigo == null) {
             //Imprimir que não foi passada nenhuma informação.
-
+            Mensagens.getInstance().nenhumaInformacao();
             return null;
         } else {
             agenda = repoAgend.buscar(codigo);
             if (agenda == null) {
                 //Imprimir que não existe esse agendamento cadastrado no banco.
+                
                 return null;
             } else {
                 return agenda;
@@ -104,15 +104,15 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
     public void deletar(Agendamento e) {
         if (e == null) {
             //Imprimir que não foi passada nenhuma informação.
+            Mensagens.getInstance().deletadoComSucesso();
         } else {
             agenda = repoAgend.buscar(e.getIdAgen());
             if (agenda == null) {
                 //Imprimir que não existe esse agendamento cadastrado no banco.
-                 Mensagens.getInstance().jaExisteNoBanco("Agendamento");               
             } else {
                 repoAgend.deletar(e);
                 //Imprimir Operação realizada com sucesso.
-                 Mensagens.getInstance().jaExisteNoBanco("Agendamento");               
+                 Mensagens.getInstance().salvoComSucesso();
             }
         }
 
