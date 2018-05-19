@@ -23,7 +23,7 @@
  * SOFTWARE.
 *
  */
-package br.edu.petpalacy.controller;
+package br.edu.ifpe.petpalacy.controller;
 
 import br.edu.ifpe.petpalacy.model.entidades.Agendamento;
 import br.edu.ifpe.petpalacy.model.negocio.NegocioAgendamento;
