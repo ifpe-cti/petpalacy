@@ -125,7 +125,7 @@ public class NegocioEmpresa implements InterfaceEmpresa<Empresa> {
             } else {
                 repoEmp.editar(e);
                 //Imprimir Operação realizada com sucesso.
-                Mensagens.getInstance().salvoComSucesso();
+                Mensagens.getInstance().alteradoComSucesso();
             }
 
         }
@@ -147,7 +147,7 @@ public class NegocioEmpresa implements InterfaceEmpresa<Empresa> {
             } else {
                 repoEmp.deletar(e);
                 //Imprimir Operação realizada com sucesso.
-                Mensagens.getInstance().salvoComSucesso();
+                Mensagens.getInstance().deletadoComSucesso();
             }
 
         }

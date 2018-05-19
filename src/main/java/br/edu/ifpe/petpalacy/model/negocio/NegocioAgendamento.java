@@ -104,7 +104,7 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
     public void deletar(Agendamento e) {
         if (e == null) {
             //Imprimir que não foi passada nenhuma informação.
-            Mensagens.getInstance().deletadoComSucesso();
+            Mensagens.getInstance().nenhumaInformacao();
         } else {
             agenda = repoAgend.buscar(e.getIdAgen());
             if (agenda == null) {
@@ -112,7 +112,7 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
             } else {
                 repoAgend.deletar(e);
                 //Imprimir Operação realizada com sucesso.
-                 Mensagens.getInstance().salvoComSucesso();
+                 Mensagens.getInstance().deletadoComSucesso();
             }
         }
 
