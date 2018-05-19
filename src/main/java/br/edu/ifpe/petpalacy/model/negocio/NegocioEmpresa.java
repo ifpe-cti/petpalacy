@@ -28,6 +28,7 @@ package br.edu.ifpe.petpalacy.model.negocio;
 import br.edu.ifpe.petpalacy.model.entidades.Empresa;
 import br.edu.ifpe.petpalacy.model.interfaces.InterfaceEmpresa;
 import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioEmpresaImplDB;
+import br.edu.ifpe.petpalacy.util.Criptografia;
 import br.edu.ifpe.petpalacy.util.Mensagens;
 import java.util.List;
 
@@ -48,10 +49,20 @@ public class NegocioEmpresa implements InterfaceEmpresa<Empresa> {
     @Override
     public Empresa autenticar(String login, String senha) {
         if (login == null || senha == null) {
-            //Imprimir empresa não esta cadastrada no banco.
+            //Nenhuma informação passada.
+            
             return null;
+        }else{
+            emp = repoEmp.autenticar(login, Criptografia.criptografar(senha));
+            
+            if(emp == null){
+                //Imprimir empresa não esta cadastrada no banco.
+                return null;
+            }else{
+                 return emp;
+            }
         }
-        return ((RepositorioEmpresaImplDB) repoEmp).autenticar(login, senha);
+       
     }
 
     @Override
@@ -84,6 +95,7 @@ public class NegocioEmpresa implements InterfaceEmpresa<Empresa> {
                 //Imprimir que esta empresa Já está cadastrada no banco.
                 Mensagens.getInstance().jaExisteNoBanco("empresa");
             } else {
+                Criptografia.criptografar(e.getSenha());
                 repoEmp.salvar(e);
                 //Imprimir Operação realizada com sucesso.
                 Mensagens.getInstance().salvoComSucesso();
