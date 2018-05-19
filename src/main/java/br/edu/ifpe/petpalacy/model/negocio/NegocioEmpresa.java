@@ -28,13 +28,14 @@ package br.edu.ifpe.petpalacy.model.negocio;
 import br.edu.ifpe.petpalacy.model.entidades.Empresa;
 import br.edu.ifpe.petpalacy.model.interfaces.InterfaceEmpresa;
 import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioEmpresaImplDB;
+import br.edu.ifpe.petpalacy.util.Mensagens;
 import java.util.List;
 
 /**
  *
  * @author izaquiel cavalcante da silva izaquiel_cavalcante@hotmail.com
  */
-public class NegocioEmpresa implements InterfaceEmpresa<Empresa>{
+public class NegocioEmpresa implements InterfaceEmpresa<Empresa> {
 
     private RepositorioEmpresaImplDB repoEmp;
 
@@ -43,19 +44,21 @@ public class NegocioEmpresa implements InterfaceEmpresa<Empresa>{
     public NegocioEmpresa() {
         repoEmp = new RepositorioEmpresaImplDB();
     }
-    
+
     @Override
     public Empresa autenticar(String login, String senha) {
-        if(login == null || senha == null){
+        if (login == null || senha == null) {
+            //Imprimir empresa não esta cadastrada no banco.
             return null;
         }
-        return((RepositorioEmpresaImplDB)repoEmp).autenticar(login, senha);
+        return ((RepositorioEmpresaImplDB) repoEmp).autenticar(login, senha);
     }
 
     @Override
     public Empresa buscarCnpj(String cnpj) {
         if (cnpj == null) {
             //Imprimir que não foi passada nenhuma informação.
+            Mensagens.getInstance().nenhumaInformacao();
             return null;
         } else {
             emp = repoEmp.buscarCnpj(cnpj);
@@ -74,13 +77,16 @@ public class NegocioEmpresa implements InterfaceEmpresa<Empresa>{
 
         if (e == null) {
             //Imprimir que não foi passada nenhuma informação.
+            Mensagens.getInstance().nenhumaInformacao();
         } else {
 
             if (buscarCnpj(e.getCnpj()) != null) {
                 //Imprimir que esta empresa Já está cadastrada no banco.
+                Mensagens.getInstance().jaExisteNoBanco("empresa");
             } else {
                 repoEmp.salvar(e);
                 //Imprimir Operação realizada com sucesso.
+                Mensagens.getInstance().salvoComSucesso();
             }
         }
     }
@@ -89,6 +95,7 @@ public class NegocioEmpresa implements InterfaceEmpresa<Empresa>{
     public Empresa buscar(Integer codigo) {
         if (codigo == null) {
             //Imprimir que não foi passada nenhuma informação.
+            Mensagens.getInstance().nenhumaInformacao();
             return null;
         } else {
             emp = repoEmp.buscar(codigo);
@@ -107,17 +114,18 @@ public class NegocioEmpresa implements InterfaceEmpresa<Empresa>{
 
         if (e == null) {
             //Imprimir que não foi passada nenhuma informação.
+            Mensagens.getInstance().nenhumaInformacao();
         } else {
 
             emp = repoEmp.buscar(e.getIdEmpresa());
 
             if (emp == null) {
 
-                System.out.println(""); //Imprimir que não existe essa empresa cadastrada no banco.
-
+               //Imprimir que não existe essa empresa cadastrada no banco.
             } else {
                 repoEmp.editar(e);
                 //Imprimir Operação realizada com sucesso.
+                Mensagens.getInstance().salvoComSucesso();
             }
 
         }
@@ -128,17 +136,18 @@ public class NegocioEmpresa implements InterfaceEmpresa<Empresa>{
     public void deletar(Empresa e) {
         if (e == null) {
             //Imprimir que não foi passada nenhuma informação.
+            Mensagens.getInstance().nenhumaInformacao();
         } else {
 
             emp = repoEmp.buscar(e.getIdEmpresa());
 
             if (emp == null) {
-
-                System.out.println(""); //Imprimir que não existe essa empresa cadastrada no banco.
+                //Imprimir que não existe essa empresa cadastrada no banco.
 
             } else {
                 repoEmp.deletar(e);
                 //Imprimir Operação realizada com sucesso.
+                Mensagens.getInstance().salvoComSucesso();
             }
 
         }
