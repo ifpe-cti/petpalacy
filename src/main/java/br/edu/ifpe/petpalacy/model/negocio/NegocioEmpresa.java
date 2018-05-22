@@ -30,6 +30,7 @@ import br.edu.ifpe.petpalacy.model.interfaces.InterfaceEmpresa;
 import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioEmpresaImplDB;
 import br.edu.ifpe.petpalacy.util.Criptografia;
 import br.edu.ifpe.petpalacy.util.Mensagens;
+import br.edu.ifpe.petpalacy.util.ValidaCNPJ;
 import java.util.List;
 
 /**
@@ -95,13 +96,18 @@ public class NegocioEmpresa implements InterfaceEmpresa<Empresa> {
                 //Imprimir que esta empresa Já está cadastrada no banco.
                 Mensagens.getInstance().jaExisteNoBanco("empresa");
             } else {
-                Criptografia.criptografar(e.getSenha());
-                repoEmp.salvar(e);
-                //Imprimir Operação realizada com sucesso.
-                Mensagens.getInstance().salvoComSucesso();
+                boolean status = ValidaCNPJ.isCNPJ(e.getCnpj());
+                if(status == true){
+                    e.setSenha(Criptografia.criptografar(e.getSenha()));
+                    repoEmp.salvar(e);
+                    //Imprimir Operação realizada com sucesso.
+                    Mensagens.getInstance().salvoComSucesso();
+                }else{
+                    Mensagens.getInstance().invalido("Cnpj");
             }
         }
     }
+}
 
     @Override
     public Empresa buscar(Integer codigo) {
