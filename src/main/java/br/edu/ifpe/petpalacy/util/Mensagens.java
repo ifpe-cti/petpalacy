@@ -60,7 +60,11 @@ public class Mensagens {
     public void jaExisteNoBanco(String texto) {
         adicionarMensagem(null, "Já Existe um(a) " + texto + "igual a esse no banco!!!", FacesMessage.SEVERITY_ERROR);
     }
-
+    
+    public void invalido(String texto){
+        adicionarMensagem(null, texto + " invalido!! Digite um " + texto + " valido", FacesMessage.SEVERITY_ERROR);
+    }
+    
     public void salvoComSucesso() {
         adicionarMensagem(null, "Salvo com sucesso!!!", FacesMessage.SEVERITY_INFO);
 
