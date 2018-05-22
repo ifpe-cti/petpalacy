@@ -40,15 +40,17 @@ public class Endereco implements Serializable {
     @GeneratedValue
     private int id;
     private String logradouro;
+    private Integer numero;
     private String cidade;
     private String bairro;
 
     public Endereco() {
     }
 
-    public Endereco(int id, String logradouro, String cidade, String bairro) {
+    public Endereco(int id, String logradouro, Integer numero, String cidade, String bairro) {
         this.id = id;
         this.logradouro = logradouro;
+        this.numero = numero;
         this.cidade = cidade;
         this.bairro = bairro;
     }
@@ -59,6 +61,14 @@ public class Endereco implements Serializable {
 
     public void setIdEndereco(int id) {
         this.id = id;
+    }
+
+    public void setNumero(Integer numero) {
+        this.numero = numero;
+    }
+
+    public Integer getNumero() {
+        return numero;
     }
 
     public String getLogradouro() {
@@ -88,9 +98,11 @@ public class Endereco implements Serializable {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 53 * hash + this.id;
+        hash = 71 * hash + this.id;
         return hash;
     }
+
+
 
     @Override
     public boolean equals(Object obj) {
@@ -102,7 +114,8 @@ public class Endereco implements Serializable {
         if(endereco.id == id
                 && endereco.bairro == bairro
                 && endereco.cidade == cidade
-                && endereco.logradouro == logradouro) {
+                && endereco.logradouro == logradouro
+                && endereco.numero == numero) {
             return true;
         }
         return false;
@@ -110,7 +123,9 @@ public class Endereco implements Serializable {
 
     @Override
     public String toString() {
-        return "Endereco{" + "id=" + id + ", logradouro=" + logradouro + ", cidade=" + cidade + ", bairro=" + bairro + '}';
+        return "Endereco{" + "id=" + id + ", logradouro=" + logradouro + ", numero=" + numero + ", cidade=" + cidade + ", bairro=" + bairro + '}';
     }
+
+
 
 }
