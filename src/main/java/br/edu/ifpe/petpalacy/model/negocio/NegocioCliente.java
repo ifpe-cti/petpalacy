@@ -27,6 +27,8 @@ package br.edu.ifpe.petpalacy.model.negocio;
 import br.edu.ifpe.petpalacy.model.entidades.Cliente;
 import br.edu.ifpe.petpalacy.model.interfaces.InterfaceCliente;
 import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioClienteImplDB;
+import br.edu.ifpe.petpalacy.util.Criptografia;
+import br.edu.ifpe.petpalacy.util.Mensagens;
 import java.util.List;
 
 /**
@@ -48,13 +50,21 @@ public class NegocioCliente implements InterfaceCliente<Cliente>{
     public Cliente autenticar(String login, String senha) {
         if(login == null || senha == null){
             return null;
+        }else{
+            cli = repCliente.autenticar(login, Criptografia.criptografar(senha));
+            
+            if(cli == null){
+                return null;
+            }else{
+                return cli;
+            }
         }
-        return((RepositorioClienteImplDB)repCliente).autenticar(login,senha);
     }
 
     @Override
     public Cliente buscarCpf(String cpf) {
         if(cpf == null){
+            Mensagens.getInstance().nenhumaInformacao();
             return null;
         }else{
             cli = repCliente.buscarCpf(cpf);
@@ -69,12 +79,14 @@ public class NegocioCliente implements InterfaceCliente<Cliente>{
     @Override
     public void salvar(Cliente cliente){
         if(cliente == null){
-            
+            Mensagens.getInstance().nenhumaInformacao();
         }else{
             if(buscarCpf(cliente.getCpf())!= null){
-                
+                Mensagens.getInstance().jaExisteNoBanco("Cliente");
             }else{
+                Criptografia.criptografar(cliente.getSenha());
                 repCliente.salvar(cliente);
+                Mensagens.getInstance().salvoComSucesso();
             }
         }
     }
@@ -82,6 +94,7 @@ public class NegocioCliente implements InterfaceCliente<Cliente>{
     @Override
     public Cliente buscar(Integer codigo){
         if(codigo == null){
+            Mensagens.getInstance().nenhumaInformacao();
             return null;
         }else{
             cli = repCliente.buscar(codigo);
@@ -96,13 +109,14 @@ public class NegocioCliente implements InterfaceCliente<Cliente>{
     @Override
     public void editar(Cliente cliente){
         if(cli == null){
-            
+            Mensagens.getInstance().nenhumaInformacao();
         }else{
             cli = repCliente.buscar(cliente.getIdCliente());
             if(cli == null){
-                System.out.println("");
+                Mensagens.getInstance().nenhumaInformacao();
             }else{
                 repCliente.editar(cliente);
+                Mensagens.getInstance().alteradoComSucesso();
             }
         }
     }
@@ -110,13 +124,14 @@ public class NegocioCliente implements InterfaceCliente<Cliente>{
     @Override
     public void deletar(Cliente cliente){
         if(cliente == null){
-            
+            Mensagens.getInstance().nenhumaInformacao();
         }else{
             cli = repCliente.buscar(cliente.getIdCliente());
             if(cli == null){
-                System.out.println("");
+                Mensagens.getInstance().nenhumaInformacao();
             }else{
                 repCliente.deletar(cliente);
+                Mensagens.getInstance().deletadoComSucesso();
             }
         }
     }
@@ -125,6 +140,7 @@ public class NegocioCliente implements InterfaceCliente<Cliente>{
     public List<Cliente> listar(){
         List lista = repCliente.listar();
         if(lista == null){
+            Mensagens.getInstance().nenhumaInformacao();
             return null;
         }else{
             return lista;

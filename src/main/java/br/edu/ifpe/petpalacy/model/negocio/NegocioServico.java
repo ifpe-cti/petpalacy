@@ -27,6 +27,7 @@ package br.edu.ifpe.petpalacy.model.negocio;
 import br.edu.ifpe.petpalacy.model.entidades.Servico;
 import br.edu.ifpe.petpalacy.model.interfaces.InterfaceServico;
 import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioServicoImplDB;
+import br.edu.ifpe.petpalacy.util.Mensagens;
 import java.util.List;
 
 /**
@@ -47,12 +48,13 @@ public class NegocioServico implements InterfaceServico<Servico>{
     @Override
     public void salvar(Servico servico){
         if (servico == null) {
-            
+            Mensagens.getInstance().nenhumaInformacao();
         }else{
             if(buscar(servico.getIdServico()) != null){
-                
+                Mensagens.getInstance().jaExisteNoBanco("Serviço");
             }else{
                 repoServico.salvar(servico);
+                Mensagens.getInstance().salvoComSucesso();
             }
         }
     }
@@ -60,10 +62,12 @@ public class NegocioServico implements InterfaceServico<Servico>{
     @Override
     public Servico buscar(Integer codigo){
         if(codigo == null){
+            Mensagens.getInstance().nenhumaInformacao();
             return null;
         }else{
             serv = repoServico.buscar(codigo);
             if(serv == null){
+                Mensagens.getInstance().nenhumaInformacao();
                 return null;
             }else{
                 return serv;
@@ -74,13 +78,14 @@ public class NegocioServico implements InterfaceServico<Servico>{
     @Override
     public void editar(Servico servico){
         if(servico == null){
-            
+            Mensagens.getInstance().nenhumaInformacao();
         }else{
             serv = repoServico.buscar(servico.getIdServico());
             if(serv == null){
-                System.out.println("");
+                Mensagens.getInstance().nenhumaInformacao();
             }else{
                 repoServico.editar(servico);
+                Mensagens.getInstance().alteradoComSucesso();
             }
         }
     }
@@ -88,13 +93,14 @@ public class NegocioServico implements InterfaceServico<Servico>{
     @Override
     public void deletar(Servico servico){
         if(servico == null){
-            
+            Mensagens.getInstance().nenhumaInformacao();
         }else{
             serv = repoServico.buscar(servico.getIdServico());
             if(serv == null){
-                System.out.println("");
+                Mensagens.getInstance().nenhumaInformacao();
             }else{
                 repoServico.deletar(servico);
+                Mensagens.getInstance().deletadoComSucesso();
             }
         }
     }
@@ -103,6 +109,7 @@ public class NegocioServico implements InterfaceServico<Servico>{
     public List<Servico> listar(){
         List lista = repoServico.listar();
         if(lista == null){
+            Mensagens.getInstance().nenhumaInformacao();
             return null;
         }else{
             return lista;
