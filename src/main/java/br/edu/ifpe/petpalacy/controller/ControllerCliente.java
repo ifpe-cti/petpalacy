@@ -24,6 +24,9 @@ SOFTWARE.
 
 import br.edu.ifpe.petpalacy.model.entidades.Cliente;
 import br.edu.ifpe.petpalacy.model.negocio.NegocioCliente;
+import br.edu.ifpe.petpalacy.util.Criptografia;
+import br.edu.ifpe.petpalacy.util.Mensagens;
+import br.edu.ifpe.petpalacy.util.ValidaCPF;
 import java.awt.List;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -50,7 +53,18 @@ public class ControllerCliente implements Serializable{
     }
     
     public void salvar(){
-        negCliente.salvar(cliente);
+        if(buscarCpf() != null){
+            Mensagens.getInstance().jaExisteNoBanco("Cpf");
+        }else{
+            boolean status = ValidaCPF.isCPF(cliente.getCpf());
+            if(status == true){
+                cliente.setSenha(Criptografia.criptografar(cliente.getSenha()));
+                negCliente.salvar(cliente);
+                Mensagens.getInstance().salvoComSucesso();
+            }else{
+                Mensagens.getInstance().invalido("Cpf");
+            }
+        }
     }
     public void alterar(){
         negCliente.editar(cliente);
@@ -64,8 +78,8 @@ public class ControllerCliente implements Serializable{
     public void buscarId(){
         negCliente.buscar(cliente.getIdCliente());
     }
-    public void bu8scarCpf(){
-        negCliente.buscarCpf(cliente.getCpf());
+    public Cliente buscarCpf(){
+        return negCliente.buscarCpf(cliente.getCpf());
     }
 
     public NegocioCliente getNegCliente() {
