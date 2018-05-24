@@ -70,22 +70,11 @@ public class NegocioCliente implements InterfaceCliente<Cliente>{
     }
     
     @Override
-    public void salvar(Cliente cliente){
+    public void salvar(Cliente cliente) throws IllegalArgumentException{
         if(cliente == null){
-            
+        throw new IllegalArgumentException("Nenhum cliente foi pasado!!"); 
         }else{
-            if(buscarCpf(cliente.getCpf())!= null){
-                
-            }else{
-                boolean status = ValidaCPF.isCPF(cliente.getCpf());
-                if(status == true){
-                    cliente.setSenha(Criptografia.criptografar(cliente.getSenha()));
-                    repCliente.salvar(cliente);
-                    Mensagens.getInstance().salvoComSucesso();
-                }else{
-                    Mensagens.getInstance().invalido("Cpf");
-                }
-            }
+        repCliente.salvar(cliente);    
         }
     }
     
@@ -104,31 +93,23 @@ public class NegocioCliente implements InterfaceCliente<Cliente>{
     }
     
     @Override
-    public void editar(Cliente cliente){
+    public void editar(Cliente cliente) throws IllegalArgumentException{
         if(cli == null){
-            
+        throw new IllegalArgumentException("Nenhum cliente foi pasado!!"); 
         }else{
-            cli = repCliente.buscar(cliente.getIdCliente());
-            if(cli == null){
-                System.out.println("");
-            }else{
                 repCliente.editar(cliente);
             }
-        }
+        
     }
     
     @Override
-    public void deletar(Cliente cliente){
+    public void deletar(Cliente cliente) throws IllegalArgumentException{
         if(cliente == null){
-            
+        throw new IllegalArgumentException("Nenhum cliente foi pasado!!"); 
         }else{
-            cli = repCliente.buscar(cliente.getIdCliente());
-            if(cli == null){
-                System.out.println("");
-            }else{
                 repCliente.deletar(cliente);
             }
-        }
+        
     }
     
     @Override
