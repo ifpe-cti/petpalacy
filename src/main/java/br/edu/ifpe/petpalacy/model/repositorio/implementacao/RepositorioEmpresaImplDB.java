@@ -49,7 +49,11 @@ public class RepositorioEmpresaImplDB implements InterfaceEmpresa<Empresa> {
 
     @Override
     public Empresa buscar(Integer codigo) {
-        return (Empresa) PersistenciaDAO.getInstance().listar("SELECT em FROM Empresa em WHERE em.id=" + codigo).get(0);
+        List lista = PersistenciaDAO.getInstance().listar("SELECT em FROM Empresa em WHERE em.id=" + codigo);
+        if(!lista.isEmpty()){
+            return (Empresa) lista.get(0);
+        }
+            return null;
     }
 
     @Override
