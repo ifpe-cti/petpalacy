@@ -56,7 +56,7 @@ public class ControllerAgendamento implements Serializable {
     }
     
     public String buscar(){
-        negAgenda.buscar(agenda.getIdAgen());
+        negAgenda.buscar(agenda.getId());
         return "pagina com informações da entidade";
     }
     

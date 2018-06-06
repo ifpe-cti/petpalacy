@@ -23,10 +23,8 @@
  */
 package br.edu.ifpe.petpalacy.model.repositorio.implementacao;
 
-import br.edu.ifpe.petpalacy.model.entidades.DatasServico;
 import br.edu.ifpe.petpalacy.model.entidades.DiaSemana;
 import br.edu.ifpe.petpalacy.model.entidades.Servico;
-import br.edu.ifpe.petpalacy.model.entidades.StatusDataSer;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,24 +38,13 @@ import org.junit.Test;
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
  */
 public class RepositorioServicoImplDBTest {
-    @Test
+   /* @Test
     @Ignore
     public void salvarTest() {
         Servico serv = new Servico();
         serv.setNome("Tosa");
         serv.setDuracao(30);
-        serv.setValor(new BigDecimal(13));
-        
-        DatasServico ds = new DatasServico();
-        ds.setData(new Date());
-        ds.setDiaSemana(DiaSemana.SEGUNDA);
-        ds.setStatus("ok");
-        ds.setStatusDataSer(StatusDataSer.AGENDADO);
-        
-        List<DatasServico> listaDeDatas = new ArrayList<>();
-        listaDeDatas.add(ds);
-        
-        serv.setListaDeDatas(listaDeDatas);
+        serv.setValor(new BigDecimal(13));                
         
         RepositorioServicoImplDB repServico = new RepositorioServicoImplDB();
         repServico.salvar(serv);
@@ -110,5 +97,5 @@ public class RepositorioServicoImplDBTest {
       
         repServico.deletar(servico);
     }
-    
+  */  
 }

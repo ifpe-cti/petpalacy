@@ -53,8 +53,7 @@ public class Cliente implements Serializable {
     public Cliente() {
     }
 
-    public Cliente(int id, String nome, String cpf, String telefone, Endereco endereco, String email, String senha) {
-        this.id = id;
+    public Cliente(String nome, String cpf, String telefone, Endereco endereco, String email, String senha) {
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;

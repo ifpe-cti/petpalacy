@@ -20,7 +20,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-*/package br.edu.ifpe.petpalacy.controller;
+ */package br.edu.ifpe.petpalacy.controller;
 
 import br.edu.ifpe.petpalacy.model.entidades.Cliente;
 import br.edu.ifpe.petpalacy.model.negocio.NegocioCliente;
@@ -33,15 +33,14 @@ import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-
 /**
  *
-  @author Daniel Calado <danielcalado159@gmail.com>
+ * @author Daniel Calado <danielcalado159@gmail.com>
  */
-
 @ManagedBean
 @SessionScoped
-public class ControllerCliente implements Serializable{
+public class ControllerCliente implements Serializable {
+
     private NegocioCliente negCliente;
     private Cliente cliente;
     private ArrayList<Cliente> listaCliente;
@@ -51,34 +50,43 @@ public class ControllerCliente implements Serializable{
         cliente = new Cliente();
         listaCliente = new ArrayList<>();
     }
-    
-    public void salvar(){
-        if(buscarCpf() != null){
-            Mensagens.getInstance().jaExisteNoBanco("Cpf");
-        }else{
-            boolean status = ValidaCPF.isCPF(cliente.getCpf());
-            if(status == true){
-                cliente.setSenha(Criptografia.criptografar(cliente.getSenha()));
-                negCliente.salvar(cliente);
-                Mensagens.getInstance().salvoComSucesso();
-            }else{
-                Mensagens.getInstance().invalido("Cpf");
-            }
+
+    public void salvar() {
+        try {
+            negCliente.salvar(cliente);
+            Mensagens.getInstance().salvoComSucesso();
+        } catch (Exception ex) {
+            Mensagens.getInstance().nenhumaInformacao();
         }
     }
-    public void alterar(){
-        negCliente.editar(cliente);
+
+    public void alterar() {
+        try {
+            negCliente.editar(cliente);
+            Mensagens.getInstance().alteradoComSucesso();
+        } catch (Exception ex) {
+            Mensagens.getInstance().nenhumaInformacao();
+        }
     }
-    public void deletar(){
-        negCliente.deletar(cliente);
+
+    public void deletar() {
+        try {
+            negCliente.deletar(cliente);
+            Mensagens.getInstance().deletadoComSucesso();
+        } catch (Exception ex) {
+            Mensagens.getInstance().nenhumaInformacao();
+        }        
     }
-    public void listar(){
-       listaCliente = (ArrayList<Cliente>) negCliente.listar();
+
+    public void listar() {
+        listaCliente = (ArrayList<Cliente>) negCliente.listar();
     }
-    public void buscarId(){
+
+    public void buscarId() {
         negCliente.buscar(cliente.getIdCliente());
     }
-    public Cliente buscarCpf(){
+
+    public Cliente buscarCpf() {
         return negCliente.buscarCpf(cliente.getCpf());
     }
 
@@ -105,5 +113,5 @@ public class ControllerCliente implements Serializable{
     public void setListaCliente(ArrayList<Cliente> listaCliente) {
         this.listaCliente = listaCliente;
     }
-    
+
 }

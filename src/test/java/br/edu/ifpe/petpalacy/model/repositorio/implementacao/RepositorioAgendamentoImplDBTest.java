@@ -40,7 +40,7 @@ import org.junit.Test;
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
  */
 public class RepositorioAgendamentoImplDBTest {
-    @Test
+   /* @Test
     @Ignore
     public void salvarTest() {
         RepositorioClienteImplDB repCliente = new RepositorioClienteImplDB();
@@ -113,5 +113,5 @@ public class RepositorioAgendamentoImplDBTest {
         Agendamento agendamento = repAgendamento.buscar(1);
       
         repAgendamento.deletar(agendamento);
-    }
+    }*/
 }

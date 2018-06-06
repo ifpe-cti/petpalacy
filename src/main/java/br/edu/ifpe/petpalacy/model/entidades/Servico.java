@@ -27,6 +27,7 @@ package br.edu.ifpe.petpalacy.model.entidades;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -47,18 +48,16 @@ public class Servico implements Serializable {
     private String nome;
     private int duracao;
     private BigDecimal valor;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<DatasServico> listaDeDatas;
+
 
     public Servico() {
     }
 
-    public Servico(int id, String nome, int duracao, BigDecimal valor, List<DatasServico> listaDeDatas) {
+    public Servico(int id, String nome, int duracao, BigDecimal valor) {
         this.id = id;
         this.nome = nome;
         this.duracao = duracao;
         this.valor = valor;
-        this.listaDeDatas = listaDeDatas;
     }
 
     public int getIdServico() {
@@ -93,20 +92,16 @@ public class Servico implements Serializable {
         this.valor = valor;
     }
 
-    public List<DatasServico> getListaDeDatas() {
-        return listaDeDatas;
-    }
-
-    public void setListaDeDatas(List<DatasServico> listaDeDatas) {
-        this.listaDeDatas = listaDeDatas;
-    }
-
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 61 * hash + this.id;
+        hash = 71 * hash + this.id;
+        hash = 71 * hash + Objects.hashCode(this.nome);
+        hash = 71 * hash + this.duracao;
+        hash = 71 * hash + Objects.hashCode(this.valor);
         return hash;
     }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -116,7 +111,6 @@ public class Servico implements Serializable {
         Servico servico = (Servico) obj;
 
         if(servico.id == id
-                && servico.listaDeDatas == listaDeDatas
                 && servico.duracao == duracao
                 && servico.nome == nome
                 && servico.valor == valor) {
@@ -126,7 +120,7 @@ public class Servico implements Serializable {
     }
     @Override
     public String toString() {
-        return "Servico{" + "id=" + id + ", nome=" + nome + ", duracao=" + duracao + ", valor=" + valor + ", listaDeDatas=" + listaDeDatas + '}';
+        return "Servico{" + "id=" + id + ", nome=" + nome + ", duracao=" + duracao + ", valor=" + valor + '}';
     }
     
     

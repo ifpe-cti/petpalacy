@@ -65,6 +65,5 @@ Contributor(s):
     <mapping class="br.edu.ifpe.petpalacy.model.entidades.Servico" />
     <mapping class="br.edu.ifpe.petpalacy.model.entidades.Agendamento" />
     <mapping class="br.edu.ifpe.petpalacy.model.entidades.Empresa" />
-    <mapping class="br.edu.ifpe.petpalacy.model.entidades.DatasServico" />      
   </session-factory>
 </hibernate-configuration>

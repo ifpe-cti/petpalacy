@@ -34,7 +34,7 @@ import java.util.List;
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
  */
 public class RepositorioServicoImplDB implements InterfaceServico<Servico> {
-    
+
     @Override
     public void salvar(Servico servico) {
         PersistenciaDAO.getInstance().salvar(servico);
@@ -47,7 +47,11 @@ public class RepositorioServicoImplDB implements InterfaceServico<Servico> {
 
     @Override
     public Servico buscar(Integer codigo) {
-        return (Servico) PersistenciaDAO.getInstance().listar("SELECT s FROM Servico s WHERE s.id=" + codigo).get(0);
+        List lista = PersistenciaDAO.getInstance().listar("SELECT s FROM Servico s WHERE s.id=" + codigo);
+        if (!lista.isEmpty()) {
+            return (Servico) lista.get(0);
+        }
+        return null;
     }
 
     @Override
@@ -59,5 +63,5 @@ public class RepositorioServicoImplDB implements InterfaceServico<Servico> {
     public List<Servico> listar() {
         return PersistenciaDAO.getInstance().listar("SELECT s FROM Servico s");
     }
-    
+
 }
