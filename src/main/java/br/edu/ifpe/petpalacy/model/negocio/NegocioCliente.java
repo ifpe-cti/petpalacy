@@ -36,88 +36,91 @@ import java.util.List;
  *
  * @author Wemerson Diogenes da Silva <wemersondiogenes16@gmail.com>
  */
+public class NegocioCliente implements InterfaceCliente<Cliente> {
 
-
-public class NegocioCliente implements InterfaceCliente<Cliente>{
-    
     private RepositorioClienteImplDB repCliente;
     private Cliente cli;
-    
-    public NegocioCliente(){
+
+    public NegocioCliente() {
         repCliente = new RepositorioClienteImplDB();
     }
 
     @Override
     public Cliente autenticar(String login, String senha) {
-        if(login == null || senha == null){
+        if (login == null || senha == null) {
             return null;
         }
-        return((RepositorioClienteImplDB)repCliente).autenticar(login,senha);
+        return ((RepositorioClienteImplDB) repCliente).autenticar(login, senha);
     }
 
     @Override
     public Cliente buscarCpf(String cpf) {
-        if(cpf == null){
+        if (cpf == null) {
             return null;
-        }else{
+        } else {
             cli = repCliente.buscarCpf(cpf);
-            if(cli == null){
+            if (cli == null) {
                 return null;
-            }else{
+            } else {
                 return cli;
             }
         }
     }
-    
+
     @Override
-    public void salvar(Cliente cliente) throws IllegalArgumentException{
-        if(cliente == null){
-        throw new IllegalArgumentException("Nenhum cliente foi pasado!!"); 
-        }else{
-        repCliente.salvar(cliente);    
+    public void salvar(Cliente cliente) throws Exception {
+
+        if (cliente == null || buscarCpf(cliente.getCpf()) != null) {
+            throw new Exception("Erro!");
+        }
+
+        boolean status = ValidaCPF.isCPF(cliente.getCpf());
+        if (status == true) {
+            cliente.setSenha(Criptografia.criptografar(cliente.getSenha()));
+            repCliente.salvar(cliente);
+        } else {
+            throw new Exception("Erro!");
         }
     }
-    
+
     @Override
-    public Cliente buscar(Integer codigo){
-        if(codigo == null){
+    public Cliente buscar(Integer codigo) {
+        if (codigo == null) {
             return null;
-        }else{
+        } else {
             cli = repCliente.buscar(codigo);
-            if(cli == null){
+            if (cli == null) {
                 return null;
-            }else{
+            } else {
                 return cli;
             }
         }
     }
-    
+
     @Override
-    public void editar(Cliente cliente) throws IllegalArgumentException{
-        if(cli == null){
-        throw new IllegalArgumentException("Nenhum cliente foi pasado!!"); 
-        }else{
-                repCliente.editar(cliente);
-            }
-        
+    public void editar(Cliente cliente) throws Exception {
+        if (cliente == null || buscarCpf(cliente.getCpf()) != null) {
+            throw new Exception("Erro");
+        } else {
+            repCliente.editar(cliente);
+        }
     }
-    
+
     @Override
-    public void deletar(Cliente cliente) throws IllegalArgumentException{
-        if(cliente == null){
-        throw new IllegalArgumentException("Nenhum cliente foi pasado!!"); 
-        }else{
-                repCliente.deletar(cliente);
-            }
-        
+    public void deletar(Cliente cliente) throws Exception {
+        if (cliente == null || buscarCpf(cliente.getCpf()) != null) {
+            throw new Exception("Erro");
+        } else {
+            repCliente.deletar(cliente);
+        }
     }
-    
+
     @Override
-    public List<Cliente> listar(){
+    public List<Cliente> listar() {
         List lista = repCliente.listar();
-        if(lista == null){
+        if (lista == null) {
             return null;
-        }else{
+        } else {
             return lista;
         }
     }

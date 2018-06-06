@@ -31,9 +31,9 @@ import java.util.List;
  * @param <E>
  */
 public interface InterfaceGenerico<E> {
-    public void salvar(E e);
+    public void salvar(E e) throws Exception;
     public E buscar(Integer codigo);
-    public void editar(E e);
-    public void deletar(E e);
+    public void editar(E e) throws Exception;
+    public void deletar(E e) throws Exception;
     public List<E> listar();
 }

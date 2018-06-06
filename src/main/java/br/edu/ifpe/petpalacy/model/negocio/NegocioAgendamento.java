@@ -52,7 +52,7 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
             Mensagens.getInstance().nenhumaInformacao();
         } else {
 
-            if (buscar(e.getIdAgen()) == null) {
+            if (buscar(e.getId()) == null) {
                 //Imprimir que este agendamento já está cadastrado no banco.
                 Mensagens.getInstance().jaExisteNoBanco("Agendamento");
 
@@ -87,7 +87,7 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
             //Imprimir que não foi passada nenhuma informação.
             Mensagens.getInstance().nenhumaInformacao();
         } else {
-            agenda = repoAgend.buscar(e.getIdAgen());
+            agenda = repoAgend.buscar(e.getId());
 
             if (agenda == null) {
                 //Imprimir que não existe esse agendamento cadastrado no banco.
@@ -106,7 +106,7 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
             //Imprimir que não foi passada nenhuma informação.
             Mensagens.getInstance().nenhumaInformacao();
         } else {
-            agenda = repoAgend.buscar(e.getIdAgen());
+            agenda = repoAgend.buscar(e.getId());
             if (agenda == null) {
                 //Imprimir que não existe esse agendamento cadastrado no banco.
             } else {
