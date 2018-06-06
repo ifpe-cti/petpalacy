@@ -26,39 +26,23 @@ class Servico {
     -String nome
     -int duracao
     -BigDecimal valor
-    -List<DatasServico> listaDeDatas
 }
-class DatasServico{
--int id
--Date data
--Date hora
-}
+
 enum StatusAgen{
     DISPONIVEL
     AGENDADO
     REALIZADO
     CANCELADO
 }
-enum StatusDataSer{
-    DISPONIVEL
-    AGENDADO
-}
-enum Dia{
-    SEGUNDA
-    TERCA
-    QUARTA
-    QUINTA
-    SEXTA
-    SABADO
-    DOMINGO
-}
+
 
 class Agendamento {
     -Integer id
-    -List<Servico> servico
+    -Servico servico
     -Cliente cliente
     -Empresa empresa
     -Date data
+    -Date hora
     -BigDecimal valorTotal
 }
 
@@ -79,8 +63,5 @@ Empresa "1" *-- "*" Servico
 Agendamento "*" ..> "1" Empresa
 Agendamento "1" ..> "1" Cliente
 Agendamento "1" ..> "*" Servico
-Servico "1" <.. "*" DatasServico
-DatasServico --> Dia
-DatasServico --> StatusDataSer
 Agendamento --> StatusAgen
 @enduml
