@@ -141,21 +141,5 @@ public class PersistenciaDAO {
         return obj;
         
     }
-    public Object buscarCpfCnpj(String sql, String texto) {
-        Session session = this.sessionFactory.openSession();
-        Object obj = null;
-        
-        try {
-            Query consulta = session.createQuery(sql +"  WHERE c.cpf = :texto");
-            consulta.setString("texto", texto);
-            obj = consulta.uniqueResult();
-        } catch(RuntimeException ex) {
-            throw ex;
-        } finally {
-                session.close();
-        }
-        
-        return obj;
-        
-    }    
+    
 }

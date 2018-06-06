@@ -67,8 +67,7 @@ public class RepositorioClienteImplDB implements InterfaceCliente<Cliente> {
     
     @Override
     public Cliente buscarCpf(String cpf){
-        return (Cliente) PersistenciaDAO.getInstance().buscarCpfCnpj("SELECT c FROM Cliente c", cpf);
-        
+        return (Cliente) PersistenciaDAO.getInstance().listar("SELECT c FROM Cliente c WHERE c.cpf=" + cpf).get(0);
     }
         
 }
