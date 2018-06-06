@@ -49,14 +49,15 @@ public class Agendamento implements Serializable {
     @Id
     @GeneratedValue
     private Integer id;
-    @OneToMany
-    private List<Servico> servico;
+    @OneToOne
+    private Servico servico;
     @OneToOne
     private Cliente cliente;
     @OneToOne
     private Empresa empresa;
     @Temporal(value = TemporalType.DATE)
     private Date data;
+    private Date hora;
     private BigDecimal valorTotal;
     @Enumerated(EnumType.ORDINAL)
     private StatusAgen statusAgen;
@@ -64,46 +65,30 @@ public class Agendamento implements Serializable {
     public Agendamento() {
     }
 
-    public Agendamento(Integer id, List<Servico> servico, Cliente cliente, Empresa empresa, Date data, BigDecimal valorTotal, StatusAgen statusAgen) {
+    public Agendamento(Integer id, Servico servico, Cliente cliente, Empresa empresa, Date data, Date hora, BigDecimal valorTotal, StatusAgen statusAgen) {
         this.id = id;
         this.servico = servico;
         this.cliente = cliente;
+        this.empresa = empresa;
         this.data = data;
+        this.hora = hora;
         this.valorTotal = valorTotal;
-        this.empresa = empresa;
         this.statusAgen = statusAgen;
     }
 
-    public StatusAgen getStatusAgn() {
-        return statusAgen;
-    }
-
-    public void setStatusAgn(StatusAgen statusAgn) {
-        this.statusAgen = statusAgen;
-    }
-
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
-    }
-
-  
-    public Empresa getEmpresa() {
-        return empresa;
-    }
-
-    public void setIdAgen(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getIdAgen() {
+    public Integer getId() {
         return id;
     }
 
-    public List<Servico> getServico() {
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Servico getServico() {
         return servico;
     }
 
-    public void setServico(List<Servico> servico) {
+    public void setServico(Servico servico) {
         this.servico = servico;
     }
 
@@ -115,12 +100,28 @@ public class Agendamento implements Serializable {
         this.cliente = cliente;
     }
 
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
     public Date getData() {
         return data;
     }
 
     public void setData(Date data) {
         this.data = data;
+    }
+
+    public Date getHora() {
+        return hora;
+    }
+
+    public void setHora(Date hora) {
+        this.hora = hora;
     }
 
     public BigDecimal getValorTotal() {
@@ -131,38 +132,43 @@ public class Agendamento implements Serializable {
         this.valorTotal = valorTotal;
     }
 
+    public StatusAgen getStatusAgen() {
+        return statusAgen;
+    }
+
+    public void setStatusAgen(StatusAgen statusAgen) {
+        this.statusAgen = statusAgen;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this.id);
+        int hash = 3;
+        hash = 29 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Agendamento)) {
-            return false;
-        }
-        Agendamento agendamento = (Agendamento) obj;
-
-        if(agendamento.id == id
-                && agendamento.cliente == cliente
-                && agendamento.data == data
-                && agendamento.servico == servico
-                && agendamento.empresa == empresa
-                && agendamento.valorTotal == valorTotal
-                && agendamento.statusAgen == statusAgen) {
+        if (this == obj) {
             return true;
         }
-        return false;
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Agendamento other = (Agendamento) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "Agendamento{" + "id=" + id + ", servico=" + servico + ", cliente=" 
-                + cliente + ",empresa" + empresa + ", data=" + data + ", valorTotal=" 
-                + valorTotal + "statusAgn"+ statusAgen + '}';
+        return "Agendamento{" + "id=" + id + ", servico=" + servico + ", cliente=" + cliente + ", empresa=" + empresa + ", data=" + data + ", hora=" + hora + ", valorTotal=" + valorTotal + ", statusAgen=" + statusAgen + '}';
     }
-    
-    
+
+
 }
