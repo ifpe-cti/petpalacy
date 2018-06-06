@@ -7,10 +7,11 @@ package br.edu.ifpe.petpalacy;
 
 import br.edu.ifpe.petpalacy.model.entidades.Agendamento;
 import br.edu.ifpe.petpalacy.model.entidades.Cliente;
-import br.edu.ifpe.petpalacy.model.entidades.DatasServico;
+
 import br.edu.ifpe.petpalacy.model.entidades.Empresa;
 import br.edu.ifpe.petpalacy.model.entidades.Endereco;
 import br.edu.ifpe.petpalacy.model.entidades.Servico;
+import br.edu.ifpe.petpalacy.model.negocio.NegocioCliente;
 import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioAgendamentoImplDB;
 import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioClienteImplDB;
 import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioEmpresaImplDB;
@@ -25,7 +26,7 @@ import java.util.List;
  * @author Jose Junio
  */
 public class Teste {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         /*
         RepositorioClienteImplDB impb = new RepositorioClienteImplDB();
@@ -51,6 +52,8 @@ public class Teste {
         Agendamento ag  = new Agendamento(0, ss, cli, em, new Date(), null);
         arg.salvar(ag);
         */
-      
+      Cliente cli = new Cliente("f", "11472554400", "dag", null, "cfg", "dgz");
+        NegocioCliente nc = new NegocioCliente();
+        nc.salvar(cli);
     }
 }

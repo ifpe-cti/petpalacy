@@ -41,9 +41,8 @@ import org.junit.runners.MethodSorters;
  *
  * @author Daniel Calado <danielcalado159@gmail.com>
  */
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class NegocioClienteTest {
-    
+ /*   
     public NegocioClienteTest() {
     }
     Endereco endereco = new Endereco(0, "rua antonio vilela", 54, "garanhuns", "cohab");
@@ -52,7 +51,7 @@ public class NegocioClienteTest {
     Cliente clienteRes = null;
     /**
      * Test of autenticar method, of class NegocioCliente.
-     */
+     *
     @Test
     @Ignore
     public void AdeveraSalvarOClienteNoBanco() {
@@ -63,7 +62,7 @@ public class NegocioClienteTest {
 
     /**
      * Test of buscar method, of class NegocioCliente.
-     */
+     *
     @Test
     @Ignore
     public void BdeveraAlterarOClienteNoBanco(){
@@ -77,7 +76,7 @@ public class NegocioClienteTest {
 
     /**
      * Test of editar method, of class NegocioCliente.
-     */
+     *
     @Test
     @Ignore
     public void CdeveraDeletarOClienteNoBanco() {
@@ -87,5 +86,5 @@ public class NegocioClienteTest {
         clienteRes = negCliente.buscar(cliente.getIdCliente());
         assertEquals(null, clienteRes);
     }
-
+*/
 }
