@@ -23,7 +23,6 @@
  */
 package br.edu.ifpe.petpalacy.model.repositorio.implementacao;
 
-import br.edu.ifpe.petpalacy.model.entidades.DiaSemana;
 import br.edu.ifpe.petpalacy.model.entidades.Servico;
 import java.math.BigDecimal;
 import java.util.ArrayList;
