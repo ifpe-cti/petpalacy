@@ -45,6 +45,7 @@ public class ControllerServico {
     private ArrayList<Servico> listaServico;
     
     public ControllerServico(){
+        
         negServico = new NegocioServico();
         servico = new Servico();
         listaServico = new ArrayList<>();
