@@ -45,12 +45,12 @@ public class NegocioServico implements InterfaceServico<Servico>{
     }
     
     @Override
-    public void salvar(Servico servico){
+    public void salvar(Servico servico) throws Exception{
         if (servico == null) {
-            
+            throw new Exception("Erro!");
         }else{
             if(buscar(servico.getIdServico()) != null){
-                
+                throw new Exception("Erro!");
             }else{
                 repoServico.salvar(servico);
             }
@@ -72,13 +72,13 @@ public class NegocioServico implements InterfaceServico<Servico>{
     }
     
     @Override
-    public void editar(Servico servico){
+    public void editar(Servico servico) throws Exception{
         if(servico == null){
-            
+            throw new Exception("Erro!");
         }else{
             serv = repoServico.buscar(servico.getIdServico());
             if(serv == null){
-                System.out.println("");
+                throw new Exception("Erro!");
             }else{
                 repoServico.editar(servico);
             }
@@ -86,13 +86,13 @@ public class NegocioServico implements InterfaceServico<Servico>{
     }
     
     @Override
-    public void deletar(Servico servico){
+    public void deletar(Servico servico) throws Exception{
         if(servico == null){
-            
+            throw new Exception("Erro!");
         }else{
             serv = repoServico.buscar(servico.getIdServico());
             if(serv == null){
-                System.out.println("");
+                throw new Exception("Erro!");
             }else{
                 repoServico.deletar(servico);
             }
