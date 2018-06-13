@@ -21,14 +21,17 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
-*
+ *
  */
 package br.edu.ifpe.petpalacy.controller;
 
 import br.edu.ifpe.petpalacy.model.entidades.Agendamento;
 import br.edu.ifpe.petpalacy.model.negocio.NegocioAgendamento;
+import br.edu.ifpe.petpalacy.util.Mensagens;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -43,34 +46,54 @@ public class ControllerAgendamento implements Serializable {
     private NegocioAgendamento negAgenda;
     private Agendamento agenda;
     private ArrayList<Agendamento> listaAgenda;
+    private String ret = "";
 
     public ControllerAgendamento() {
         negAgenda = new NegocioAgendamento();
         agenda = new Agendamento();
         listaAgenda = new ArrayList<>();
     }
-    
-    public String salvar(){
-        negAgenda.salvar(agenda);
-        return "pagina com o que foi agendado";
+
+    public String salvar() {
+        try {
+            negAgenda.salvar(agenda);
+            Mensagens.getInstance().salvoComSucesso();
+            ret = "pagina com o que foi agendado";
+        } catch (Exception ex) {
+            Mensagens.getInstance().nenhumaInformacao();
+        }
+        return ret;
     }
-    
-    public String buscar(){
+
+    public String buscar() {
         negAgenda.buscar(agenda.getId());
         return "pagina com informações da entidade";
     }
-    
-    public String alterar(){
-        negAgenda.editar(agenda);
-        return "pagina com o que foi editado";
+
+    public String alterar() {
+        try {
+            negAgenda.editar(agenda);
+            Mensagens.getInstance().alteradoComSucesso();
+            ret = "pagina com o que foi editado";
+        } catch (Exception ex) {
+            Mensagens.getInstance().nenhumaInformacao();
+        }
+        return ret;
     }
-    
-    public String deletar(){
-        negAgenda.deletar(agenda);
-        return "pagina com todos os agendamentos";
+
+    public String deletar() {
+        try {
+            negAgenda.deletar(agenda);
+            Mensagens.getInstance().deletadoComSucesso();
+            ret = "pagina com todos os agendamentos";
+        } catch (Exception ex) {
+            Mensagens.getInstance().nenhumaInformacao();
+        }
+        return ret;
     }
-    public String listar(){
-       listaAgenda = (ArrayList) negAgenda.listar();
+
+    public String listar() {
+        listaAgenda = (ArrayList) negAgenda.listar();
         return "pagina com todos os agendamentos";
     }
 
@@ -97,6 +120,5 @@ public class ControllerAgendamento implements Serializable {
     public void setListaAgenda(ArrayList<Agendamento> listaAgenda) {
         this.listaAgenda = listaAgenda;
     }
-    
-    
+
 }
