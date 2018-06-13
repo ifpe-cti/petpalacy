@@ -50,33 +50,27 @@ public class NegocioEmpresa implements InterfaceEmpresa<Empresa> {
     @Override
     public Empresa autenticar(String login, String senha) {
         if (login == null || senha == null) {
-            //Nenhuma informação passada.
-            
             return null;
-        }else{
+        } else {
             emp = repoEmp.autenticar(login, Criptografia.criptografar(senha));
-            
-            if(emp == null){
-                //Imprimir empresa não esta cadastrada no banco.
+
+            if (emp == null) {
                 return null;
-            }else{
-                 return emp;
+            } else {
+                return emp;
             }
         }
-       
+
     }
 
     @Override
     public Empresa buscarCnpj(String cnpj) {
         if (cnpj == null) {
-            //Imprimir que não foi passada nenhuma informação.
-            Mensagens.getInstance().nenhumaInformacao();
             return null;
         } else {
             emp = repoEmp.buscarCnpj(cnpj);
 
-            if (emp == null) //Imprimir que não existe essa empresa cadastrada no banco.
-            {
+            if (emp == null) {
                 return null;
             } else {
                 return emp;
@@ -85,41 +79,27 @@ public class NegocioEmpresa implements InterfaceEmpresa<Empresa> {
     }
 
     @Override
-    public void salvar(Empresa e) {
+    public void salvar(Empresa e) throws Exception {
 
-        if (e == null) {
-            //Imprimir que não foi passada nenhuma informação.
-            Mensagens.getInstance().nenhumaInformacao();
+        if (e == null || buscarCnpj(e.getCnpj()) != null) {
+            throw new Exception("Erro!");
+        }
+        boolean status = ValidaCNPJ.isCNPJ(e.getCnpj());
+        if (status == true) {
+            e.setSenha(Criptografia.criptografar(e.getSenha()));
+            repoEmp.salvar(e);
         } else {
-
-            if (buscarCnpj(e.getCnpj()) != null) {
-                //Imprimir que esta empresa Já está cadastrada no banco.
-                Mensagens.getInstance().jaExisteNoBanco("empresa");
-            } else {
-                boolean status = ValidaCNPJ.isCNPJ(e.getCnpj());
-                if(status == true){
-                    e.setSenha(Criptografia.criptografar(e.getSenha()));
-                    repoEmp.salvar(e);
-                    //Imprimir Operação realizada com sucesso.
-                    Mensagens.getInstance().salvoComSucesso();
-                }else{
-                    Mensagens.getInstance().invalido("Cnpj");
-            }
+            throw new Exception("Erro!");
         }
     }
-}
 
     @Override
     public Empresa buscar(Integer codigo) {
         if (codigo == null) {
-            //Imprimir que não foi passada nenhuma informação.
-            Mensagens.getInstance().nenhumaInformacao();
             return null;
         } else {
             emp = repoEmp.buscar(codigo);
-
             if (emp == null) {
-                //Imprimir que não existe essa empresa cadastrada no banco.
                 return null;
             } else {
                 return emp;
@@ -128,54 +108,29 @@ public class NegocioEmpresa implements InterfaceEmpresa<Empresa> {
     }
 
     @Override
-    public void editar(Empresa e) {
+    public void editar(Empresa e) throws Exception {
 
-        if (e == null) {
-            //Imprimir que não foi passada nenhuma informação.
-            Mensagens.getInstance().nenhumaInformacao();
+        if (e == null || repoEmp.buscar(e.getIdEmpresa()) != null) {
+            throw new Exception("Erro!");
         } else {
-
-            emp = repoEmp.buscar(e.getIdEmpresa());
-
-            if (emp == null) {
-
-               //Imprimir que não existe essa empresa cadastrada no banco.
-            } else {
-                repoEmp.editar(e);
-                //Imprimir Operação realizada com sucesso.
-                Mensagens.getInstance().alteradoComSucesso();
-            }
-
+            repoEmp.editar(e);
         }
-
     }
 
     @Override
-    public void deletar(Empresa e) {
-        if (e == null) {
-            //Imprimir que não foi passada nenhuma informação.
-            Mensagens.getInstance().nenhumaInformacao();
+    public void deletar(Empresa e) throws Exception {
+        if (e == null || repoEmp.buscar(e.getIdEmpresa()) != null) {
+            throw new Exception("Erro!");
         } else {
-
-            emp = repoEmp.buscar(e.getIdEmpresa());
-
-            if (emp == null) {
-                //Imprimir que não existe essa empresa cadastrada no banco.
-
-            } else {
-                repoEmp.deletar(e);
-                //Imprimir Operação realizada com sucesso.
-                Mensagens.getInstance().deletadoComSucesso();
-            }
-
+            repoEmp.deletar(e);
         }
+
     }
 
     @Override
     public List<Empresa> listar() {
         List lista = repoEmp.listar();
         if (lista == null) {
-            //Imprimir nada encontrado.
             return null;
         } else {
             return lista;
