@@ -45,35 +45,22 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
     }
 
     @Override
-    public void salvar(Agendamento e) {
+    public void salvar(Agendamento e) throws Exception {
 
-        if (e == null) {
-            //Imprimir que não foi passada nenhuma informação.
-            Mensagens.getInstance().nenhumaInformacao();
+        if (e == null || buscar(e.getId()) != null) {
+            throw new Exception("Eoor!");
         } else {
-
-            if (buscar(e.getId()) == null) {
-                //Imprimir que este agendamento já está cadastrado no banco.
-                Mensagens.getInstance().jaExisteNoBanco("Agendamento");
-
-            } else {
-                repoAgend.salvar(e);
-                Mensagens.getInstance().salvoComSucesso();
-            }
+            repoAgend.salvar(e);
         }
     }
 
     @Override
     public Agendamento buscar(Integer codigo) {
         if (codigo == null) {
-            //Imprimir que não foi passada nenhuma informação.
-            Mensagens.getInstance().nenhumaInformacao();
             return null;
         } else {
             agenda = repoAgend.buscar(codigo);
             if (agenda == null) {
-                //Imprimir que não existe esse agendamento cadastrado no banco.
-                
                 return null;
             } else {
                 return agenda;
@@ -82,47 +69,27 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
     }
 
     @Override
-    public void editar(Agendamento e) {
-        if (e == null) {
-            //Imprimir que não foi passada nenhuma informação.
-            Mensagens.getInstance().nenhumaInformacao();
+    public void editar(Agendamento e) throws Exception {
+        if (e == null || repoAgend.buscar(e.getId()) != null) {
+            throw new Exception("Erro!");
         } else {
-            agenda = repoAgend.buscar(e.getId());
-
-            if (agenda == null) {
-                //Imprimir que não existe esse agendamento cadastrado no banco.
-                 Mensagens.getInstance().jaExisteNoBanco("Agendamento");               
-            } else {
-                repoAgend.editar(e);
-                //Imprimir Operação realizada com sucesso.
-                Mensagens.getInstance().alteradoComSucesso();
-            }
+            repoAgend.editar(e);
         }
     }
 
     @Override
-    public void deletar(Agendamento e) {
-        if (e == null) {
-            //Imprimir que não foi passada nenhuma informação.
-            Mensagens.getInstance().nenhumaInformacao();
+    public void deletar(Agendamento e) throws Exception {
+        if (e == null || repoAgend.buscar(e.getId()) != null) {
+            throw new Exception("Erro!");
         } else {
-            agenda = repoAgend.buscar(e.getId());
-            if (agenda == null) {
-                //Imprimir que não existe esse agendamento cadastrado no banco.
-            } else {
-                repoAgend.deletar(e);
-                //Imprimir Operação realizada com sucesso.
-                 Mensagens.getInstance().deletadoComSucesso();
-            }
+            repoAgend.deletar(e);
         }
-
     }
 
     @Override
     public List<Agendamento> listar() {
         List lista = repoAgend.listar();
         if (lista == null) {
-            //Imprimir nada encontrado.
             return null;
         } else {
             return lista;
