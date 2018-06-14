@@ -34,6 +34,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import br.edu.ifpe.petpalacy.model.entidades.Empresa;
 
 /**
  *
@@ -44,27 +45,27 @@ public class Servico implements Serializable {
     
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
     private String nome;
-    private int duracao;
+    private Integer duracao;
     private BigDecimal valor;
-
+    private Empresa empresa;
 
     public Servico() {
     }
 
-    public Servico(int id, String nome, int duracao, BigDecimal valor) {
-        this.id = id;
+    public Servico(String nome, Integer duracao, BigDecimal valor, Empresa empresa) {
         this.nome = nome;
         this.duracao = duracao;
         this.valor = valor;
+        this.empresa = empresa;
     }
 
-    public int getIdServico() {
+    public Integer getIdServico() {
         return id;
     }
 
-    public void setIdServico(int id) {
+    public void setIdServico(Integer id) {
         this.id = id;
     }
 
@@ -76,11 +77,11 @@ public class Servico implements Serializable {
         this.nome = nome;
     }
 
-    public int getDuracao() {
+    public Integer getDuracao() {
         return duracao;
     }
 
-    public void setDuracao(int duracao) {
+    public void setDuracao(Integer duracao) {
         this.duracao = duracao;
     }
 
@@ -91,6 +92,15 @@ public class Servico implements Serializable {
     public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+     
 
     @Override
     public int hashCode() {
@@ -113,15 +123,18 @@ public class Servico implements Serializable {
         if(servico.id == id
                 && servico.duracao == duracao
                 && servico.nome == nome
-                && servico.valor == valor) {
+                && servico.valor == valor
+                && servico.empresa == empresa) {
             return true;
         }
         return false;
     }
+
     @Override
     public String toString() {
-        return "Servico{" + "id=" + id + ", nome=" + nome + ", duracao=" + duracao + ", valor=" + valor + '}';
+        return "Servico{" + "id=" + id + ", nome=" + nome + ", duracao=" + duracao + ", valor=" + valor + ", empresa=" + empresa + '}';
     }
+ 
     
     
 }
