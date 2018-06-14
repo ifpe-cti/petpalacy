@@ -110,7 +110,7 @@ public class NegocioEmpresa implements InterfaceEmpresa<Empresa> {
     @Override
     public void editar(Empresa e) throws Exception {
 
-        if (e == null || repoEmp.buscar(e.getIdEmpresa()) != null) {
+        if (e == null || repoEmp.buscar(e.getIdEmpresa()) == null) {
             throw new Exception("Erro!");
         } else {
             repoEmp.editar(e);
@@ -119,7 +119,7 @@ public class NegocioEmpresa implements InterfaceEmpresa<Empresa> {
 
     @Override
     public void deletar(Empresa e) throws Exception {
-        if (e == null || repoEmp.buscar(e.getIdEmpresa()) != null) {
+        if (e == null || repoEmp.buscarCnpj(e.getCnpj()) == null) {
             throw new Exception("Erro!");
         } else {
             repoEmp.deletar(e);

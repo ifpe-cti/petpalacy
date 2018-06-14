@@ -99,7 +99,7 @@ public class NegocioCliente implements InterfaceCliente<Cliente> {
 
     @Override
     public void editar(Cliente cliente) throws Exception {
-        if (cliente == null || buscarCpf(cliente.getCpf()) != null) {
+        if (cliente == null || buscar(cliente.getIdCliente()) != null) {
             throw new Exception("Erro");
         } else {
             repCliente.editar(cliente);
