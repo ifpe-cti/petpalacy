@@ -47,10 +47,14 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
     @Override
     public void salvar(Agendamento e) throws Exception {
 
-        if (e == null || buscar(e.getId()) != null) {
+        if (e == null) {
             throw new Exception("Eoor!");
         } else {
-            repoAgend.salvar(e);
+            if (buscar(e.getId()) != null) {
+                throw new Exception("Erro!");
+            } else {
+                repoAgend.salvar(agenda);
+            }
         }
     }
 
@@ -70,19 +74,29 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
 
     @Override
     public void editar(Agendamento e) throws Exception {
-        if (e == null || repoAgend.buscar(e.getId()) != null) {
+        if(e == null){
             throw new Exception("Erro!");
-        } else {
-            repoAgend.editar(e);
+        }else{
+            agenda = repoAgend.buscar(e.getId());
+            if(agenda == null){
+                throw new Exception("Erro!");
+            }else{
+                repoAgend.editar(e);
+            }
         }
     }
 
     @Override
     public void deletar(Agendamento e) throws Exception {
-        if (e == null || repoAgend.buscar(e.getId()) != null) {
+                if(e == null){
             throw new Exception("Erro!");
-        } else {
-            repoAgend.deletar(e);
+        }else{
+            agenda = repoAgend.buscar(e.getId());
+            if(agenda == null){
+                throw new Exception("Erro!");
+            }else{
+                repoAgend.deletar(e);
+            }
         }
     }
 
