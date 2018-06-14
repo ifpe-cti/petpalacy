@@ -38,7 +38,7 @@ public class Endereco implements Serializable {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
     private String logradouro;
     private Integer numero;
     private String cidade;
@@ -47,19 +47,18 @@ public class Endereco implements Serializable {
     public Endereco() {
     }
 
-    public Endereco(int id, String logradouro, Integer numero, String cidade, String bairro) {
-        this.id = id;
+    public Endereco(String logradouro, Integer numero, String cidade, String bairro) {
         this.logradouro = logradouro;
         this.numero = numero;
         this.cidade = cidade;
         this.bairro = bairro;
     }
 
-    public int getIdEndereco() {
+    public Integer getIdEndereco() {
         return id;
     }
 
-    public void setIdEndereco(int id) {
+    public void setIdEndereco(Integer id) {
         this.id = id;
     }
 

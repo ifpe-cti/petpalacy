@@ -65,8 +65,7 @@ public class Agendamento implements Serializable {
     public Agendamento() {
     }
 
-    public Agendamento(Integer id, Servico servico, Cliente cliente, Empresa empresa, Date data, Date hora, BigDecimal valorTotal, StatusAgen statusAgen) {
-        this.id = id;
+    public Agendamento(Servico servico, Cliente cliente, Empresa empresa, Date data, Date hora, BigDecimal valorTotal, StatusAgen statusAgen) {
         this.servico = servico;
         this.cliente = cliente;
         this.empresa = empresa;

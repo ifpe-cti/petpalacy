@@ -42,35 +42,32 @@ public class Empresa implements Serializable {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
     private String cnpj;
     private String senha;
     private String email;
     private String telefone;
     private String nome;
-    @OneToMany(cascade=CascadeType.ALL)
-    private List<Servico> servicos;
     @OneToOne(cascade=CascadeType.ALL)
     private Endereco endereco;
 
-    public Empresa(String cnpj, String senha, String email, String telefone, String nome, List<Servico> servicos, Endereco endereco) {
+    public Empresa(String cnpj, String senha, String email, String telefone, String nome, Endereco endereco) {
         this.cnpj = cnpj;
         this.senha = senha;
         this.email = email;
         this.telefone = telefone;
         this.nome = nome;
-        this.servicos = servicos;
         this.endereco = endereco;
     }
 
     public Empresa() {
     }
 
-    public int getIdEmpresa() {
+    public Integer getIdEmpresa() {
         return id;
     }
 
-    public void setIdEmpresa(int id) {
+    public void setIdEmpresa(Integer id) {
         this.id = id;
     }
 
@@ -112,14 +109,6 @@ public class Empresa implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public List<Servico> getServicos() {
-        return servicos;
-    }
-
-    public void setServicos(List<Servico> servicos) {
-        this.servicos = servicos;
     }
 
     public Endereco getEndereco() {
@@ -164,9 +153,6 @@ public class Empresa implements Serializable {
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
-        if (!Objects.equals(this.servicos, other.servicos)) {
-            return false;
-        }
         if (!Objects.equals(this.endereco, other.endereco)) {
             return false;
         }
@@ -177,7 +163,7 @@ public class Empresa implements Serializable {
     public String toString() {
         return "Empresa{" + "id=" + id + ", cnpj=" + cnpj + ", senha=" + senha
                 + ", email=" + email + ", telefone=" + telefone + ", nome=" + nome
-                + ", servicos=" + servicos + ", endereco=" + endereco + '}';
+                + ", endereco=" + endereco + '}';
     }
 
 }
