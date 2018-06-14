@@ -36,7 +36,7 @@ import org.junit.Test;
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
  */
 public class RepositorioEmpresaImplDBTest {
-    @Test
+   /* @Test
     @Ignore
     public void salvarTest() {
         Empresa empresa = new Empresa();
@@ -122,5 +122,5 @@ public class RepositorioEmpresaImplDBTest {
         
         Assert.assertEquals("petcao@ifpe.com", empresa.getEmail());
     }
-    
+   */ 
 }
