@@ -1,200 +1,126 @@
-/*
-MIT License
+/*MIT License
 
-Copyright (c) 2018 Daniel da Silva Calado, Izaquiel Cavalcante da Silva, 
-                   Kaio Cesar Bezerra da Silva e Wemerson Diogenes da Silva
+ Copyright (c) 2018 Daniel da Silva Calado, Izaquiel Cavalcante da Silva, 
+                   Kaio Cesar Bezerra da Silva e Wemerson Diogenes da Silva
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
  */
 package br.edu.ifpe.petpalacy.model.repositorio.implementacao;
 
-import br.edu.ifpe.petpalacy.model.dao.PersistenciaDAO;
 import br.edu.ifpe.petpalacy.model.entidades.Empresa;
 import br.edu.ifpe.petpalacy.model.entidades.Endereco;
-import br.edu.ifpe.petpalacy.util.HibernateUtil;
-import java.util.ArrayList;
+import br.edu.ifpe.petpalacy.model.entidades.Servico;
 import java.util.List;
-import junit.framework.Assert;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.BeforeClass;
+import org.junit.Assert;
 import org.junit.Ignore;
+import org.junit.Test;
 
 /**
  *
- * @author Daniel Calado <danielcalado159@gmail.com>
+ * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
  */
 public class RepositorioEmpresaImplDBTest {
-    
-    private static Empresa emp;
-    private static Endereco end;
-    private static SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-    private RepositorioEmpresaImplDB repEmp;
-    private static Empresa empExcluir;
-    private static Empresa empAlterar;
-    private Empresa empBusca = null;
-    private ArrayList<Empresa> lista;
-    
-    public RepositorioEmpresaImplDBTest() {
-        repEmp = new RepositorioEmpresaImplDB();
-        lista = new ArrayList<>();
+   /* @Test
+    @Ignore
+    public void salvarTest() {
+        Empresa empresa = new Empresa();
+        empresa.setNome("Pet Cao");
+        empresa.setCnpj("11111111111111");
+        empresa.setTelefone("22222222222");
+        empresa.setEmail("petcao@ifpe.com");
+        empresa.setSenha("petcao12345");
         
+        Endereco endereco = new Endereco();
+        endereco.setLogradouro("Av Correia Dutra 123");
+        endereco.setBairro("Heliopolis");
+        endereco.setCidade("Garanhuns");
+        
+        empresa.setEndereco(endereco);
+        
+        RepositorioServicoImplDB repServico = new RepositorioServicoImplDB();
+        List<Servico> servicos = repServico.listar();
+        
+        empresa.setServicos(servicos);
+        
+        RepositorioEmpresaImplDB repEmpresa = new RepositorioEmpresaImplDB();
+        repEmpresa.salvar(empresa);
+        
+        Assert.assertEquals("Pet Cao", empresa.getNome());
+        Assert.assertEquals("Av Correia Dutra 123", empresa.getEndereco().getLogradouro());
     }
     
-    @BeforeClass
-    public static void setUp() {
-        end = new Endereco("rua duque de caxias", 12, "garanhuns", "vila nova");
-        emp = new Empresa("48608939000160", "catavento", "paulo@gmail.com", "981546578", "caoPet", end);
-        empExcluir = new Empresa("1234567890", "saopaulo", "luis@gmail.com", "981546578", "caoPet", null);
-        empAlterar = new Empresa("2222222222222", "saosao", "dkpaz@gmail.com", "981546578", "caoPet", null);        
-        Session session = sessionFactory.openSession();
-        Transaction transacao = null;
-        try {
-            transacao = session.beginTransaction();
-            session.save(emp);
-            session.save(empExcluir);
-            session.save(empAlterar);
-            transacao.commit();
-        } catch (RuntimeException ex) {
-            if (transacao != null) {
-                transacao.rollback();
-            }
-            throw ex;
-        } finally {
-            session.close();
+    @Test
+    @Ignore
+    public void listarTest() {
+        RepositorioEmpresaImplDB repEmpresa = new RepositorioEmpresaImplDB();
+        List<Empresa> empresas = repEmpresa.listar();
+        
+        for(Empresa empresa : empresas) {
+            System.out.println(empresa.getNome());
         }
-    }
-    
-    @AfterClass
-    public static void tearDown() {
-        Session session = sessionFactory.openSession();
-        Transaction transacao = null;
         
-        try {
-            transacao = session.beginTransaction();
+        Assert.assertEquals("Pet Cao", empresas.get(0).getNome());
+    }
+   
+    @Test
+    @Ignore
+    public void buscarTest() {
+        RepositorioEmpresaImplDB repEmpresa = new RepositorioEmpresaImplDB();
+        
+        Empresa empresa = repEmpresa.buscar(1);
+        System.out.println(empresa.getNome());
+        
+        Assert.assertEquals("Pet Cao", empresa.getNome());
+    } 
+    
+    @Test
+    @Ignore
+    public void editarTest() {
+        RepositorioEmpresaImplDB repEmpresa = new RepositorioEmpresaImplDB();
+        
+        Empresa empresa = repEmpresa.buscar(1);
+        empresa.setNome("PetMix");
             
-            Query consulta = session.createQuery("SELECT em FROM Empresa em");
-            List lista = (List) consulta.list();
-            
-            for (Object a : lista) {
-                session.delete(a);
-            }
-            transacao.commit();
-        } catch (RuntimeException ex) {
-            if (transacao != null) {
-                transacao.rollback();
-            }
-            throw ex;
-        } finally {
-            session.close();
-        }
+        repEmpresa.editar(empresa);
+        
+        Empresa emp = repEmpresa.buscar(1);
+        Assert.assertEquals("PetMix", emp.getNome());
     }
     
     @Test
-    public void deveSalvarUmaEmpresaNoBancoDeDados() {
-        Endereco endsa = new Endereco("rua duque", 9, "lala do lolo", "pavilhao");
-        Empresa empsa = new Empresa("390725478000199", "lalala", "toinho@gmail.com", "9876453322", "gatoPreto", endsa);
-        repEmp.salvar(empsa);
+    @Ignore
+    public void excluirTest() {
+        RepositorioEmpresaImplDB repEmpresa = new RepositorioEmpresaImplDB();
         
-        Session session = this.sessionFactory.openSession();
-        Query consulta = session.createQuery("SELECT em FROM Empresa em");
-        lista = (ArrayList) consulta.list();
-        session.close();
-        
-        boolean sucesso = false;
-        for (Empresa a : lista) {
-            if (a.equals(empsa)) {
-                sucesso = true;
-            }
-        }
-        assertFalse(sucesso);
+        Empresa empresa = repEmpresa.buscar(1);
+      
+        repEmpresa.deletar(empresa);
     }
-
+    
     @Test
-    public void deveAlterarUmaEmpresaNoBancoDeDados() {
-        empAlterar.setCnpj("390725478000199");
-        repEmp.editar(empAlterar);
+    @Ignore
+    public void autenticarTest() {
+        RepositorioEmpresaImplDB repEmpresa= new RepositorioEmpresaImplDB();
+        Empresa empresa = repEmpresa.autenticar("petcao@ifpe.com", "petcao12345");
+        System.out.println(empresa.getEmail());
         
-        Session session = this.sessionFactory.openSession();
-        Query consulta = session.createQuery("SELECT em FROM Empresa em");
-        lista = (ArrayList) consulta.list();
-        session.close();
-        
-        for (Empresa a : lista) {
-            if (a.equals(empAlterar)) {
-                assertEquals(a.getCnpj(), "390725478000199");
-            }
-        }
+        Assert.assertEquals("petcao@ifpe.com", empresa.getEmail());
     }
-
-    @Test
-    public void deveDeletarUmaEmpresaDoBancoDeDados() {
-        repEmp.deletar(empExcluir);
-        
-        Session session = this.sessionFactory.openSession();
-        Query consulta = session.createQuery("SELECT em FROM Empresa em");
-        lista = (ArrayList) consulta.list();
-        session.close();
-        
-        boolean sucesso = false;
-        for (Empresa a : lista) {
-            if ("1234567890".equals(a.getCnpj())) {
-                sucesso = true;
-            }
-        }
-        assertFalse(sucesso);
-    }
-
-    @Test
-    public void deveBuscarUmaEmpresaNoBancoPeloId() {
-        empBusca = repEmp.buscar(emp.getIdEmpresa());
-        assertEquals(emp.getIdEmpresa(), empBusca.getIdEmpresa());
-    }
-
-    @Test
-    public void deveBuscarUmaEmpresaNoBancoPeloCnpj() {
-        empBusca = repEmp.buscarCnpj(emp.getCnpj());
-        assertEquals(emp.getCnpj(), empBusca.getCnpj());
-    }
-
-    @Test
-    public void deveListarTodasAsEmpresas() {
-        lista = (ArrayList<Empresa>) repEmp.listar();
-        int cont = 0;
-        
-        for (Empresa a : lista) {
-            cont++;
-        }
-        assertNotEquals(0, cont);
-    }
-
-    @Test
-    public void deveBuscarAEmpresaPelaSenhaELogin() {
-        empBusca = repEmp.autenticar(emp.getEmail(), emp.getSenha());
-        assertEquals(emp.getCnpj(), empBusca.getCnpj());
-        
-    }
+   */ 
 }
