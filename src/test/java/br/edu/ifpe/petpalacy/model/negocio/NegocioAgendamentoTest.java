@@ -95,9 +95,11 @@ public class NegocioAgendamentoTest {
     }
 
     @Before
-    public void setUp() {
+    public void setUp(){
+        
         negAgen = new NegocioAgendamento();
         list = new ArrayList<>();
+        
     }
 
     /**
@@ -107,8 +109,10 @@ public class NegocioAgendamentoTest {
      */
     @Test
     public void test1SalvarAgendamentoNoBanco() throws Exception {
-
+        negAgen.salvar(agenda);
         list = (ArrayList) negAgen.listar();
+        
+        
 
         for (Agendamento a : list) {
             if (a.getCliente().getCpf().equals("11419189433")) {
@@ -116,5 +120,10 @@ public class NegocioAgendamentoTest {
             }
 
         }
+    }
+    
+    @Test(expected = Exception.class)
+    public void test2ErroAoSalvarNoBanco() throws Exception {
+        negAgen.salvar(agenda);
     }
 }
