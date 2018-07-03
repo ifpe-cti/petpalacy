@@ -25,10 +25,6 @@ import br.edu.ifpe.petpalacy.model.entidades.Empresa;
 import br.edu.ifpe.petpalacy.model.entidades.Endereco;
 import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioEmpresaImplDB;
 import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioEmpresaImplDB;
-<<<<<<< HEAD
-import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioEmpresaImplDB;
-=======
->>>>>>> 32e2c8c33d04bdf48c0cbf627cf9d18086d40520
 import br.edu.ifpe.petpalacy.util.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
