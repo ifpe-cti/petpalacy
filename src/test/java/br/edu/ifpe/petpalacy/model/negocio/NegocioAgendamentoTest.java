@@ -89,7 +89,7 @@ public class NegocioAgendamentoTest {
     }
 
     @Before
-    public static void setUp() throws Exception {
+    public void setUp() throws Exception {
         negAgen.salvar(agenda);
     }
 

@@ -53,7 +53,7 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
             if (buscar(e.getId()) != null) {
                 throw new Exception("Erro!");
             } else {
-                repoAgend.salvar(agenda);
+                repoAgend.salvar(e);
             }
         }
     }
