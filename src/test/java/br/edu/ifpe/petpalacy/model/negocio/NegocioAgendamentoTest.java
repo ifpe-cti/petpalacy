@@ -75,7 +75,7 @@ public class NegocioAgendamentoTest {
         cliente = new Cliente("Carlos junio", "11419189433", "879812324", endereco, "dkpaz@gmail.com", "saosap");
         empresa = new Empresa("12602190000104", "papapa", "emp@gmail.com", "21212121", "bruno Eletro", endereco);
         endereco = new Endereco("rua do Parque", 145, "sao joao", "la em cima");
-        agenda = new Agendamento(serve, cliente, empresa, new Date(), new Date(), null, StatusAgen.ESPERA);
+        agenda = new Agendamento(serve, cliente, empresa, new Date(), new Date(), new BigDecimal(35), StatusAgen.ESPERA);
 
         negCli = new NegocioCliente();
         negEmp = new NegocioEmpresa();
@@ -119,13 +119,14 @@ public class NegocioAgendamentoTest {
 
     @Test(expected = java.lang.Exception.class)
     public void test2ErroAoSalvarNoBanco() throws Exception {
-        negAgen.salvar(agenda);
+        negAgen.salvar(null);
 
     }
 
     @Test
     public void test3AterarAgendamento() throws Exception {
         altAgen = new Agendamento(new Servico("toza", 3, new BigDecimal(50), empresa), cliente, empresa, new Date(), new Date(), new BigDecimal(50), StatusAgen.ESPERA);
+        negServe.editar(new Servico("toza", 3, new BigDecimal(50), empresa));
         negAgen.editar(altAgen);
 
         list = (ArrayList) negAgen.listar();
@@ -159,7 +160,7 @@ public class NegocioAgendamentoTest {
     @Test(expected = java.lang.Exception.class)
     public void test6ErroAoDeletar() throws Exception {
 
-        negAgen.deletar(agenda);
+        negAgen.deletar(null);
 
     }
 
