@@ -47,11 +47,7 @@ Contributor(s):
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/petshop?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
-<<<<<<< HEAD
     <property name="hibernate.connection.password">ifpe</property>
-=======
-    <property name="hibernate.connection.password"></property>
->>>>>>> 32e2c8c33d04bdf48c0cbf627cf9d18086d40520
     
     <!-- Gerenciamento da sessão -->
     <property name="current_session_context_class">thread</property>
