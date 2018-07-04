@@ -8,5 +8,4 @@ jdk:
 script:
   - set -e
   - mvn clean package
-  services:
-  -mysql
+
