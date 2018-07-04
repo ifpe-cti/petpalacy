@@ -65,7 +65,7 @@ public class RepositorioEmpresaImplDBTest {
     @BeforeClass
     public static void setUp() {
         end = new Endereco("rua duque de caxias", 12, "garanhuns", "vila nova");
-        emp = new Empresa("48608939000160", "catavento", "paulo@gmail.com", "981546578", "caoPet", end);
+        emp = new Empresa("48608939000160", "casr", "paulo@gmail.com", "981546578", "caoPet", end);
         empExcluir = new Empresa("1234567890", "saopaulo", "luis@gmail.com", "981546578", "caoPet", null);
         empAlterar = new Empresa("2222222222222", "saosao", "dkpaz@gmail.com", "981546578", "caoPet", null);        
         Session session = sessionFactory.openSession();
