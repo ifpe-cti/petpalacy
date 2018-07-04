@@ -26,6 +26,7 @@ package br.edu.ifpe.petpalacy.controller;
 
 import br.edu.ifpe.petpalacy.model.entidades.Empresa;
 import br.edu.ifpe.petpalacy.model.negocio.NegocioEmpresa;
+import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioEmpresaImplDB;
 import br.edu.ifpe.petpalacy.util.Mensagens;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -48,6 +49,7 @@ public class ControllerEmpresa implements Serializable {
     private String ret = "";
 
     public ControllerEmpresa() {
+        RepositorioEmpresaImplDB repoEmp = null;
         negEmpresa = new NegocioEmpresa();
         empresa = new Empresa();
         listaEmpresa = new ArrayList<>();
@@ -63,7 +65,6 @@ public class ControllerEmpresa implements Serializable {
         }
         return ret;
     }
-
     public String alterar() {
         try {
             negEmpresa.editar(empresa);

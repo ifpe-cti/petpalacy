@@ -44,7 +44,7 @@ import org.junit.runners.MethodSorters;
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class RepositorioClienteImplDBTest {
-
+/*
     static Endereco endereco = new Endereco("rua duque de caxias", 45, "garanhuns", "bem ali");
     static Cliente cliente = new Cliente("Jose Pedro", "1212121212", "99999999", endereco, "dkpaz@gmail.com", "saosaa");
     static Cliente cliBusca = null;
@@ -92,5 +92,5 @@ public class RepositorioClienteImplDBTest {
  
         cliBusca = repCli.buscarCpf("32323232");
         repCli.deletar(cliBusca);
-    }
+    }*/
 }

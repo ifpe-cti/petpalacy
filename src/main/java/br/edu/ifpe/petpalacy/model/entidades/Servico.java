@@ -33,7 +33,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import br.edu.ifpe.petpalacy.model.entidades.Empresa;
 
 /**
@@ -49,6 +49,7 @@ public class Servico implements Serializable {
     private String nome;
     private Integer duracao;
     private BigDecimal valor;
+    @OneToOne
     private Empresa empresa;
 
     public Servico() {
