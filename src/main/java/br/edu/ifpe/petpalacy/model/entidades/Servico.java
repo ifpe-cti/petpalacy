@@ -30,8 +30,9 @@ import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import br.edu.ifpe.petpalacy.model.entidades.Empresa;
 import javax.persistence.OneToOne;
+import br.edu.ifpe.petpalacy.model.entidades.Empresa;
+
 
 /**
  *
