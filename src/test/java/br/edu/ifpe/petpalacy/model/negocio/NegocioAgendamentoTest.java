@@ -61,6 +61,7 @@ public class NegocioAgendamentoTest {
     private static NegocioCliente negCli;
     private static NegocioEmpresa negEmp;
     private static NegocioServico negServe;
+
     public NegocioAgendamentoTest() {
         negAgen = new NegocioAgendamento();
         list = new ArrayList<>();
@@ -68,7 +69,7 @@ public class NegocioAgendamentoTest {
 
     @BeforeClass
     public static void setUpClass() throws Exception {
-        
+
         endereco = new Endereco("rua do Parque", 145, "sao joao", "la em cima");
         empresa = new Empresa("12602190000104", "papapa", "emp@gmail.com", "21212121", "bruno Eletro", endereco);
         cliente = new Cliente("Carlos junio", "11419189433", "879812324", endereco, "dkpaz@gmail.com", "saosap");
@@ -85,6 +86,11 @@ public class NegocioAgendamentoTest {
          */
         negAgen.salvar(agenda);
 
+    }
+
+    @Before
+    public static void setUp() throws Exception {
+        negAgen.salvar(agenda);
     }
 
     @AfterClass
@@ -104,7 +110,6 @@ public class NegocioAgendamentoTest {
      */
     @Test
     public void test1SalvarAgendamentoNoBanco() throws Exception {
-        negAgen.salvar(agenda);
 
         list = (ArrayList) negAgen.listar();
 
@@ -115,25 +120,58 @@ public class NegocioAgendamentoTest {
     @Test(expected = Exception.class)
     public void test2ErroAoSalvarNoBanco() throws Exception {
         negAgen.salvar(agenda);
-        
+
     }
 
     @Test
     public void test3AterarAgendamento() throws Exception {
-        negAgen.salvar(agenda);
-       
-       Agendamento altAgen  = new Agendamento(new Servico("toza", 3, new BigDecimal(50), empresa)
-               , cliente, empresa, new Date(), new Date(), new BigDecimal(50), StatusAgen.ESPERA);
-       
-       negAgen.editar(altAgen);
-       
-       list = (ArrayList) negAgen.listar();
-       
+
+        Agendamento altAgen = new Agendamento(new Servico("toza", 3, new BigDecimal(50), empresa), cliente, empresa, new Date(), new Date(), new BigDecimal(50), StatusAgen.ESPERA);
+
+        negAgen.editar(altAgen);
+
+        list = (ArrayList) negAgen.listar();
+
         for (Agendamento a : list) {
-            if (!a.getServico().getNome().equals("Limpa ku")){
+            if (!a.getServico().getNome().equals("Limpa ku")) {
                 assertEquals("toza", a.getServico().getNome());
             }
         }
-       
-          }
+
+    }
+
+    @Test(expected = Exception.class)
+    public void test4ErroAoAlterar() throws Exception {
+
+        Agendamento altAgen = new Agendamento(new Servico("toza", 3, new BigDecimal(50), empresa), cliente, empresa, new Date(), new Date(), new BigDecimal(50), StatusAgen.ESPERA);
+
+        negAgen.editar(altAgen);
+    }
+
+    public void test5DeletarAgendamentoNoBanco() throws Exception {
+
+        negAgen.deletar(agenda);
+
+        list = (ArrayList) negAgen.listar();
+
+        assertEquals(null, list.get(0));
+
+    }
+
+    @Test(expected = Exception.class)    
+    public void test6ErroAoDeletar() throws Exception {
+
+        negAgen.deletar(agenda);
+    }
+
+    @Test
+    public void test7ListarAgendamentos() throws Exception {
+        list = (ArrayList) negAgen.listar();
+
+        int cont = 0;
+        for (Agendamento a : list) {
+            cont++;
+        }
+        assertNotEquals(0, cont);
+    }
 }
