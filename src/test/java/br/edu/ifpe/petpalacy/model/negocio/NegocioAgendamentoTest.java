@@ -61,6 +61,7 @@ public class NegocioAgendamentoTest {
     private static NegocioCliente negCli;
     private static NegocioEmpresa negEmp;
     private static NegocioServico negServe;
+    private Agendamento altAgen;
 
     public NegocioAgendamentoTest() {
         negAgen = new NegocioAgendamento();
@@ -70,37 +71,36 @@ public class NegocioAgendamentoTest {
     @BeforeClass
     public static void setUpClass() throws Exception {
 
-        endereco = new Endereco("rua do Parque", 145, "sao joao", "la em cima");
-        empresa = new Empresa("12602190000104", "papapa", "emp@gmail.com", "21212121", "bruno Eletro", endereco);
-        cliente = new Cliente("Carlos junio", "11419189433", "879812324", endereco, "dkpaz@gmail.com", "saosap");
         serve = new Servico("Limpa ku", 4, null, empresa);
+        cliente = new Cliente("Carlos junio", "11419189433", "879812324", endereco, "dkpaz@gmail.com", "saosap");
+        empresa = new Empresa("12602190000104", "papapa", "emp@gmail.com", "21212121", "bruno Eletro", endereco);
+        endereco = new Endereco("rua do Parque", 145, "sao joao", "la em cima");
         agenda = new Agendamento(serve, cliente, empresa, new Date(), new Date(), null, StatusAgen.ESPERA);
 
-        /*negCli = new NegocioCliente();
-         negEmp = new NegocioEmpresa();
-         negServe = new NegocioServico();
-        
-         negCli.salvar(cliente);
-         negEmp.salvar(empresa);
-         negServe.salvar(serve);
-         */
-        negAgen.salvar(agenda);
+        negCli = new NegocioCliente();
+        negEmp = new NegocioEmpresa();
+        negServe = new NegocioServico();
+
+        negCli.salvar(cliente);
+        negEmp.salvar(empresa);
+        negServe.salvar(serve);
 
     }
 
     @Before
     public void setUp() throws Exception {
         negAgen.salvar(agenda);
+
     }
 
     @AfterClass
     public static void tearDownClass() throws Exception {
-        /* 
-         negCli.deletar(cliente);
-         negEmp.deletar(empresa);
-         negServe.deletar(serve);
-         */
+
         negAgen.deletar(agenda);
+        negServe.deletar(serve);
+        negCli.deletar(cliente);
+        negEmp.deletar(empresa);
+
     }
 
     /**
@@ -117,7 +117,7 @@ public class NegocioAgendamentoTest {
 
     }
 
-    @Test(expected = Exception.class)
+    @Test(expected = java.lang.Exception.class)
     public void test2ErroAoSalvarNoBanco() throws Exception {
         negAgen.salvar(agenda);
 
@@ -125,9 +125,7 @@ public class NegocioAgendamentoTest {
 
     @Test
     public void test3AterarAgendamento() throws Exception {
-
-        Agendamento altAgen = new Agendamento(new Servico("toza", 3, new BigDecimal(50), empresa), cliente, empresa, new Date(), new Date(), new BigDecimal(50), StatusAgen.ESPERA);
-
+        altAgen = new Agendamento(new Servico("toza", 3, new BigDecimal(50), empresa), cliente, empresa, new Date(), new Date(), new BigDecimal(50), StatusAgen.ESPERA);
         negAgen.editar(altAgen);
 
         list = (ArrayList) negAgen.listar();
@@ -140,17 +138,17 @@ public class NegocioAgendamentoTest {
 
     }
 
-    @Test(expected = Exception.class)
+    @Test(expected = java.lang.Exception.class)
     public void test4ErroAoAlterar() throws Exception {
 
-        Agendamento altAgen = new Agendamento(new Servico("toza", 3, new BigDecimal(50), empresa), cliente, empresa, new Date(), new Date(), new BigDecimal(50), StatusAgen.ESPERA);
+        altAgen = new Agendamento(new Servico("toza", 3, new BigDecimal(50), empresa), null, empresa, new Date(), new Date(), new BigDecimal(50), StatusAgen.ESPERA);
 
         negAgen.editar(altAgen);
     }
 
     public void test5DeletarAgendamentoNoBanco() throws Exception {
 
-        negAgen.deletar(agenda);
+        negAgen.deletar(altAgen);
 
         list = (ArrayList) negAgen.listar();
 
@@ -158,10 +156,11 @@ public class NegocioAgendamentoTest {
 
     }
 
-    @Test(expected = Exception.class)    
+    @Test(expected = java.lang.Exception.class)
     public void test6ErroAoDeletar() throws Exception {
 
         negAgen.deletar(agenda);
+
     }
 
     @Test
