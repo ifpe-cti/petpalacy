@@ -108,7 +108,7 @@ public class NegocioCliente implements InterfaceCliente<Cliente> {
 
     @Override
     public void deletar(Cliente cliente) throws Exception {
-        if (cliente == null || buscarCpf(cliente.getCpf()) != null) {
+        if (cliente == null || buscarCpf(cliente.getCpf()) == null) {
             throw new Exception("Erro");
         } else {
             repCliente.deletar(cliente);

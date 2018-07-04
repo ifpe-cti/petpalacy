@@ -48,7 +48,7 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
     public void salvar(Agendamento e) throws Exception {
 
         if (e == null) {
-            throw new Exception("Eoor!");
+            throw new Exception("ERRO!");
         } else {
             if (buscar(e.getId()) != null) {
                 throw new Exception("Erro!");
