@@ -51,9 +51,9 @@ public class Agendamento implements Serializable {
     private Integer id;
     @OneToOne(cascade={CascadeType.PERSIST,CascadeType.MERGE})
     private Servico servico;
-    @OneToOne(cascade={CascadeType.PERSIST,CascadeType.MERGE}) 
+    @OneToOne(cascade={CascadeType.PERSIST,CascadeType.REFRESH}) 
     private Cliente cliente;
-    @OneToOne(cascade={CascadeType.PERSIST,CascadeType.MERGE})
+    @OneToOne(cascade={CascadeType.PERSIST,CascadeType.REFRESH})
     private Empresa empresa;
     @Temporal(value = TemporalType.DATE)
     private Date data;

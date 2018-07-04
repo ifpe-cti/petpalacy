@@ -150,7 +150,7 @@ public class NegocioAgendamentoTest {
     public void test5DeletarAgendamentoNoBanco() throws Exception {
 
         negAgen.deletar(altAgen);
-
+        
         list = (ArrayList) negAgen.listar();
 
         assertEquals(null, list.get(0));
