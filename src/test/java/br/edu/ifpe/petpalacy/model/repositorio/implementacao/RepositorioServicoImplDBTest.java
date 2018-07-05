@@ -117,17 +117,11 @@ public class RepositorioServicoImplDBTest {
         repSer.salvar(servSalvar);
         
         Session session = this.sessionFactory.openSession();
-        Query consulta = session.createQuery("SELECT serv FROM Servico serv");
-        lista = (ArrayList) consulta.list();
+        Query consulta = session.createQuery("SELECT s FROM Servico s WHERE s.id=" + servSalvar.getIdServico());
+        servBusca = (Servico) consulta.list().get(0);
         session.close();
         
-        boolean sucesso = false;
-        for (Servico a : lista) {
-            if (a.equals(servSalvar)) {
-                sucesso = true;
-            }
-        }
-        assertFalse(sucesso);
+        assertEquals(servSalvar.getIdServico(), servBusca.getIdServico());
     }
 
     @Test
@@ -135,16 +129,12 @@ public class RepositorioServicoImplDBTest {
         servAlterar.setNome("banho");
         repSer.editar(servAlterar);
         
-        Session session = sessionFactory.openSession();
-        Query consulta = session.createQuery("SELECT serv FROM Servico serv");
-        lista = (ArrayList) consulta.list();
+        Session session = this.sessionFactory.openSession();
+        Query consulta = session.createQuery("SELECT s FROM Servico s WHERE s.id=" + servAlterar.getIdServico());
+        servBusca = (Servico) consulta.list().get(0);
         session.close();
         
-        for (Servico a : lista) {
-            if (a.equals(servAlterar)) {
-                assertEquals(a.getNome(), "banho");
-            }
-        }
+        assertEquals(servAlterar.getIdServico(), servBusca.getIdServico());
     }
 
     @Test
@@ -152,17 +142,15 @@ public class RepositorioServicoImplDBTest {
         repSer.deletar(servDeletar);
         
         Session session = this.sessionFactory.openSession();
-        Query consulta = session.createQuery("SELECT serv FROM Servico serv");
-        lista = (ArrayList) consulta.list();
+        Query consulta = session.createQuery("SELECT s FROM Servico s WHERE s.id=" + servDeletar.getIdServico());
+        List lista = (List) consulta.list();
         session.close();
-        
-        boolean sucesso = false;
-        for (Servico a : lista) {
-            if (servDeletar.equals(a)) {
-                sucesso = true;
-            }
+                if(!lista.isEmpty()){
+            servBusca = (Servico) lista.get(0);
         }
-        assertFalse(sucesso);
+            servBusca = null;
+    
+        assertNull(servBusca);
     }
 
     @Test
@@ -175,12 +163,7 @@ public class RepositorioServicoImplDBTest {
     @Test
     public void deveListarTodasOsServicos() {
         lista = (ArrayList<Servico>) repSer.listar();
-        int cont = 0;
-        
-        for (Servico a : lista) {
-            cont++;
-        }
-        assertNotEquals(0, cont);
+        assertNotEquals(0, lista.size());
     }
     
 }
