@@ -39,52 +39,104 @@ import org.junit.runners.MethodSorters;
 
 /**
  *
- * @author Daniel Calado <danielcalado159@gmail.com>
+ * @author Wemerson Diogenes da Silva <wemersondiogenes16@gmail.com>
  */
 public class NegocioClienteTest {
- /*   
+
+    private static Cliente cliente;
+    private static Endereco endereco;
+    private static Cliente clienteSalv;
+    private Endereco enderecoSalv;
+    private Cliente clienteBuscar;
+    private static Cliente clienteDeletar;
+    private static NegocioCliente negCliente;
+
     public NegocioClienteTest() {
+        negCliente = new NegocioCliente();
     }
-    Endereco endereco = new Endereco(0, "rua antonio vilela", 54, "garanhuns", "cohab");
-    Cliente cliente = new Cliente(0, "Carlos junio", "12345678", "879812324", endereco, "dkpaz@gmail.com", "saosap");
-    NegocioCliente negCliente = new NegocioCliente();
-    Cliente clienteRes = null;
-    /**
-     * Test of autenticar method, of class NegocioCliente.
-     *
-    @Test
-    @Ignore
-    public void AdeveraSalvarOClienteNoBanco() {
+
+    @BeforeClass
+    public static void AntesDosTestes() throws Exception {
+        endereco = new Endereco("rua antonio", 23, "sao joao", "planalto");
+        cliente = new Cliente("carlos", "11419189433", "39494585439", endereco, "carlos@gmail.com", "dsdsds");
+        clienteDeletar = new Cliente("toinho", "39824885080", "5432", null, "xx@gmail.com", "siy8i");
+        negCliente = new NegocioCliente();
+
         negCliente.salvar(cliente);
-        clienteRes = negCliente.buscar(cliente.getIdCliente());
-        assertEquals("12345678", clienteRes.getCpf());
+        negCliente.salvar(clienteDeletar);
+
     }
 
-    /**
-     * Test of buscar method, of class NegocioCliente.
-     *
-    @Test
-    @Ignore
-    public void BdeveraAlterarOClienteNoBanco(){
-        clienteRes = negCliente.buscar(cliente.getIdCliente());
-        clienteRes.setNome("daniel nunes");
-        negCliente.editar(clienteRes);
-        cliente = negCliente.buscar(clienteRes.getIdCliente());
-        assertEquals("daniel nunes", cliente.getNome());
-;
+    @AfterClass
+    public static void DepoisDosTestes() throws Exception {
+        negCliente.deletar(cliente);
+        negCliente.deletar(clienteSalv);
     }
 
-    /**
-     * Test of editar method, of class NegocioCliente.
-     *
     @Test
-    @Ignore
-    public void CdeveraDeletarOClienteNoBanco() {
-        System.out.println(cliente.getIdCliente());
-        clienteRes = negCliente.buscar(cliente.getIdCliente());
-        negCliente.deletar(clienteRes);
-        clienteRes = negCliente.buscar(cliente.getIdCliente());
-        assertEquals(null, clienteRes);
+    public void deveSalvarNoBanco() throws Exception {
+        enderecoSalv = new Endereco("rua la em cima", 2, "garanhuns", "subida");
+        clienteSalv = new Cliente("luana", "11472554400", "99999999", enderecoSalv, "lulu@gmail.com", "sasasa");
+
+        negCliente.salvar(clienteSalv);
+
+        assertNotNull(negCliente.buscarCpf(clienteSalv.getCpf()).getCpf());
     }
-*/
+
+    @Test(expected = Exception.class)
+    public void deveDispararUmExceptionCPFJaExiste() throws Exception {
+        negCliente.salvar(cliente);
+    }
+
+    @Test(expected = Exception.class)
+    public void deveDispararUmExceptionCPFInvalido() throws Exception {
+        cliente.setCpf("1234567890");
+
+        negCliente.salvar(cliente);
+    }
+
+    @Test
+    public void deveAlterarNoBanco() throws Exception {
+        cliente.setEmail("luana@hotmail.com");
+        cliente.getEndereco().setCidade("Angelin");
+
+        negCliente.editar(cliente);
+
+        clienteBuscar = negCliente.buscarCpf(cliente.getCpf());
+
+        assertEquals(cliente.getCpf(), clienteBuscar.getCpf());
+        assertEquals(cliente.getEndereco().getCidade(), clienteBuscar.getEndereco().getCidade());
+    }
+
+    @Test
+    public void deveDeletarDoBanco() throws Exception {
+        negCliente.deletar(clienteDeletar);
+
+        assertNull(negCliente.buscarCpf(clienteDeletar.getCpf()));
+
+    }
+
+    @Test
+    public void deveAutenticarOCliente() {
+
+        clienteBuscar = negCliente.autenticar(cliente.getEmail(), cliente.getSenha());
+
+        assertEquals(cliente.getEmail(), clienteBuscar.getEmail());
+        assertEquals(cliente.getSenha(), clienteBuscar.getSenha());
+    }
+
+    @Test
+    public void deveListarTodos() {
+        int cont = negCliente.listar().size();
+
+        assertNotEquals(0, cont);
+    }
+
+    @Test
+    public void deveBuscarPorCpf() {
+        clienteBuscar = negCliente.buscarCpf("11472554400");
+
+        assertEquals(clienteBuscar.getCpf(), "11472554400");
+    }
+
 }
