@@ -118,17 +118,12 @@ public class RepositorioEmpresaImplDBTest {
         repEmp.salvar(empsa);
         
         Session session = this.sessionFactory.openSession();
-        Query consulta = session.createQuery("SELECT em FROM Empresa em");
-        lista = (ArrayList) consulta.list();
+        Query consulta = session.createQuery("SELECT e FROM Empresa e WHERE e.cnpj=" + empsa.getCnpj());
+        empBusca =  (Empresa) consulta.list().get(0);
         session.close();
         
-        boolean sucesso = false;
-        for (Empresa a : lista) {
-            if (a.equals(empsa)) {
-                sucesso = true;
-            }
-        }
-        assertFalse(sucesso);
+       
+        assertEquals(empsa.getCnpj(), empBusca.getCnpj());
     }
 
     @Test
@@ -136,16 +131,13 @@ public class RepositorioEmpresaImplDBTest {
         empAlterar.setCnpj("390725478000199");
         repEmp.editar(empAlterar);
         
-        Session session = this.sessionFactory.openSession();
-        Query consulta = session.createQuery("SELECT em FROM Empresa em");
-        lista = (ArrayList) consulta.list();
+                Session session = this.sessionFactory.openSession();
+        Query consulta = session.createQuery("SELECT e FROM Empresa e WHERE e.cnpj=" + empAlterar.getCnpj());
+        empBusca =  (Empresa) consulta.list().get(0);
         session.close();
         
-        for (Empresa a : lista) {
-            if (a.equals(empAlterar)) {
-                assertEquals(a.getCnpj(), "390725478000199");
-            }
-        }
+       
+        assertEquals(empAlterar.getCnpj(), empBusca.getCnpj());
     }
 
     @Test
@@ -153,17 +145,15 @@ public class RepositorioEmpresaImplDBTest {
         repEmp.deletar(empExcluir);
         
         Session session = this.sessionFactory.openSession();
-        Query consulta = session.createQuery("SELECT em FROM Empresa em");
-        lista = (ArrayList) consulta.list();
+        Query consulta = session.createQuery("SELECT e FROM Empresa e WHERE e.cnpj=" + empExcluir.getCnpj());
+        List lista = (List) consulta.list();
         session.close();
-        
-        boolean sucesso = false;
-        for (Empresa a : lista) {
-            if ("1234567890".equals(a.getCnpj())) {
-                sucesso = true;
-            }
+                if(!lista.isEmpty()){
+            empBusca = (Empresa) lista.get(0);
         }
-        assertFalse(sucesso);
+            empBusca = null;
+    
+        assertNull(empBusca);
     }
 
     @Test
@@ -186,7 +176,7 @@ public class RepositorioEmpresaImplDBTest {
         for (Empresa a : lista) {
             cont++;
         }
-        assertNotEquals(0, cont);
+        assertNotEquals(0, lista.size());
     }
 
     @Test
