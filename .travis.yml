@@ -1,5 +1,7 @@
 language: java
 sudo: false
+services:
+  - mysql
 cache:
   directories:
     - "$HOME/.m2"
