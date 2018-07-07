@@ -80,7 +80,7 @@ public class NegocioEmpresa implements InterfaceEmpresa<Empresa> {
     @Override
     public void salvar(Empresa e) throws Exception {
 
-        if (e == null || buscarCnpj(e.getCnpj()) == null) {
+        if (e == null || buscarCnpj(e.getCnpj()) != null) {
             throw new Exception("Erro!");
         }
         boolean status = ValidaCNPJ.isCNPJ(e.getCnpj());
