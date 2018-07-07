@@ -149,7 +149,7 @@ public class NegocioAgendamentoTest {
     }
 
     @Test(expected = java.lang.Exception.class)
-    public void test6ErroAoDeletar() throws Exception {
+    public void test6DeveDarErroAoDeletar() throws Exception {
 
         negocioAgendamento.deletar(null);
 
@@ -174,5 +174,6 @@ public class NegocioAgendamentoTest {
     public void test9DeveRetornarNullAoBuscarAgendamento() throws Exception {
 
         assertNull(negocioAgendamento.buscar(null));
+        assertNull(negocioAgendamento.buscar(-1));
     }
 }
