@@ -29,7 +29,7 @@ package br.edu.ifpe.petpalacy.model.entidades;
  * @author Daniel Calado <danielcalado159@gmail.com>
  */
 public enum StatusAgen {
-    DISPONIVEL(1), AGENDADO(2), REALIZADO(3), CANCELADO(4);
+    ESPERA(1), AGENDADO(2), REALIZADO(3), CANCELADO(4);
     
     private final int valor;
     

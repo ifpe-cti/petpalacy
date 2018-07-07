@@ -26,15 +26,13 @@ package br.edu.ifpe.petpalacy.model.entidades;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import br.edu.ifpe.petpalacy.model.entidades.Empresa;
+
 
 /**
  *

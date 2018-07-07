@@ -48,15 +48,12 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
     public void salvar(Agendamento e) throws Exception {
 
         if (e == null) {
-            throw new Exception("Eoor!");
+            throw new Exception("ERRO!!!!!");
         } else {
-            if (buscar(e.getId()) != null) {
-                throw new Exception("Erro!");
-            } else {
-                repoAgend.salvar(agenda);
+                 repoAgend.salvar(e);
             }
         }
-    }
+ 
 
     @Override
     public Agendamento buscar(Integer codigo) {
@@ -77,13 +74,9 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
         if(e == null){
             throw new Exception("Erro!");
         }else{
-            agenda = repoAgend.buscar(e.getId());
-            if(agenda == null){
-                throw new Exception("Erro!");
-            }else{
+           
                 repoAgend.editar(e);
             }
-        }
     }
 
     @Override

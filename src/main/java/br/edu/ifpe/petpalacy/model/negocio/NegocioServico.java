@@ -76,13 +76,8 @@ public class NegocioServico implements InterfaceServico<Servico>{
         if(servico == null){
             throw new Exception("Erro!");
         }else{
-            serv = repoServico.buscar(servico.getIdServico());
-            if(serv == null){
-                throw new Exception("Erro!");
-            }else{
                 repoServico.editar(servico);
-            }
-        }
+           }
     }
     
     @Override

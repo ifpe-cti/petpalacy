@@ -29,12 +29,12 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Date;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -49,11 +49,11 @@ public class Agendamento implements Serializable {
     @Id
     @GeneratedValue
     private Integer id;
-    @OneToOne
+    @OneToOne(cascade={CascadeType.PERSIST,CascadeType.MERGE})
     private Servico servico;
-    @OneToOne
+    @OneToOne(cascade={CascadeType.PERSIST,CascadeType.REFRESH}) 
     private Cliente cliente;
-    @OneToOne
+    @OneToOne(cascade={CascadeType.PERSIST,CascadeType.REFRESH})
     private Empresa empresa;
     @Temporal(value = TemporalType.DATE)
     private Date data;
