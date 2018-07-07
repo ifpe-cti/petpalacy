@@ -31,9 +31,15 @@ import br.edu.ifpe.petpalacy.model.entidades.Empresa;
 import br.edu.ifpe.petpalacy.model.entidades.Endereco;
 import br.edu.ifpe.petpalacy.model.entidades.Servico;
 import br.edu.ifpe.petpalacy.model.entidades.StatusAgen;
+import br.edu.ifpe.petpalacy.util.HibernateUtil;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -50,7 +56,6 @@ import org.junit.runners.MethodSorters;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class NegocioAgendamentoTest {
 
-    private static Endereco endereco;
     private static Empresa empresa;
     private static Cliente cliente;
     private static Servico servico;
@@ -62,6 +67,8 @@ public class NegocioAgendamentoTest {
     private static NegocioEmpresa negocioEmpresa;
     private static NegocioServico negocioServico;
     private Agendamento agendamentoAlterado;
+    private static SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+
 
     public NegocioAgendamentoTest() {
         negocioAgendamento = new NegocioAgendamento();
@@ -70,11 +77,9 @@ public class NegocioAgendamentoTest {
 
     @BeforeClass
     public static void setUpClass() throws Exception {
-
-        servico = new Servico("Limpa cao", 4, null, empresa);
-        cliente = new Cliente("Carlos junio", "11419189433", "879812324", endereco, "dkpaz@gmail.com", "saosap");
-        empresa = new Empresa("12602190000104", "papapa", "emp@gmail.com", "21212121", "bruno Eletro", endereco);
-        endereco = new Endereco("rua do Parque", 145, "sao joao", "la em cima");
+        cliente = new Cliente("Carlos junio", "11419189433", "879812324", null, "dkpaz@gmail.com", "saosap");
+        empresa = new Empresa("12602190000104", "papapa", "emp@gmail.com", "21212121", "bruno Eletro", null);
+        servico = new Servico("Limpa cao", 4, null, empresa);      
         agendamento = new Agendamento(servico, cliente, empresa, new Date(), new Date(), new BigDecimal(35), StatusAgen.ESPERA);
 
         negocioCliente = new NegocioCliente();
@@ -92,20 +97,36 @@ public class NegocioAgendamentoTest {
         negocioAgendamento.salvar(agendamento);
 
     }
+    
+      @AfterClass 
+      public static void tearDownClass() throws Exception {
+Session session = sessionFactory.openSession();
+        Transaction transacao = null;
+        
+        try {
+            transacao = session.beginTransaction();
+            
+            Query consulta = session.createQuery("SELECT a FROM Agendamento a");
+            List lista = (List) consulta.list();
+            
+            for (Object a : lista) {
+                session.delete(a);
+            }
+            transacao.commit();
+        } catch (RuntimeException ex) {
+            if (transacao != null) {
+                transacao.rollback();
+            }
+            throw ex;
+        } finally {
+            session.close();
+        } 
+        negocioServico.deletar(servico);
+        negocioEmpresa.deletar(empresa);
+        negocioCliente.deletar(cliente);
 
-    /**
-     * @AfterClass public static void tearDownClass() throws Exception {
-     * negServe.deletar(serve); negCli.deletar(cliente);
-     * negEmp.deletar(empresa); negAgen.deletar(agenda);
-     *
-     *
-     * }
-     *
-     *
-     * Test of salvar method, of class NegocioAgendamento.
-     *
-     * @throws java.lang.Exception
-     */
+      }
+    
     @Test
     public void test1DeveSalvarAgendamentoNoBanco() throws Exception {
 
