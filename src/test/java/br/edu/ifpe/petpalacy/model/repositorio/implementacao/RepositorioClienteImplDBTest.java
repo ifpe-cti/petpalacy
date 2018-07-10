@@ -23,74 +23,131 @@
  */
 package br.edu.ifpe.petpalacy.model.repositorio.implementacao;
 
-import br.edu.ifpe.petpalacy.model.dao.PersistenciaDAO;
 import br.edu.ifpe.petpalacy.model.entidades.Cliente;
 import br.edu.ifpe.petpalacy.model.entidades.Endereco;
-import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.FixMethodOrder;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runners.MethodSorters;
 
 /**
  *
- * @author Daniel da Silva Calado <danielcalado159@gmail.com>
+ * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
  */
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class RepositorioClienteImplDBTest {
-/*
-    static Endereco endereco = new Endereco("rua duque de caxias", 45, "garanhuns", "bem ali");
-    static Cliente cliente = new Cliente("Jose Pedro", "1212121212", "99999999", endereco, "dkpaz@gmail.com", "saosaa");
-    static Cliente cliBusca = null;
-           RepositorioClienteImplDB repCli = null;
-    static ArrayList<Cliente> lista = null;
+    private static Cliente cliente = new Cliente();
     
-    public RepositorioClienteImplDBTest() {
-        repCli = new RepositorioClienteImplDB();
-        lista = new ArrayList<>();
-    }
-
-    @Test
-    public void test1InserirNoBanco(){
-        repCli.salvar(cliente);
-        cliBusca = repCli.buscarCpf("1212121212");
-        Assert.assertEquals("1212121212", cliBusca.getCpf());
-
-    }
-    @Test
-    public void test2AlterarNoBanco(){
-        cliBusca.setCpf("32323232");
-        repCli.editar(cliBusca);
-        cliBusca = repCli.buscarCpf("32323232");
-        Assert.assertEquals("32323232", cliBusca.getCpf());
-    }
-    @Test
-    public void test3ListarTodos(){        
+    @Before
+    public void pTest() {
+        cliente.setNome("Joao");
+        cliente.setCpf("22335468934");
+        cliente.setTelefone("999999999999");
+        cliente.setEmail("joao@ifpe.com");
+        cliente.setSenha("joao12345");
         
-        lista = (ArrayList<Cliente>) repCli.listar();
-        int cont = 0;
-        for(Cliente c: lista){
-            cont++;
-        }
-        Assert.assertNotEquals(0, cont);
-    }
-    @Test
-    public void test4AutenticarUsuario(){
-
-        cliBusca = repCli.autenticar("dkpaz@gmail.com", "saosaa");
+        Endereco endereco = new Endereco();
+        endereco.setLogradouro("Rua Jose do Amaral");
+        endereco.setNumero(45);
+        endereco.setBairro("Boa Vista");
+        endereco.setCidade("Garanhuns");
+        cliente.setEndereco(endereco);
         
-        Assert.assertEquals("dkpaz@gmail.com", cliBusca.getEmail());
+        RepositorioClienteImplDB repCliente = new RepositorioClienteImplDB();
+        repCliente.salvar(cliente);
     }
+    
+    @After
+    public void downTest() {
+        RepositorioClienteImplDB repCliente = new RepositorioClienteImplDB();
+        // saber se existe esse agendamento 
+        repCliente.deletar(cliente);  
+    }
+    
     @Test
-    public void test5DeletarDoBanco(){
- 
-        cliBusca = repCli.buscarCpf("32323232");
-        repCli.deletar(cliBusca);
-    }*/
+    @Ignore
+    public void deveSalvarClienteTest() {
+        Cliente cli = new Cliente();
+        cli.setNome("Pedro");
+        cli.setCpf("33333333333");
+        cli.setTelefone("88888888888");
+        cli.setEmail("pedro@ifpe.com");
+        cli.setSenha("pedro12345");
+        
+        Endereco end = new Endereco();
+        end.setLogradouro("AV Joaquim Nabuco");
+        end.setNumero(26);
+        end.setBairro("Boa Vista");
+        end.setCidade("Garanhuns");
+        
+        cli.setEndereco(end);
+        
+        RepositorioClienteImplDB repCliente = new RepositorioClienteImplDB();
+        repCliente.salvar(cli);
+        
+        assertEquals("Pedro", repCliente.buscar(2).getNome());
+    }
+    
+    @Test
+    @Ignore
+    public void deveListarTodosClientesTest() {
+        RepositorioClienteImplDB repCliente = new RepositorioClienteImplDB();
+        List<Cliente> clientes = repCliente.listar();
+        
+        assertEquals(2, clientes.size());
+        
+    }
+   
+    @Test
+    @Ignore
+    public void deveBuscarClientePeloIdTest() {  
+        RepositorioClienteImplDB repCliente = new RepositorioClienteImplDB();
+        
+        Cliente cli = repCliente.buscar(cliente.getIdCliente());
+        assertEquals(cliente.getIdCliente(), cli.getIdCliente());
+    } 
+    
+    @Test
+    @Ignore
+    public void deveEditarClienteCadastradoTest() {
+        RepositorioClienteImplDB repCliente = new RepositorioClienteImplDB();
+        Cliente cli = repCliente.buscar(cliente.getIdCliente());
+        cli.setNome("Gustavo");
+        cli.setCpf("34578934512");
+        cli.setTelefone("333333333");
+        cli.setEmail("gustavo@ifpe.com");
+        cli.setSenha("121212");
+        
+        Endereco endereco = new Endereco();
+        endereco.setLogradouro("Av Frei Caneca");
+        endereco.setNumero(112);
+        endereco.setBairro("Heliopolis");
+        endereco.setCidade("Garanhuns");
+        
+        cli.setEndereco(endereco);
+        
+        repCliente.editar(cli);
+        assertEquals(cliente.getNome(), cli.getNome());
+    }
+    
+    @Test
+    @Ignore
+    public void deveDeletarClienteCadastradoTest() {
+      RepositorioClienteImplDB repCliente = new RepositorioClienteImplDB();
+      Cliente cli = repCliente.buscar(cliente.getIdCliente());
+      
+      repCliente.deletar(cli);
+    }
+    
+    @Test
+    @Ignore
+    public void deveAutenticarClientePeloEmailSenhaTest() {
+        RepositorioClienteImplDB repCliente = new RepositorioClienteImplDB();
+        Cliente cli = repCliente.autenticar("joao@ifpe.com", "joao12345");
+        
+        assertEquals("joao@ifpe.com", cli.getEmail());
+    }
+
 }

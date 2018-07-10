@@ -51,6 +51,7 @@ public class Cliente implements Serializable {
     private String senha;
 
     public Cliente() {
+        this.endereco = new Endereco();
     }
 
     public Cliente(String nome, String cpf, String telefone, Endereco endereco, String email, String senha) {

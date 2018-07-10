@@ -1,0 +1,163 @@
+/*MIT License
+
+ Copyright (c) 2018 Daniel da Silva Calado, Izaquiel Cavalcante da Silva, 
+                   Kaio Cesar Bezerra da Silva e Wemerson Diogenes da Silva
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+*/
+
+/* 
+    Created on : 06/06/2018, 17:37:53
+    Author     : Kaio César Bezerra da Silva
+*/
+
+@charset 'utf-8';
+@import url('https://fonts.googleapis.com/css?family=Baloo+Bhai');
+@import url('https://fonts.googleapis.com/css?family=Shrikhand');
+
+body {
+    margin: 0;
+    padding: 0;
+    min-width: 350px;
+}
+
+.ui-layout-unit .ui-layout-unit-content {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none;
+    overflow: hidden !important;
+}
+
+.temp_container {
+    min-height: 900px !important;
+    min-width: 300px !important;
+}
+
+.temp_cabecalho, .temp_rodape {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+.temp_cabecalho {
+    margin-bottom: 3rem !important;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, .4);
+}
+
+.navbar {
+    height: 100%;
+    background-image: radial-gradient(circle at top left, #e22bdf, #8a2be2);
+    display: flex;
+}
+
+.logo {
+    margin-left: 5rem;
+}
+
+#logotipo {
+    padding: 0;
+    margin: 0.5rem;
+    font-family: 'Shrikhand', sans-serif;
+    font-size: 40pt;
+    font-weight: bold;
+    text-shadow: 2px 2px 2px #000000;
+    color: #ffffff;
+}
+
+.temp_menu {
+    border: none;
+    border-radius: 0 !important;
+}
+
+.ui-layout-unit-header, .ui-widget-header {
+    background: none !important;
+}
+
+.ui-widget-header, .ui-layout-unit-header-title {
+    display: none;
+}
+
+#div_menu {
+    padding: 1rem;
+    border: 1px solid #a9a9a9;
+}
+
+.conteudo_menu {
+    list-style: none;
+    padding-left: 0; 
+}
+
+.titulo_menu {
+    font-family: 'Hevernate', sans-serif !important;
+    font-weight: bold;
+    color: darkgray;
+}
+
+.link_menu {
+    margin: 0.5rem 0 0.5rem 1rem;
+}
+
+.outputlinkmenu {
+    font-family: 'Arial', sans-serif;
+    font-size: 11pt;
+    text-decoration: none;
+}
+
+.outputlinkmenu:hover {
+    color: tomato;
+}
+
+.temp_conteudo {
+    margin: 0 !important;
+    padding: 1rem !important;
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+.temp_rodape {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+.rodape {
+    background-image: radial-gradient(circle at top left, #e22bdf, #8a2be2);
+    margin-top: 0.5rem;
+    min-height: 3rem;
+}
+
+.copy {
+    margin: 2rem 2rem 0 2rem;
+    border-top: 1px solid #d3d3d3;
+}
+
+p.mens_rodape {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    text-shadow: none;
+    color: #ffffff;
+}
+
+@media screen and (max-width: 600px) {
+    #logotipo {
+        font-size: 30pt;
+        margin-top: 1rem;
+    }
+    
+}

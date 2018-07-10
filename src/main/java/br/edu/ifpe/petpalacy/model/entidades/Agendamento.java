@@ -57,6 +57,7 @@ public class Agendamento implements Serializable {
     private Empresa empresa;
     @Temporal(value = TemporalType.DATE)
     private Date data;
+    @Temporal(value = TemporalType.TIME)
     private Date hora;
     private BigDecimal valorTotal;
     @Enumerated(EnumType.ORDINAL)

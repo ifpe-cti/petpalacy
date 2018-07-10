@@ -1,0 +1,446 @@
+/*MIT License
+
+ Copyright (c) 2018 Daniel da Silva Calado, Izaquiel Cavalcante da Silva, 
+                   Kaio Cesar Bezerra da Silva e Wemerson Diogenes da Silva
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+*/
+
+/* 
+    Created on : 29/05/2018, 22:05:51
+    Author     : Kaio César Bezerra da Silva
+*/
+
+@charset 'utf-8';
+@import url('https://fonts.googleapis.com/css?family=Baloo+Bhai');
+@import url('https://fonts.googleapis.com/css?family=Shrikhand');
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One');
+
+body {
+    margin: 0;
+    padding: 0;
+    min-width: 350px;
+}
+
+h1, p, a {
+    color: #ffffff;
+    font-family: 'Baloo Bhai', sans-serif;
+}
+
+.container {
+    background: url("#{resource['imagens/caoegato_paisagem.jpg']}") fixed;
+    background-size: cover;
+    height: 50rem;
+}
+
+/* Topo da pagina - barra de navegação */
+.navbar {
+    background-image: radial-gradient(circle at top left, #e22bdf, #8a2be2);
+    height: 12%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, .4);
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+.logo {
+    text-align: left;
+}
+
+#logotipo {
+    padding: 0;
+    margin: 0.5rem;
+    font-family: 'Shrikhand', sans-serif;
+    font-size: 40pt;
+    font-weight: bold;
+    text-shadow: 2px 2px 2px #000000;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+}
+
+#login_cadastro,  li.menu_login {
+    display: inline;
+    margin: 0 0.3rem;
+    color: #ffffff;
+    font-family: 'Baloo Bhai', sans-serif;
+    font-size: 20pt;
+}
+
+.outputlinklogin {
+    text-decoration: none;
+}
+
+li.menu_login:hover, .outputlinklogin:hover {
+    cursor: pointer;
+    color: cyan;
+}
+
+li.menu_login:nth-child(2) {
+    font-size: 18pt;
+    color: #dcdcdc;
+    cursor: context-menu;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+   display: none !important;
+}
+
+.dialoglogin, .dialogcadastro {
+    border: 2px solid #cdcdcd;
+    border-radius: 20px;
+}
+
+.titulodialoglogin {
+    margin-left: 4rem;
+    font-family: 'Fredoka One';
+    font-size: 24pt;
+    color: #606060;
+    display: inline-block;
+}
+
+.fechardialog {
+    display: block;
+    position: absolute;
+    border: none !important;
+    width: 50px;
+    height: 50px;
+    float: right;
+    color: #606060!important;
+    background: none !important;
+    font-family: 'Fredoka One' !important;
+    font-weight: bold;
+    text-transform: uppercase !important;
+    text-align: center;
+    margin-top: 19px;
+    margin-right: 20px;
+    padding: 0px;
+}
+
+.fechardialog:hover, .fechardialog:focus {
+    border: none !important;
+    box-shadow: none !important;
+    color: #a9a9a9!important;
+}
+
+.panelgridlogin {
+    margin: 1rem 4rem 2rem;
+    padding: 0;
+}
+
+.outputlabeltext {
+    font-family: 'Fredoka One', sans-serif;
+    margin-bottom: 0; 
+}
+
+.inputemail, .inputsenha {
+    border-radius: 20px;
+    width: 100%;
+}
+
+.inputemail:focus, .inputsenha:focus {
+    border: 2px solid cyan !important;
+    box-shadow: 0 0 4px rgba(0, 255, 255, .6) !important;
+}
+
+.recuperarsenha {
+    margin: 0;
+    margin-bottom: 1rem;
+    text-decoration: none;
+    color: tomato !important;
+    font-size: 10pt;
+    font-family: 'Arial', 'Verdana', sans-serif;
+}
+
+.buttonlogin {
+    margin-top: 1.5rem;
+    width: 300px;
+    border-radius: 20px;
+}
+
+.panelgridcad {
+    margin: 2rem 1.5rem;
+    padding: 0;
+}
+
+.fazercad1, .fazercad2 {
+    margin: 1rem 0;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    flex-flow: column wrap; 
+}
+
+.fazercad1 {
+    margin-right: 1rem;
+    padding-right: 1rem;
+    border-right: 1px solid #cdcdcd;
+}
+
+.icon_cad {
+    margin: 2rem;
+    width: 150px;
+    height: 150px;
+}
+
+.textcadtitulo {
+    text-align: center;
+    font-family: 'Hevernate', sans-serif;
+    font-weight: bold;
+    font-size: 24pt;
+    text-decoration: none;
+}
+
+/* Corpo da pagina - Titulo da pagina(banner) */
+h1#titulo {
+    font-size: 40pt;
+    margin-top: 15rem;
+    text-align: center;
+    text-shadow: 0.2rem 0.2rem 0.3rem #111111;
+}
+
+h3 {
+    color: #ffffff;
+    margin-bottom: 22rem;
+    text-align: center;
+    text-shadow: 0.2rem 0.2rem 0.3rem #111111;
+    font-size: 14pt;
+    font-family: 'Verdana';
+}
+
+/* Menu de link(raduis) */
+.flex-content {
+    display: flex;
+    justify-content: center;
+    margin-top: -10rem;
+    margin-bottom: 5rem;
+    background-color: #ffffff;
+    border-top-left-radius: 70%;
+    border-top-right-radius: 70%;
+}
+
+.flex-itens {
+    margin-top: -5rem;
+    min-width: 300px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    flex-flow: row wrap;
+}
+
+.flex-itens > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24pt;
+    position: relative;
+    width: 250px;
+    height: 250px;
+    background: #7fffd4;
+    border-radius: 50%;
+    margin: 3rem;
+}
+
+.flex-itens > div:hover {
+    background: cyan;
+    box-shadow: 2px 15px 50px rgba(0, 0, 0, .4);
+    cursor: pointer;
+    transform: translateY(-12px);
+    transition: 0.4s;
+}
+
+.item_img {
+    width: 150px;
+    height: 150px;
+}
+
+.eventos {
+    margin: 0 4rem;
+    display: flex;
+    justify-content: center;
+}
+
+.eventoadt {
+    margin: 0.4rem 0;
+    width: 90%;
+    height: 60vh;
+    object-fit: slice;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.informativo {
+    margin-top: 5rem;
+    padding: 0.5rem 5rem 2rem;
+    background: #7fffd4;
+}
+
+.informativo > h1 {
+    text-align: center;
+    font-size: 40pt;
+    margin-bottom: 3rem;
+}
+
+.conteudo_info {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
+}
+
+.info {
+    margin-bottom: 1rem;
+    background-color: whitesmoke;
+    padding: 0;
+    width: 400px;
+    height: auto;
+    border: 1px solid #e3e3e3;
+    border-radius: 0.55rem;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, .55);
+}
+
+.inf_img {
+    width: 100%;
+    height: 200px;
+    border-radius: 0.55rem;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.info > h1 {
+    margin: 1rem 2rem;
+    font-family: 'Arial', sans-serif;
+    font-size: 18pt;
+    text-align: left;
+    font-weight: bold;
+    color: #111111;
+}
+
+.info > p {
+    margin: 0 2rem 1rem;
+    text-align: justify;
+    text-indent: 50px;
+    font-size: 11pt;
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 1px;
+    color: #111111;
+}
+
+/* Rodapé da pagina */
+.rodape {
+    background-image: radial-gradient(circle at top left, #e22bdf, #8a2be2);
+    min-height: 20rem;
+    margin-top: 5rem;
+}
+
+.rodape-content {
+    margin: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: row wrap;
+}
+
+ul.conteudo_rodape {
+    margin-top: 3rem;
+}
+
+li.sobre_empresa {
+    margin-bottom: 0.3rem;
+    list-style: none;
+    text-shadow: none;
+    color: #ffffff;
+    font-size: 12pt;
+    font-family: 'Baloo Bhai', sans-serif;
+}
+
+li.sobre_empresa:first-child {
+    font-family: 'Hevernate', sans-serif;
+    font-size: 20pt;
+    color: #111111;
+    margin-bottom: 1rem;
+}
+
+li.sobre_empresa a {
+    text-decoration: none;
+}
+
+li.sobre_empresa a:hover {
+    color: cyan;
+}
+
+.copy {
+    margin: 2rem 2rem 0 2rem;
+    border-top: 1px solid #d3d3d3;
+}
+
+p.mens_rodape {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    text-shadow: none;
+    color: #ffffff;
+}
+
+@media screen and (max-width: 900px) {
+    .eventos {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #logotipo {
+        font-size: 30pt;
+        margin-top: 1rem;
+    }
+    
+    li.menu_login {
+        font-size: 14pt;
+    }
+    
+    li.menu_login:nth-child(2) {
+        font-size: 12pt;
+    }
+    
+    .container {
+        background-image: url("#{resource['imagens/caoegato_retratil.jpg']}");
+    }
+
+    h1#titulo {
+        font-size: 30pt;
+    }
+
+    h3 {
+        font-size: 11pt;
+    }
+    
+    .flex-content {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+    
+    .informativo > h1 {;
+        font-size: 26pt;
+        margin-bottom: 1.5rem;
+    }
+    
+}
