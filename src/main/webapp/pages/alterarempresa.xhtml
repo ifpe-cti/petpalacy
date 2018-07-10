@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Petpalacy</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="../templates/templateeditar.xhtml">
+            <ui:define name="head">
+                <h:outputStylesheet library="css" name="cadastrar.css" />
+            </ui:define>
+            
+            <ui:define name="conteudo">
+                <p:growl id="gro" life="4000" />
+                
+                <p:toolbar>
+                    <f:facet name="left"><h:outputText value="ALTERAR DADOS EMPRESA" /></f:facet>
+                </p:toolbar>
+                
+                <p:separator />
+                
+                <div class="container_formcad">
+                    <div class="content_formcad">
+                        <h:form id="formCad">
+                            <h1 class="titulo_cadcli">Dados pessoais</h1>
+                            <p:panelGrid styleClass="panelgridcad" columns="3">
+                                <h:outputText styleClass="output_text" value="Nome:"/>
+                                <p:inputText id="txtNome" value="#{empresaBean.selectedEmpresa.nome}" required="true"
+                                             requiredMessage="Tá faltando preencher o campo nome!"/>
+                                <p:message for="txtNome" />
+
+                                <h:outputText styleClass="output_text" value="CNPJ:"/>
+                                <p:inputMask id="txtCnpj" value="#{empresaBean.selectedEmpresa.cnpj}" mask="99.999.999/9999-99"
+                                             required="true" requiredMessage="Tá faltando preencher o campo CNPJ!"/>
+                                <p:message for="txtCnpj" />
+
+                                <h:outputText styleClass="output_text" value="Telefone:"/>
+                                <p:inputMask id="txtTelefone" value="#{empresaBean.selectedEmpresa.telefone}" mask="(99)99999-9999"
+                                             required="true" requiredMessage="Tá faltando preencher o campo telefone!"/>
+                                <p:message for="txtTelefone" />
+
+                                <h:outputText styleClass="output_text" value="Email:"/>
+                                <p:inputText id="email" value="#{empresaBean.selectedEmpresa.email}" required="true"
+                                             requiredMessage="Tá faltando preencher o campo email!"/>
+                                <p:message for="email"/>
+
+                                <h:outputText styleClass="output_text" value="Senha:"/>
+                                <p:password id="senha" feedback="true" value="#{empresaBean.selectedEmpresa.senha}" required="true"
+                                            requiredMessage="Tá faltando preencher o campo senha!" />
+                                <p:message for="senha"/>
+                                
+                            </p:panelGrid>
+
+                            <h1 class="titulo_cadcli">Dados de endereço</h1>
+
+                            <p:panelGrid styleClass="panelgrid_end" columns="3">
+                                <h:outputText styleClass="output_text" value="Rua:"/>
+                                <p:inputText id="txtRua" value="#{empresaBean.selectedEmpresa.endereco.logradouro}" required="true"
+                                             requiredMessage="Tá faltando preencher o campo rua!"/>
+                                <p:message for="txtRua" />
+                                
+                                <h:outputText styleClass="output_text" value="Número:"/>
+                                <p:inputText id="txtNumero" value="#{empresaBean.selectedEmpresa.endereco.numero}" required="true"
+                                             requiredMessage="Tá faltando preencher o campo número!"/>
+                                <p:message for="txtNumero" />
+
+                                <h:outputText styleClass="output_text" value="Bairro:"/>
+                                <p:inputText id="txtBairro" value="#{empresaBean.selectedEmpresa.endereco.bairro}" required="true" 
+                                             requiredMessage="Tá faltando preencher o campo bairro!"/>
+                                <p:message for="txtBairro" />
+
+                                <h:outputText styleClass="output_text" value="Cidade:"/>
+                                <p:selectOneMenu id="textCidade" value="#{empresaBean.selectedEmpresa.endereco.cidade}" 
+                                                 requiredMessage="Tá faltando preencher o campo cidade!">
+                                    <f:selectItem itemLabel="Selecione um cidade" itemValue="" />
+                                    <f:selectItem itemLabel="Arcoverde" itemValue="Arcoverde" />
+                                    <f:selectItem itemLabel="Belo Jardim" itemValue="Belo Jardim" />
+                                    <f:selectItem itemLabel="Bezerros" itemValue="Bezerros" />
+                                    <f:selectItem itemLabel="Cabo de Santo Agustinho" itemValue="Cabo de Santo Agustinho" />
+                                    <f:selectItem itemLabel="Caruaru" itemValue="Caruaru" />
+                                    <f:selectItem itemLabel="Garanhuns" itemValue="Garanhuns" />
+                                    <f:selectItem itemLabel="Gravata" itemValue="Gravata" />
+                                    <f:selectItem itemLabel="Jaboatao dos Guararapes" itemValue="Jaboatao dos Guararapes" />
+                                    <f:selectItem itemLabel="Olinda" itemValue="Olinda" />
+                                    <f:selectItem itemLabel="Recife" itemValue="Recife" />
+                                    <f:selectItem itemLabel="Pesqueira" itemValue="Pesqueira" />
+                                    <f:selectItem itemLabel="Petrolina" itemValue="Petrolina" />
+                                    <f:selectItem itemLabel="Santa Cruz do Capibaribe" itemValue="Santa Cruz do Capibaribe" />
+                                    <f:selectItem itemLabel="Serra Talhada" itemValue="Serra Talhada" />
+                                    <f:selectItem itemLabel="Vitoria de Santo Antao" itemValue="Vitoria de Santo Antao" />
+                                </p:selectOneMenu>
+                                <p:message for="textCidade"/>
+
+                            </p:panelGrid>
+                            <br/>
+                            <p:commandButton styleClass="button_cad" value="Cadastrar" action="#{empresaBean.editarEmpresaAction()}"
+                                             update=":formCad :gro" >
+                                <p:confirm header="Atenção" message="Deseja realmente salvar?" />
+                            </p:commandButton>
+                        </h:form>
+
+                        <p:confirmDialog  id="dialConfirm" global="true" widgetVar="widDialConfirma" >
+                            <h:form>
+                                <p:commandButton value="sim" styleClass="ui-confirmdialog-yes" type="button" icon="ui-icon-check"/>
+                                <p:commandButton value="não" styleClass="ui-confirmdialog-no" type="button" icon="ui-icon-close"/>
+                            </h:form>
+                        </p:confirmDialog>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

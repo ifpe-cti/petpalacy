@@ -59,6 +59,7 @@ public class Empresa implements Serializable {
     }
 
     public Empresa() {
+        this.endereco = new Endereco();
     }
 
     public Integer getIdEmpresa() {
