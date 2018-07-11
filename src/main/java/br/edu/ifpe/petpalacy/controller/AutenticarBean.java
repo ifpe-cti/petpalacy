@@ -24,10 +24,11 @@
 
 package br.edu.ifpe.petpalacy.controller;
 
-import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioClienteImplDB;
-import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioEmpresaImplDB;
+import br.edu.ifpe.petpalacy.repositorio.implementacao.RepositorioClienteImplDB;
+import br.edu.ifpe.petpalacy.repositorio.implementacao.RepositorioEmpresaImplDB;
 import br.edu.ifpe.petpalacy.model.entidades.Empresa;
 import br.edu.ifpe.petpalacy.model.entidades.Cliente;
+import br.edu.ifpe.petpalacy.util.Criptografia;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -47,45 +48,10 @@ public class AutenticarBean implements Serializable {
     private Cliente clienteLogin;
     private Empresa empresaLogin;
 
-    public Cliente getClienteLogin() {
-        if(clienteLogin == null) {
-            clienteLogin = new Cliente();
-        }
-        
-        return clienteLogin;
-    }
-
-    public void setClienteLogin(Cliente clienteLogin) {
-        this.clienteLogin = clienteLogin;
-    }
-
-    public Empresa getEmpresaLogin() {
-        if(empresaLogin == null) {
-            empresaLogin = new Empresa();
-        }
-        
-        return empresaLogin;
-    }
-
-    public void setEmpresaLogin(Empresa empresaLogin) {
-        this.empresaLogin = empresaLogin;
-    }
-
-    public String getEmail() {
-        return this.email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return this.senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+public AutenticarBean(){
+    clienteLogin = new Cliente();
+    empresaLogin = new Empresa();
+}
     
     public String entrar() {
         if(email == null) {
@@ -94,13 +60,14 @@ public class AutenticarBean implements Serializable {
         if(senha == null) {
             System.out.println("valor nulo para senha.");
         }
+        senha = Criptografia.criptografar(senha);
         RepositorioClienteImplDB repositorioClienteImplDB = new RepositorioClienteImplDB();
         clienteLogin = repositorioClienteImplDB.autenticar(email, senha);
         
         if(clienteLogin != null) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Você esta Logado!"));
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("clienteLogado", this.clienteLogin);
-            return "pages/alterarempresa.xhtml?faces-redirect=true";
+            return "Empresa/alterarCadastro.xhtml?faces-redirect=true";
         } else {
             RepositorioEmpresaImplDB repositorioEmpresaImplDB = new RepositorioEmpresaImplDB();
             empresaLogin = repositorioEmpresaImplDB.autenticar(email, senha);
@@ -125,5 +92,39 @@ public class AutenticarBean implements Serializable {
         empresaLogin = null;
         return "../index.xhtml?faces-redirect=true";
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public Cliente getClienteLogin() {
+        return clienteLogin;
+    }
+
+    public void setClienteLogin(Cliente clienteLogin) {
+        this.clienteLogin = clienteLogin;
+    }
+
+    public Empresa getEmpresaLogin() {
+        return empresaLogin;
+    }
+
+    public void setEmpresaLogin(Empresa empresaLogin) {
+        this.empresaLogin = empresaLogin;
+    }
+
+
     
 }
