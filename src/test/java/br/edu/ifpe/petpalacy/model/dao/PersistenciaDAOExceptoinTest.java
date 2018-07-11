@@ -23,7 +23,7 @@
  */
 package br.edu.ifpe.petpalacy.model.dao;
 
-import br.edu.ifpe.petpalacy.model.dao.PersistenciaDAO;
+import br.edu.ifpe.petpalacy.dao.PersistenciaDAO;
 import br.edu.ifpe.petpalacy.model.entidades.Cliente;
 import org.junit.Ignore;
 import org.junit.Test;

@@ -21,19 +21,13 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package br.edu.ifpe.petpalacy.model.interfaces;
-
-import java.util.List;
+package br.edu.ifpe.petpalacy.interfaces;
 
 /**
  *
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
- * @param <E>
+ * @param <Agendamento>
  */
-public interface InterfaceGenerico<E> {
-    public void salvar(E e) throws Exception;
-    public E buscar(Integer codigo);
-    public void editar(E e) throws Exception;
-    public void deletar(E e) throws Exception;
-    public List<E> listar();
+public interface InterfaceAgendamento<Agendamento> extends InterfaceGenerico<Agendamento> {
+    
 }

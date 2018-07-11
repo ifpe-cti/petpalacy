@@ -24,8 +24,8 @@
 
 package br.edu.ifpe.petpalacy.controller;
 
-import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioClienteImplDB;
-import br.edu.ifpe.petpalacy.model.interfaces.InterfaceCliente;
+import br.edu.ifpe.petpalacy.repositorio.implementacao.RepositorioClienteImplDB;
+import br.edu.ifpe.petpalacy.interfaces.InterfaceCliente;
 import br.edu.ifpe.petpalacy.model.entidades.Cliente;
 import java.io.Serializable;
 import java.util.List;

@@ -25,8 +25,8 @@ SOFTWARE.
 package br.edu.ifpe.petpalacy.model.negocio;
 
 import br.edu.ifpe.petpalacy.model.entidades.Servico;
-import br.edu.ifpe.petpalacy.model.interfaces.InterfaceServico;
-import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioServicoImplDB;
+import br.edu.ifpe.petpalacy.interfaces.InterfaceServico;
+import br.edu.ifpe.petpalacy.repositorio.implementacao.RepositorioServicoImplDB;
 import java.util.List;
 
 /**

@@ -23,6 +23,7 @@
  */
 package br.edu.ifpe.petpalacy.model.repositorio.implementacao;
 
+import br.edu.ifpe.petpalacy.repositorio.implementacao.RepositorioClienteImplDB;
 import br.edu.ifpe.petpalacy.model.entidades.Cliente;
 import br.edu.ifpe.petpalacy.model.entidades.Endereco;
 import java.util.List;
