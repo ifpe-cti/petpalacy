@@ -23,8 +23,8 @@
 */
 package br.edu.ifpe.petpalacy.controller;
 
-import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioEmpresaImplDB;
-import br.edu.ifpe.petpalacy.model.interfaces.InterfaceEmpresa;
+import br.edu.ifpe.petpalacy.repositorio.implementacao.RepositorioEmpresaImplDB;
+import br.edu.ifpe.petpalacy.interfaces.InterfaceEmpresa;
 import br.edu.ifpe.petpalacy.model.entidades.Empresa;
 import java.util.List;
 import javax.faces.application.FacesMessage;

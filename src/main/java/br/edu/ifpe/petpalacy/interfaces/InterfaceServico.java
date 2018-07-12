@@ -21,13 +21,13 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package br.edu.ifpe.petpalacy.model.interfaces;
+package br.edu.ifpe.petpalacy.interfaces;
 
 /**
  *
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
- * @param <Agendamento>
+ * @param <Servico>
  */
-public interface InterfaceAgendamento<Agendamento> extends InterfaceGenerico<Agendamento> {
+public interface InterfaceServico<Servico> extends InterfaceGenerico<Servico> {
     
 }

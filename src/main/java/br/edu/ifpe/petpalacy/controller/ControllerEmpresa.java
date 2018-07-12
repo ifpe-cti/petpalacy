@@ -26,7 +26,7 @@ package br.edu.ifpe.petpalacy.controller;
 
 import br.edu.ifpe.petpalacy.model.entidades.Empresa;
 import br.edu.ifpe.petpalacy.model.negocio.NegocioEmpresa;
-import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioEmpresaImplDB;
+import br.edu.ifpe.petpalacy.repositorio.implementacao.RepositorioEmpresaImplDB;
 import br.edu.ifpe.petpalacy.util.Mensagens;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -49,7 +49,6 @@ public class ControllerEmpresa implements Serializable {
     private String ret = "";
 
     public ControllerEmpresa() {
-        RepositorioEmpresaImplDB repoEmp = null;
         negEmpresa = new NegocioEmpresa();
         empresa = new Empresa();
         listaEmpresa = new ArrayList<>();
@@ -57,6 +56,9 @@ public class ControllerEmpresa implements Serializable {
 
     public String salvar() {
         try {
+            empresa.setCnpj(empresa.getCnpj().replace("-", ""));
+            empresa.setCnpj(empresa.getCnpj().replace("-", ""));
+            empresa.setCnpj(empresa.getCnpj().replace("/", ""));
             negEmpresa.salvar(empresa);
             Mensagens.getInstance().salvoComSucesso();
             ret = "Menu empresa";
@@ -65,8 +67,10 @@ public class ControllerEmpresa implements Serializable {
         }
         return ret;
     }
+
     public String alterar() {
         try {
+
             negEmpresa.editar(empresa);
             Mensagens.getInstance().alteradoComSucesso();
             ret = "Menu empresa";
@@ -97,6 +101,38 @@ public class ControllerEmpresa implements Serializable {
 
     public void bu8scarCnpj() {
         negEmpresa.buscarCnpj(empresa.getCnpj());
+    }
+
+    public NegocioEmpresa getNegEmpresa() {
+        return negEmpresa;
+    }
+
+    public void setNegEmpresa(NegocioEmpresa negEmpresa) {
+        this.negEmpresa = negEmpresa;
+    }
+
+    public ArrayList<Empresa> getListaEmpresa() {
+        return listaEmpresa;
+    }
+
+    public void setListaEmpresa(ArrayList<Empresa> listaEmpresa) {
+        this.listaEmpresa = listaEmpresa;
+    }
+
+    public String getRet() {
+        return ret;
+    }
+
+    public void setRet(String ret) {
+        this.ret = ret;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
     }
 
 }

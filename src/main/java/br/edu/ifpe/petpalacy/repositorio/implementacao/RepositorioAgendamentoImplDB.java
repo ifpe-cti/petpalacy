@@ -22,61 +22,46 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
-package br.edu.ifpe.petpalacy.model.repositorio.implementacao;
+package br.edu.ifpe.petpalacy.repositorio.implementacao;
 
-import br.edu.ifpe.petpalacy.model.dao.PersistenciaDAO;
-import br.edu.ifpe.petpalacy.model.entidades.Cliente;
-import br.edu.ifpe.petpalacy.model.interfaces.InterfaceCliente;
+import br.edu.ifpe.petpalacy.dao.PersistenciaDAO;
+import br.edu.ifpe.petpalacy.model.entidades.Agendamento;
+import br.edu.ifpe.petpalacy.interfaces.InterfaceAgendamento;
 import java.util.List;
 
 /**
  *
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
  */
-public class RepositorioClienteImplDB implements InterfaceCliente<Cliente> {
+public class RepositorioAgendamentoImplDB implements InterfaceAgendamento<Agendamento> {
     
     @Override
-    public void salvar(Cliente cliente) {
-        PersistenciaDAO.getInstance().salvar(cliente);
+    public void salvar(Agendamento agendamento) {
+        PersistenciaDAO.getInstance().salvar(agendamento);
     }
 
     @Override
-    public void editar(Cliente cliente) {
-        PersistenciaDAO.getInstance().editar(cliente);
+    public void editar(Agendamento agendamento) {
+        PersistenciaDAO.getInstance().editar(agendamento);
     }
 
     @Override
-    public Cliente buscar(Integer codigo) {
-        List lista = PersistenciaDAO.getInstance().listar("SELECT c FROM Cliente c WHERE c.id=" + codigo);
+    public Agendamento buscar(Integer codigo) {
+        List lista = PersistenciaDAO.getInstance().listar("SELECT ag FROM Agendamento ag WHERE ag.id=" + codigo);
         if(!lista.isEmpty()){
-            return (Cliente) lista.get(0);
-        }
-            return null;
-        
-    }
-
-    @Override
-    public void deletar(Cliente cliente) {
-        PersistenciaDAO.getInstance().deletar(cliente);
-    }
-
-    @Override
-    public List<Cliente> listar() {
-        return PersistenciaDAO.getInstance().listar("SELECT c FROM Cliente c");
-    }
-    
-    @Override
-    public Cliente autenticar(String email, String senha) {
-        return (Cliente) PersistenciaDAO.getInstance().autenticar("SELECT a FROM Cliente a", email, senha);
-    }
-    
-    @Override
-    public Cliente buscarCpf(String cpf){
-        List lista =  PersistenciaDAO.getInstance().listar("SELECT c FROM Cliente c WHERE c.cpf=" + cpf);
-        if(!lista.isEmpty()){
-            return (Cliente) lista.get(0);
+            return (Agendamento) lista.get(0);
         }
             return null;
     }
-        
+
+    @Override
+    public void deletar(Agendamento agendamento) {
+        PersistenciaDAO.getInstance().deletar(agendamento);
+    }
+
+    @Override
+    public List<Agendamento> listar() {
+        return PersistenciaDAO.getInstance().listar("SELECT ag FROM Agendamento ag");
+    }
+    
 }

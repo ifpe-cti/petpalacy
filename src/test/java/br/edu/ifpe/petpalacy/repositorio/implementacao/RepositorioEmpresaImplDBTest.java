@@ -18,17 +18,17 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
-package br.edu.ifpe.petpalacy.model.repositorio.implementacao;
+package br.edu.ifpe.petpalacy.repositorio.implementacao;
 
+import br.edu.ifpe.petpalacy.dao.PersistenciaDAO;
 import br.edu.ifpe.petpalacy.model.entidades.Empresa;
 import br.edu.ifpe.petpalacy.model.entidades.Endereco;
-import br.edu.ifpe.petpalacy.model.entidades.Servico;
-import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioServicoImplDB;
-import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioServicoImplDB;
+import br.edu.ifpe.petpalacy.repositorio.implementacao.RepositorioEmpresaImplDB;
+import br.edu.ifpe.petpalacy.repositorio.implementacao.RepositorioEmpresaImplDB;
 import br.edu.ifpe.petpalacy.util.HibernateUtil;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import junit.framework.Assert;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -39,41 +39,42 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 
 /**
  *
  * @author Daniel Calado <danielcalado159@gmail.com>
  */
-public class RepositorioServicoImplDBTest {
+public class RepositorioEmpresaImplDBTest {
     
-    
+    private static Empresa emp;
+    private static Endereco end;
     private static SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-    private RepositorioServicoImplDB repSer;
-    private static Servico serv;
-    private static Servico servDeletar;
-    private static Servico servAlterar;
-    private Servico servBusca = null;
-    private ArrayList<Servico> lista;
+    private RepositorioEmpresaImplDB repEmp;
+    private static Empresa empExcluir;
+    private static Empresa empAlterar;
+    private Empresa empBusca = null;
+    private ArrayList<Empresa> lista;
     
-    public RepositorioServicoImplDBTest() {
-        repSer = new RepositorioServicoImplDB();
+    public RepositorioEmpresaImplDBTest() {
+        repEmp = new RepositorioEmpresaImplDB();
         lista = new ArrayList<>();
         
     }
     
     @BeforeClass
     public static void setUp() {
-        serv = new Servico("tosa", 30, new BigDecimal(30.00), null);
-        servAlterar = new Servico("banho", 20, new BigDecimal(10.00), null);
-        servDeletar = new Servico("tosa", 20, new BigDecimal(40.00), null);
-        
+        end = new Endereco("rua duque de caxias", 12, "garanhuns", "vila nova");
+        emp = new Empresa("48608939000160", "catavento", "paulo@gmail.com", "981546578", "caoPet", end);
+        empExcluir = new Empresa("1234567890", "saopaulo", "luis@gmail.com", "981546578", "caoPet", null);
+        empAlterar = new Empresa("2222222222222", "saosao", "dkpaz@gmail.com", "981546578", "caoPet", null);        
         Session session = sessionFactory.openSession();
         Transaction transacao = null;
         try {
             transacao = session.beginTransaction();
-            session.save(serv);
-            session.save(servAlterar);
-            session.save(servDeletar);
+            session.save(emp);
+            session.save(empExcluir);
+            session.save(empAlterar);
             transacao.commit();
         } catch (RuntimeException ex) {
             if (transacao != null) {
@@ -93,13 +94,12 @@ public class RepositorioServicoImplDBTest {
         try {
             transacao = session.beginTransaction();
             
-            Query consulta = session.createQuery("SELECT serv FROM Servico serv");
+            Query consulta = session.createQuery("SELECT em FROM Empresa em");
             List lista = (List) consulta.list();
             
             for (Object a : lista) {
                 session.delete(a);
             }
-            
             transacao.commit();
         } catch (RuntimeException ex) {
             if (transacao != null) {
@@ -112,58 +112,77 @@ public class RepositorioServicoImplDBTest {
     }
     
     @Test
-    public void deveSalvarUmServicoNoBancoDeDados() {
-        Servico servSalvar = new Servico("tosa", 24, new BigDecimal(45.99), null);
-        repSer.salvar(servSalvar);
+    public void deveSalvarUmaEmpresaNoBancoDeDados() {
+        Endereco endsa = new Endereco("rua duque", 9, "lala do lolo", "pavilhao");
+        Empresa empsa = new Empresa("390725478000199", "lalala", "toinho@gmail.com", "9876453322", "gatoPreto", endsa);
+        repEmp.salvar(empsa);
         
         Session session = this.sessionFactory.openSession();
-        Query consulta = session.createQuery("SELECT s FROM Servico s WHERE s.id=" + servSalvar.getIdServico());
-        servBusca = (Servico) consulta.list().get(0);
+        Query consulta = session.createQuery("SELECT e FROM Empresa e WHERE e.cnpj=" + empsa.getCnpj());
+        empBusca =  (Empresa) consulta.list().get(0);
         session.close();
         
-        assertEquals(servSalvar.getIdServico(), servBusca.getIdServico());
+       
+        assertEquals(empsa.getCnpj(), empBusca.getCnpj());
     }
 
     @Test
-    public void deveAlterarUmServicoNoBancoDeDados() {
-        servAlterar.setNome("banho");
-        repSer.editar(servAlterar);
+    public void deveAlterarUmaEmpresaNoBancoDeDados() {
+        empAlterar.setCnpj("390725478000199");
+        repEmp.editar(empAlterar);
         
-        Session session = this.sessionFactory.openSession();
-        Query consulta = session.createQuery("SELECT s FROM Servico s WHERE s.id=" + servAlterar.getIdServico());
-        servBusca = (Servico) consulta.list().get(0);
+                Session session = this.sessionFactory.openSession();
+        Query consulta = session.createQuery("SELECT e FROM Empresa e WHERE e.cnpj=" + empAlterar.getCnpj());
+        empBusca =  (Empresa) consulta.list().get(0);
         session.close();
         
-        assertEquals(servAlterar.getIdServico(), servBusca.getIdServico());
+       
+        assertEquals(empAlterar.getCnpj(), empBusca.getCnpj());
     }
 
     @Test
-    public void deveDeletarUmServicoDoBancoDeDados() {
-        repSer.deletar(servDeletar);
+    public void deveDeletarUmaEmpresaDoBancoDeDados() {
+        repEmp.deletar(empExcluir);
         
         Session session = this.sessionFactory.openSession();
-        Query consulta = session.createQuery("SELECT s FROM Servico s WHERE s.id=" + servDeletar.getIdServico());
+        Query consulta = session.createQuery("SELECT e FROM Empresa e WHERE e.cnpj=" + empExcluir.getCnpj());
         List lista = (List) consulta.list();
         session.close();
                 if(!lista.isEmpty()){
-            servBusca = (Servico) lista.get(0);
+            empBusca = (Empresa) lista.get(0);
         }
-            servBusca = null;
+            empBusca = null;
     
-        assertNull(servBusca);
+        assertNull(empBusca);
     }
 
     @Test
-    public void deveBuscarUmServicoNoBancoPeloId() {
-        servBusca = repSer.buscar(serv.getIdServico());
-        assertEquals(serv.getIdServico(), servBusca.getIdServico());
+    public void deveBuscarUmaEmpresaNoBancoPeloId() {
+        empBusca = repEmp.buscar(emp.getIdEmpresa());
+        assertEquals(emp.getIdEmpresa(), empBusca.getIdEmpresa());
     }
 
+    @Test
+    public void deveBuscarUmaEmpresaNoBancoPeloCnpj() {
+        empBusca = repEmp.buscarCnpj(emp.getCnpj());
+        assertEquals(emp.getCnpj(), empBusca.getCnpj());
+    }
 
     @Test
-    public void deveListarTodasOsServicos() {
-        lista = (ArrayList<Servico>) repSer.listar();
+    public void deveListarTodasAsEmpresas() {
+        lista = (ArrayList<Empresa>) repEmp.listar();
+        int cont = 0;
+        
+        for (Empresa a : lista) {
+            cont++;
+        }
         assertNotEquals(0, lista.size());
     }
-    
+
+    @Test
+    public void deveBuscarAEmpresaPelaSenhaELogin() {
+        empBusca = repEmp.autenticar(emp.getEmail(), emp.getSenha());
+        assertEquals(emp.getCnpj(), empBusca.getCnpj());
+        
+    }
 }

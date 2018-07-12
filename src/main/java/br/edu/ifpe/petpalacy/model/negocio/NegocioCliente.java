@@ -25,8 +25,8 @@ SOFTWARE.
 package br.edu.ifpe.petpalacy.model.negocio;
 
 import br.edu.ifpe.petpalacy.model.entidades.Cliente;
-import br.edu.ifpe.petpalacy.model.interfaces.InterfaceCliente;
-import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioClienteImplDB;
+import br.edu.ifpe.petpalacy.interfaces.InterfaceCliente;
+import br.edu.ifpe.petpalacy.repositorio.implementacao.RepositorioClienteImplDB;
 import br.edu.ifpe.petpalacy.util.Criptografia;
 import br.edu.ifpe.petpalacy.util.Mensagens;
 import br.edu.ifpe.petpalacy.util.ValidaCPF;
@@ -70,12 +70,11 @@ public class NegocioCliente implements InterfaceCliente<Cliente> {
     @Override
     public void salvar(Cliente cliente) throws Exception {
 
-        if (cliente == null || buscarCpf(cliente.getCpf()) != null) {
-            throw new Exception("Erro!");
-        }
-
         boolean status = ValidaCPF.isCPF(cliente.getCpf());
         if (status == true) {
+            if (cliente == null || buscarCpf(cliente.getCpf()) != null) {
+                throw new Exception("Erro!");
+            }
             cliente.setSenha(Criptografia.criptografar(cliente.getSenha()));
             repCliente.salvar(cliente);
         } else {

@@ -21,7 +21,7 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package br.edu.ifpe.petpalacy.model.repositorio.implementacao;
+package br.edu.ifpe.petpalacy.repositorio.implementacao;
 
 import br.edu.ifpe.petpalacy.model.entidades.Agendamento;
 import br.edu.ifpe.petpalacy.model.entidades.Cliente;
@@ -42,7 +42,7 @@ import org.junit.Test;
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
  */
 public class RepositorioAgendamentoImplDBTest {
-    private static Agendamento agendamento = new Agendamento();
+ /*   private static Agendamento agendamento = new Agendamento();
     
     @Before
     public void pTest() {
@@ -93,7 +93,7 @@ public class RepositorioAgendamentoImplDBTest {
         agendamentoSalv.setEmpresa(null);
         agendamentoSalv.setServico(null);
         agendamentoSalv.setValorTotal(new BigDecimal("30"));
-        agendamentoSalv.setStatusAgen(StatusAgen.DISPONIVEL);
+        agendamentoSalv.setStatusAgen(StatusAgen.ESPERA);
         
         RepositorioAgendamentoImplDB repAgendamento = new RepositorioAgendamentoImplDB();
         repAgendamento.salvar(agendamentoSalv);
@@ -187,5 +187,5 @@ public class RepositorioAgendamentoImplDBTest {
         }
                 
     }
-    
+    */
 }

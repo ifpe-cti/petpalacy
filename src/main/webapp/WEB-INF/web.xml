@@ -18,10 +18,10 @@
             30
         </session-timeout>
     </session-config>
-    <context-param>
+    <contex-param>
         <param-name>primefaces.THEME</param-name>
         <param-value>excite-bike</param-value>
-    </context-param>
+    </contex-param>
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>

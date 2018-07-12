@@ -9,16 +9,16 @@
         <h:outputStylesheet library="css" name="index.css" />
     </h:head>
     <h:body>
-        
+
         <p:growl id="gro" life="4000" />
-        
-        <div class="container">
-            <div class="navbar">
-                <div class="logo">
-                    <h1 id="logotipo">Petpalacy</h1>
-                </div>
-                <div class="menu">
-                    <h:form id="formlogin">
+        <h:form id="formlogin">
+
+            <div class="container">
+                <div class="navbar">
+                    <div class="logo">
+                        <h1 id="logotipo">Petpalacy</h1>
+                    </div>
+                    <div class="menu">
                         <ul id="login_cadastro">
                             <li class="menu_login">
                                 <h:outputLink styleClass="outputlinklogin" value="javascript:void(0)" onclick="PF('dialLogin').show();">Login</h:outputLink>
@@ -28,13 +28,13 @@
                                 <h:outputLink styleClass="outputlinklogin" value="javascript:void(0)" onclick="PF('dialCadastro').show();">Cadastrar</h:outputLink>
                             </li>
                         </ul>
-                        
+
                         <p:growl id="groLogin" life="3000" />
-                        
-                        <p:dialog styleClass="dialoglogin" header="Tela de Login" visible="false" modal="true" widgetVar="dialLogin" resizable="false" appendTo="@(body)">
+
+                        <p:dialog styleClass="dialoglogin" header="Tela de Login" visible="false" modal="true" widgetVar="dialLogin" resizable="false" appendTo="@(form)">
                             <h1 class="titulodialoglogin">Acesse sua conta</h1>
                             <p:commandButton styleClass="fechardialog" update="formlogin" oncomplete="PF('dialLogin').hide();" value="X" />
-                            
+
                             <h:panelGrid styleClass="panelgridlogin" columns="1" cellpadding="5">
                                 <h:outputLabel styleClass="outputlabeltext" for="user" value="Email" />
                                 <p:inputText styleClass="inputemail" id="user" value="#{autenticarBean.email}" required="true" label="email" />
@@ -45,104 +45,105 @@
                                 <h:outputLink styleClass="recuperarsenha" value="javascript:void(0)" onclick="#">
                                     Esqueceu sua senha?
                                 </h:outputLink>
-                                
+
                                 <f:facet name="footer">
                                     <p:commandButton styleClass="buttonlogin" value="Login" update="groLogin :formlogin" action="#{autenticarBean.entrar()}" />
                                 </f:facet>  
                             </h:panelGrid>
                         </p:dialog>
-                        
+
                         <p:dialog styleClass="dialogcadastro" header="Tela de Cadastro" visible="false" modal="true" widgetVar="dialCadastro" resizable="false" appendTo="@(body)">
                             <p:commandButton styleClass="fechardialog" update="formlogin" oncomplete="PF('dialCadastro').hide();" value="X"/>
                             <h:panelGrid styleClass="panelgridcad" columns="2" cellpadding="5">
-                                <h:outputLink styleClass="fazercad1" value="pages/cadastrocliente.xhtml?faces-redirect=true">
+                                <h:outputLink styleClass="fazercad1" value="Cliente/cadastrar.xhtml?faces-redirect=true">
                                     <p:graphicImage styleClass="icon_cad" library="imagens" name="icon_cliente.png" />
                                     <h:outputText styleClass="textcadtitulo" value="Para Cliente"/>
                                 </h:outputLink>
-                               
-                                <h:outputLink styleClass="fazercad2" value="pages/cadastroempresa.xhtml?faces-redirect=true">
+
+                                <h:outputLink styleClass="fazercad2" value="Empresa/cadastrar.xhtml?faces-redirect=true">
                                     <p:graphicImage styleClass="icon_cad" library="imagens" name="icon_empresa.png" />
                                     <h:outputText styleClass="textcadtitulo" value="Para Empresa"/>
                                 </h:outputLink>
                             </h:panelGrid>
                         </p:dialog>                        
-                    </h:form>
-                </div>
-            </div>
-
-            <h1 id="titulo">AGENDE UM SERVIÇOS PARA SEU PET</h1>
-            <h3>Banho, tosa, consulta veterinária, adestramento e muito mais!</h3>
-
-            <div class="content-itens-links">
-                <div class="flex-content">
-                    <div class="flex-itens">
-                        <div><a href="#"><h:graphicImage styleClass="item_img" library="imagens" name="banhotosa.png" /></a></div>
-                        <div><a href="#"><h:graphicImage styleClass="item_img" library="imagens" name="consultas.png" /></a></div>
-                        <div><a href="#"><h:graphicImage styleClass="item_img" library="imagens" name="adestramentos.png" /></a></div>
                     </div>
                 </div>
-                
-                <div class="eventos">
-                    <h:graphicImage styleClass="eventoadt" library="imagens" name="feira.jpg" />
-                </div>
-                
-                <div class="informativo">
-                    <h1>Conhaça Um Pouco Mais</h1>
-                    <div class="conteudo_info">
-                        <div class="info">
-                            <h:graphicImage styleClass="inf_img" library="imagens" name="adocao.jpg" />
-                            <h1>Adoção de Cachorro</h1>
-                            <p>Adotar um cachorro é uma ação que ajuda no desenvolvimento dos seus filhos e também
-                                pode ser uma solução para quem fica muito sozinho, principalmente os idosos. Eles são 
-                                animais fiéis e trazem alegria para o ambiente familiar, por isso, a cada dia mais, as 
-                                feiras de adoções recebem indivíduos interessados em dar seu tempo a um cão. É possível
-                                encontrar cães de todos os portes e idades, garantindo muito mais saúde para todos.</p>
-                        </div>
-                    
-                        <div class="info">
-                            <h:graphicImage styleClass="inf_img" library="imagens" name="personalidade_cao.jpg" />
-                            <h1>Conheça sua raça de ção</h1>
-                            <p>Um estudo realizado pela Sociedade Britânica de Psicologia, em 2012, acredita que a raça
-                                de um cachorro reflete o caráter e a personalidade de seus donos. Saiba como é a sua 
-                                personalidade através do seu animal de estimação ou opte por uma raça de cão que melhor 
-                                se adapta à sua personalidade lendo este artigo.</p>
+
+                <h1 id="titulo">AGENDE UM SERVIÇOS PARA SEU PET</h1>
+                <h3>Banho, tosa, consulta veterinária, adestramento e muito mais!</h3>
+
+                <div class="content-itens-links">
+                    <div class="flex-content">
+                        <div class="flex-itens">
+                            <div><a href="#"><h:graphicImage styleClass="item_img" library="imagens" name="banhotosa.png" /></a></div>
+                            <div><a href="#"><h:graphicImage styleClass="item_img" library="imagens" name="consultas.png" /></a></div>
+                            <div><a href="#"><h:graphicImage styleClass="item_img" library="imagens" name="adestramentos.png" /></a></div>
                         </div>
                     </div>
-                </div>
-                
-            </div>
 
-            <div class="rodape">
-                <div class="rodape-content">
-                    <div>
-                        <ul class="conteudo_rodape">
-                            <li class="sobre_empresa">Contato</li>
-                            <li class="sobre_empresa">(87) 99999-9999</li>
-                            <li class="sobre_empresa">Av. Francisco Figueredo de Lima, 999</li> 
-                            <li class="sobre_empresa">Jd. Paulistano - Garanhuns, PE</li>
-                            <li class="sobre_empresa">petpalacy@outlook.com</li>
-                        </ul>
+                    <div class="eventos">
+                        <h:graphicImage styleClass="eventoadt" library="imagens" name="feira.jpg" />
                     </div>
-                    <div>
-                        <ul class="conteudo_rodape">
-                            <li class="sobre_empresa">Mais Informações</li>
-                            <li class="sobre_empresa"><a href="#">Quem Somos</a></li> 
-                            <li class="sobre_empresa"><a href="#">Termos de Uso</a></li>
-                            <li class="sobre_empresa"><a href="#">Dúvidas Frequentes FAQ</a></li>
-                            <li class="sobre_empresa"><a href="#">Fale Conosco</a></li>
-                        </ul>
+
+                    <div class="informativo">
+                        <h1>Conhaça Um Pouco Mais</h1>
+                        <div class="conteudo_info">
+                            <div class="info">
+                                <h:graphicImage styleClass="inf_img" library="imagens" name="adocao.jpg" />
+                                <h1>Adoção de Cachorro</h1>
+                                <p>Adotar um cachorro é uma ação que ajuda no desenvolvimento dos seus filhos e também
+                                    pode ser uma solução para quem fica muito sozinho, principalmente os idosos. Eles são 
+                                    animais fiéis e trazem alegria para o ambiente familiar, por isso, a cada dia mais, as 
+                                    feiras de adoções recebem indivíduos interessados em dar seu tempo a um cão. É possível
+                                    encontrar cães de todos os portes e idades, garantindo muito mais saúde para todos.</p>
+                            </div>
+
+                            <div class="info">
+                                <h:graphicImage styleClass="inf_img" library="imagens" name="personalidade_cao.jpg" />
+                                <h1>Conheça sua raça de ção</h1>
+                                <p>Um estudo realizado pela Sociedade Britânica de Psicologia, em 2012, acredita que a raça
+                                    de um cachorro reflete o caráter e a personalidade de seus donos. Saiba como é a sua 
+                                    personalidade através do seu animal de estimação ou opte por uma raça de cão que melhor 
+                                    se adapta à sua personalidade lendo este artigo.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <ul class="conteudo_rodape">
-                            <li class="sobre_empresa">Nossos Parceiros</li>
-                        </ul>
-                    </div>
+
                 </div>
-                <div class="copy">
-                    <p class="mens_rodape">&copy; 2018 Petpalacy - Todos os direitos resevados</p>
+
+                <div class="rodape">
+                    <div class="rodape-content">
+                        <div>
+                            <ul class="conteudo_rodape">
+                                <li class="sobre_empresa">Contato</li>
+                                <li class="sobre_empresa">(87) 99999-9999</li>
+                                <li class="sobre_empresa">Av. Francisco Figueredo de Lima, 999</li> 
+                                <li class="sobre_empresa">Jd. Paulistano - Garanhuns, PE</li>
+                                <li class="sobre_empresa">petpalacy@outlook.com</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="conteudo_rodape">
+                                <li class="sobre_empresa">Mais Informações</li>
+                                <li class="sobre_empresa"><a href="#">Quem Somos</a></li> 
+                                <li class="sobre_empresa"><a href="#">Termos de Uso</a></li>
+                                <li class="sobre_empresa"><a href="#">Dúvidas Frequentes FAQ</a></li>
+                                <li class="sobre_empresa"><a href="#">Fale Conosco</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="conteudo_rodape">
+                                <li class="sobre_empresa">Nossos Parceiros</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="copy">
+                        <p class="mens_rodape">&copy; 2018 Petpalacy - Todos os direitos resevados</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </h:form>
+
     </h:body>
 </html>
 
