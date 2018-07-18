@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Petpalacy</title>
+    </h:head>
+    <style>
+        
+    </style>
+    <h:body>
+        <ui:composition template="/templates/templatecadastro.xhtml">
+
+            
+            <ui:define name="conteudo">
+                <p:growl id="gro" life="4000" />
+
+
+                <h:outputText value="Agendar Servico" />
+
+
+                <p:separator />
+
+                <div class="sof">
+                    <div class="so">
+                        <h:form id="formpesquisa">
+                            <p:growl id="growl" life="10000" showDetail="true" showSummary="false"/>               
+                            <H4>Inforações da Empresa</H4>
+                            <h:panelGrid columns="1">
+                                <h:outputText value="Nome: #{controllerServico.servico.empresa.nome}"/>
+                                <h:outputText value="CNPJ: #{controllerServico.servico.empresa.cnpj}"/> 
+                            </h:panelGrid>
+                            <h5>Meios de Contato</h5>
+                            <h:panelGrid columns="1">
+                                <h:outputText value="Telefone: #{controllerServico.servico.empresa.telefone}"/>
+                                <h:outputText value="Email: #{controllerServico.servico.empresa.email}"/>
+                            </h:panelGrid>
+                            <h5>Endereço</h5>
+                            <h:panelGrid columns="1">
+                                <h:outputText value="Logradouro: #{controllerServico.servico.empresa.endereco.logradouro} | Numero: #{controllerServico.servico.empresa.endereco.numero}"/>
+                                <h:outputText value="Cidade: #{controllerServico.servico.empresa.endereco.cidade} | Bairro: #{controllerServico.servico.empresa.endereco.bairro}"/>
+                            </h:panelGrid>
+                                <p:separator />
+                            <center>
+                            
+                                <h4>Serviço</h4>
+                            
+                            <p:panelGrid columns="6">
+                                <h:outputText value="Nome:"/>
+                                <h:outputText value="#{controllerServico.servico.nome}#{controllerAgendamento.agenda.setServico(controllerServico.servico)}"/>
+                                <h:outputText value="Duração:"/>
+                                <h:outputText value="#{controllerServico.servico.duracao}"/>
+                                <h:outputText value="Valor:"/>
+                                <h:outputText value="#{controllerServico.servico.valor}"/>
+                            </p:panelGrid>
+                            <p:panelGrid columns="4">
+                                <h:outputText value="Empresa:"/>
+                                <h:outputText value="#{controllerServico.servico.empresa.nome}"/>
+                                <h:outputText value="Cliente:"/>
+                                <h:outputText value="#{autenticarBean.clienteLogin.nome}#{controllerAgendamento.agenda.setCliente(autenticarBean.clienteLogin)}"/>
+                               
+                            </p:panelGrid> 
+                                <p:panelGrid columns="4">
+                                    <p:outputLabel value="Data:"/>
+                                    <p:calendar value="#{controllerAgendamento.agenda.data}" pattern="dd/MM/yyyy" mask="true" size="10" />
+                                <p:outputLabel value="Hora:"/>
+                                <p:calendar value="#{controllerAgendamento.agenda.hora}" pattern="HH:mm" timeOnly="true" size="7"/>
+              
+                                </p:panelGrid>
+                               
+                                <p:commandButton value="agendar" action="#{controllerAgendamento.salvar()}" update="@form"/>
+                            </center>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

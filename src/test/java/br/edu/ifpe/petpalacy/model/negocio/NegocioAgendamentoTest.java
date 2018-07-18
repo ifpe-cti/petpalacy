@@ -80,7 +80,7 @@ public class NegocioAgendamentoTest {
         cliente = new Cliente("Carlos junio", "11419189433", "879812324", null, "dkpaz@gmail.com", "saosap");
         empresa = new Empresa("12602190000104", "papapa", "emp@gmail.com", "21212121", "bruno Eletro", null);
         servico = new Servico("Limpa cao", 4, null, empresa);      
-        agendamento = new Agendamento(servico, cliente, empresa, new Date(), null, new BigDecimal(35), StatusAgen.ESPERA);
+        agendamento = new Agendamento(servico, cliente, new Date(), new Date(), StatusAgen.AGENDADO);
 
         negocioCliente = new NegocioCliente();
         negocioEmpresa = new NegocioEmpresa();
@@ -153,7 +153,7 @@ Session session = sessionFactory.openSession();
     @Test(expected = java.lang.Exception.class)
     public void test4DeveDarErroAoAlterar() throws Exception {
         negocioAgendamento.salvar(agendamento);
-        agendamentoAlterado = new Agendamento(new Servico("toza", 3, new BigDecimal(50), empresa), null, empresa, new Date(),null, new BigDecimal(50), StatusAgen.ESPERA);
+        agendamentoAlterado = new Agendamento(new Servico("toza", 3, new BigDecimal(50), empresa), null, new Date(),null, StatusAgen.ESPERA);
 
         negocioAgendamento.editar(agendamentoAlterado);
     }
