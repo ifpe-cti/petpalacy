@@ -53,26 +53,20 @@ public class Agendamento implements Serializable {
     private Servico servico;
     @OneToOne(cascade={CascadeType.PERSIST,CascadeType.REFRESH}) 
     private Cliente cliente;
-    @OneToOne(cascade={CascadeType.PERSIST,CascadeType.REFRESH})
-    private Empresa empresa;
     @Temporal(value = TemporalType.DATE)
     private Date data;
-    @Temporal(value = TemporalType.TIME)
     private Date hora;
-    private BigDecimal valorTotal;
     @Enumerated(EnumType.ORDINAL)
     private StatusAgen statusAgen;
 
     public Agendamento() {
     }
 
-    public Agendamento(Servico servico, Cliente cliente, Empresa empresa, Date data, Date hora, BigDecimal valorTotal, StatusAgen statusAgen) {
+    public Agendamento(Servico servico, Cliente cliente, Date data, Date hora, StatusAgen statusAgen) {
         this.servico = servico;
         this.cliente = cliente;
-        this.empresa = empresa;
         this.data = data;
         this.hora = hora;
-        this.valorTotal = valorTotal;
         this.statusAgen = statusAgen;
     }
 
@@ -100,14 +94,6 @@ public class Agendamento implements Serializable {
         this.cliente = cliente;
     }
 
-    public Empresa getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
-    }
-
     public Date getData() {
         return data;
     }
@@ -122,14 +108,6 @@ public class Agendamento implements Serializable {
 
     public void setHora(Date hora) {
         this.hora = hora;
-    }
-
-    public BigDecimal getValorTotal() {
-        return valorTotal;
-    }
-
-    public void setValorTotal(BigDecimal valorTotal) {
-        this.valorTotal = valorTotal;
     }
 
     public StatusAgen getStatusAgen() {
@@ -167,7 +145,7 @@ public class Agendamento implements Serializable {
 
     @Override
     public String toString() {
-        return "Agendamento{" + "id=" + id + ", servico=" + servico + ", cliente=" + cliente + ", empresa=" + empresa + ", data=" + data + ", hora=" + hora + ", valorTotal=" + valorTotal + ", statusAgen=" + statusAgen + '}';
+        return "Agendamento{" + "id=" + id + ", servico=" + servico + ", cliente=" + cliente + ", data=" + data + ", hora=" + hora + ", statusAgen=" + statusAgen + '}';
     }
 
 

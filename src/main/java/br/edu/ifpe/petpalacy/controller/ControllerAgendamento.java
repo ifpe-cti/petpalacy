@@ -26,6 +26,9 @@
 package br.edu.ifpe.petpalacy.controller;
 
 import br.edu.ifpe.petpalacy.model.entidades.Agendamento;
+import br.edu.ifpe.petpalacy.model.entidades.Cliente;
+import br.edu.ifpe.petpalacy.model.entidades.Servico;
+import br.edu.ifpe.petpalacy.model.entidades.StatusAgen;
 import br.edu.ifpe.petpalacy.model.negocio.NegocioAgendamento;
 import br.edu.ifpe.petpalacy.util.Mensagens;
 import java.io.Serializable;
@@ -56,9 +59,10 @@ public class ControllerAgendamento implements Serializable {
 
     public String salvar() {
         try {
+            agenda.setStatusAgen(StatusAgen.ESPERA);
             negAgenda.salvar(agenda);
             Mensagens.getInstance().salvoComSucesso();
-            ret = "pagina com o que foi agendado";
+            ret = "/visualizarServicos.xhtml?faces-redirect=true";
         } catch (Exception ex) {
             Mensagens.getInstance().nenhumaInformacao();
         }

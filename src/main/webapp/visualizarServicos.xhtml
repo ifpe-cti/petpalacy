@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Petpalacy</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/templatecadastro.xhtml">
+
+            <ui:define name="metadata">
+                <f:metadata>
+                    <f:event listener="#{controllerServico.listar()}" type="preRenderView"/>
+                </f:metadata>
+            </ui:define>
+            <ui:define name="conteudo">
+                <p:growl id="gro" life="4000" />
+
+
+                <h:outputText value="TODOS OS SERVICOS" />
+
+
+                <p:separator />
+
+                <div class="sof">
+                    <div class="so">
+                        <h:form id="formpesquisa">
+                            <p:growl id="growl" life="10000" showDetail="true" showSummary="false"/>               
+                            <h:panelGrid columns="4">
+                                <p:commandButton value="Novo" action="ProdutoCadastro.xhtml?faces-redirect=true"/>
+                                <p:commandButton value="Alterar" action="AlterareDeletarProduto.xhtml?faces-redirect=true"/>                    
+                            </h:panelGrid>
+                            <center>
+                            <p:dataTable emptyMessage="Nenhum registro encontrado..." value="#{controllerServico.listaServico}"
+
+                                         var="servico" id="proTable" 
+                                         rowKey="#{servico.idServico}" style="width:700px">
+                                <p:column headerText="Empresa" style="width:50px">
+                                    <h:outputText value="#{servico.empresa.nome}"/>
+                                </p:column>
+                                <p:column headerText="Nome" style="width:50px">
+                                    <h:outputText value="#{servico.nome}"/>
+                                </p:column>
+                                <p:column headerText="Duração" style="width:50px">
+                                    <h:outputText value="#{servico.duracao}min"/>
+
+                                </p:column> <p:column headerText="Valor" style="width:50px">
+                                    <h:outputText value="R$#{servico.valor}"/>
+
+                                </p:column> <p:column  style="width:50px">
+                                    <p:commandButton value="Agendar" title="agendar" action="Cliente/agendarServico.xhtml?faces-redirect=true">
+                                        <f:setPropertyActionListener value="#{servico}" target="#{controllerServico.servico}"/>
+                                    </p:commandButton>
+
+                                </p:column>
+                            </p:dataTable>
+                            </center>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

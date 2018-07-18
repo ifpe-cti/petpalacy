@@ -28,6 +28,8 @@ import br.edu.ifpe.petpalacy.repositorio.implementacao.RepositorioClienteImplDB;
 import br.edu.ifpe.petpalacy.repositorio.implementacao.RepositorioEmpresaImplDB;
 import br.edu.ifpe.petpalacy.model.entidades.Empresa;
 import br.edu.ifpe.petpalacy.model.entidades.Cliente;
+import br.edu.ifpe.petpalacy.model.negocio.NegocioCliente;
+import br.edu.ifpe.petpalacy.model.negocio.NegocioEmpresa;
 import br.edu.ifpe.petpalacy.util.Criptografia;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
@@ -61,16 +63,16 @@ public AutenticarBean(){
             System.out.println("valor nulo para senha.");
         }
         senha = Criptografia.criptografar(senha);
-        RepositorioClienteImplDB repositorioClienteImplDB = new RepositorioClienteImplDB();
-        clienteLogin = repositorioClienteImplDB.autenticar(email, senha);
+        NegocioCliente neg = new NegocioCliente();
+        clienteLogin = neg.autenticar(email, senha);
         
         if(clienteLogin != null) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Você esta Logado!"));
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("clienteLogado", this.clienteLogin);
             return "Empresa/alterarCadastro.xhtml?faces-redirect=true";
         } else {
-            RepositorioEmpresaImplDB repositorioEmpresaImplDB = new RepositorioEmpresaImplDB();
-            empresaLogin = repositorioEmpresaImplDB.autenticar(email, senha);
+            NegocioEmpresa negEmp = new NegocioEmpresa();
+            empresaLogin = negEmp.autenticar(email, senha);
             
             if(empresaLogin != null) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Você esta Logado!"));
