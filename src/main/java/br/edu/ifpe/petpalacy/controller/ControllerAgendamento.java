@@ -62,7 +62,7 @@ public class ControllerAgendamento implements Serializable {
             agenda.setStatusAgen(StatusAgen.ESPERA);
             negAgenda.salvar(agenda);
             Mensagens.getInstance().salvoComSucesso();
-            ret = "/visualizarServicos.xhtml?faces-redirect=true";
+            ret = "meusAgendamentos.xhtml?faces-redirect=true";
         } catch (Exception ex) {
             Mensagens.getInstance().nenhumaInformacao();
         }
@@ -96,8 +96,12 @@ public class ControllerAgendamento implements Serializable {
         return ret;
     }
 
-    public String listar() {
-        listaAgenda = (ArrayList) negAgenda.listar();
+    public String listar(int id) {
+        for (Agendamento ag : negAgenda.listar()) {
+            if (id == (ag.getCliente().getIdCliente())) {
+                listaAgenda.add(ag);
+            }
+        }
         return "pagina com todos os agendamentos";
     }
 

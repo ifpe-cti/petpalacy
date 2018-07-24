@@ -51,7 +51,7 @@ public class NegocioEmpresa implements InterfaceEmpresa<Empresa> {
         if (login == null || senha == null) {
             return null;
         } else {
-            emp = repoEmp.autenticar(login, Criptografia.criptografar(senha));
+            emp = repoEmp.autenticar(login, senha);
 
             if (emp == null) {
                 return null;

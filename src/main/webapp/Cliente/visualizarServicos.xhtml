@@ -9,7 +9,7 @@
         <title>Petpalacy</title>
     </h:head>
     <h:body>
-        <ui:composition template="/templates/templateSistema.xhtml">
+        <ui:composition template="/templates/templateCliente.xhtml">
 
             <ui:define name="metadata">
                 <f:metadata>
@@ -51,7 +51,7 @@
                                     <h:outputText value="R$#{servico.valor}"/>
 
                                 </p:column> <p:column  style="width:50px">
-                                    <p:commandButton value="Agendar" title="agendar" action="Cliente/agendarServico.xhtml?faces-redirect=true">
+                                    <p:commandButton value="Agendar" title="agendar" action="agendarServico.xhtml?faces-redirect=true">
                                         <f:setPropertyActionListener value="#{servico}" target="#{controllerServico.servico}"/>
                                     </p:commandButton>
 

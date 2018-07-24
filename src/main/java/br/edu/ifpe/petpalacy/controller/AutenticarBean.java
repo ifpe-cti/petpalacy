@@ -69,7 +69,7 @@ public AutenticarBean(){
         if(clienteLogin != null) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Você esta Logado!"));
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("clienteLogado", this.clienteLogin);
-            return "Empresa/alterarCadastro.xhtml?faces-redirect=true";
+            return "Cliente/visualizarServicos.xhtml?faces-redirect=true";
         } else {
             NegocioEmpresa negEmp = new NegocioEmpresa();
             empresaLogin = negEmp.autenticar(email, senha);
@@ -77,7 +77,7 @@ public AutenticarBean(){
             if(empresaLogin != null) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Você esta Logado!"));
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("empresaLogado", this.empresaLogin);
-                return "index.xhtml?faces-redirect=true";
+                return "visualizarServicos.xhtml?faces-redirect=true";
             }
         }
         
