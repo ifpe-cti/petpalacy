@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Petpalacy</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/templateCliente.xhtml">
+
+            <ui:define name="metadata">
+                <f:metadata>
+                    <f:event listener="#{controllerAgendamento.listar(autenticarBean.clienteLogin.idCliente)}" type="preRenderView"/>
+                </f:metadata>
+            </ui:define>
+            <ui:define name="conteudo">
+                <p:growl id="gro" life="4000" />
+
+
+                <h:outputText value="MEUS AGENDAMENTOS" />
+
+
+                <p:separator />
+
+                <div class="sof">
+                    <div class="so">
+                        <h:form id="formpesquisa">
+                            <p:growl id="growl" life="10000" showDetail="true" showSummary="false"/>               
+                            
+                            <center>
+                                <p:dataTable emptyMessage="Nenhum registro encontrado..." value="#{controllerAgendamento.listaAgenda}"
+
+                                         var="agenda" id="proTable" 
+                                         rowKey="#{agenda.id}" style="width:700px">
+                                
+                                <p:column headerText="Empresa" style="width:50px">
+                                    <h:outputText value="#{agenda.servico.empresa.nome}"/>
+                                </p:column>
+                                <p:column headerText="Serviço" style="width:50px">
+                                    <h:outputText value="#{agenda.servico.nome}"/>
+                                </p:column>
+                                <p:column headerText="Data" style="width:50px">
+                                    <h:outputText value="#{agenda.data}"/>
+
+                                </p:column> <p:column headerText="Hora" style="width:50px">
+                                    <h:outputText value="#{agenda.hora}"/>
+
+                                </p:column> <p:column headerText="Status" style="width:50px">
+                                    <h:outputText value="#{agenda.statusAgen}"/>
+
+                                </p:column>
+                            </p:dataTable>
+                            </center>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

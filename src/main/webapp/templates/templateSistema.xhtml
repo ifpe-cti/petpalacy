@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Petpalacy</title>
+        <h:outputStylesheet library="css" name="template.css" />
+        <ui:insert name="head" />
+    </h:head>
+    <h:body>
+        <p:layout styleClass="temp_container">
+            <p:layoutUnit id="cabecalho_top" styleClass="temp_cabecalho" position="north" size="auto" resizable="false" closable="false" collapsible="false">
+                <div class="navbar">
+                    <div class="logo">
+                        <h1 id="logotipo">Petpalacy</h1>
+                    </div>
+                </div>
+            </p:layoutUnit>
+            
+            <p:layoutUnit id="links" styleClass="temp_menu" position="west" size="200" resizable="false" closable="false" collapsible="false">
+                <h:form id="formMenu">
+                    <div id="div_menu">
+                        <ul class="conteudo_menu">
+                            <li class="titulo_menu">Pagína Inicial</li>
+                            <li class="link_menu"><h:outputLink styleClass="outputlinkmenu" value="index.xhtml">Home</h:outputLink></li>
+                        </ul>
+                        <ul class="conteudo_menu">
+                            <li class="titulo_menu">Sobre Petpalacy</li>
+                            <li class="link_menu"><h:outputLink styleClass="outputlinkmenu" value="#">Quem Somos</h:outputLink></li>
+                            <li class="link_menu"><h:outputLink styleClass="outputlinkmenu" value="#">Política de privacidade</h:outputLink></li> 
+                            <li class="link_menu"><h:outputLink styleClass="outputlinkmenu" value="#">Termos de uso</h:outputLink></li>
+                        </ul>
+                        <ul class="conteudo_menu">
+                            <li class="titulo_menu">Mais Informações</li>
+                            <li class="link_menu"><h:outputLink styleClass="outputlinkmenu" value="#">Dúvidas Frequentes</h:outputLink></li> 
+                            <li class="link_menu"><h:outputLink styleClass="outputlinkmenu" value="#">Empresa</h:outputLink></li>
+                            <li class="link_menu"><h:outputLink styleClass="outputlinkmenu" value="#">Fale Conosco</h:outputLink></li>
+                        </ul>
+                    </div>
+                </h:form>
+            </p:layoutUnit>
+            
+            <p:layoutUnit styleClass="temp_conteudo" position="center" size="auto">
+                <ui:insert name="conteudo" />
+            </p:layoutUnit>
+            
+            <p:layoutUnit styleClass="temp_rodape" id="rodape" position="south" size="auto" resizable="false" closable="false" collapsible="false">
+                <div class="rodape">
+                    <div class="copy">
+                        <p class="mens_rodape">&copy; 2018 Petpalacy - Todos os direitos resevados</p>
+                    </div>
+                </div>
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</html>
+
