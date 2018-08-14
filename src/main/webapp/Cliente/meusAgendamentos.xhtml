@@ -13,7 +13,7 @@
 
             <ui:define name="metadata">
                 <f:metadata>
-                    <f:event listener="#{controllerAgendamento.listar(autenticarBean.clienteLogin.idCliente)}" type="preRenderView"/>
+                    <f:event listener="#{controllerAgendamento.listarAgendamentoCliente(autenticarBean.clienteLogin.idCliente)}" type="preRenderView"/>
                 </f:metadata>
             </ui:define>
             <ui:define name="conteudo">

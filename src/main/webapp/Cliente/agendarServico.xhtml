@@ -65,10 +65,11 @@
                             </p:panelGrid> 
                                 <p:panelGrid columns="4">
                                     <p:outputLabel value="Data:"/>
-                                    <p:calendar value="#{controllerAgendamento.agenda.data}" pattern="dd/MM/yyyy" mask="true" size="10" />
+                                    <p:calendar value="#{controllerAgendamento.agenda.data}" pattern="dd/MM/yyyy" mask="true" size="10" required="true"
+                                             requiredMessage="Falta a Data!"/>
                                 <p:outputLabel value="Hora:"/>
-                                <p:calendar value="#{controllerAgendamento.agenda.hora}" pattern="HH:mm" timeOnly="true" size="7"/>
-              
+                                <p:calendar id="hora" value="#{controllerAgendamento.agenda.hora}" pattern="HH:mm" timeOnly="true" size="7" required="true"
+                                             requiredMessage="Falta a hora!"/>
                                 </p:panelGrid>
                                
                                 <p:commandButton value="agendar" action="#{controllerAgendamento.salvar()}" update="@form"/>

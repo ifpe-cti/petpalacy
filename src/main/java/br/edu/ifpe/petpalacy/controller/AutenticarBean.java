@@ -77,7 +77,7 @@ public AutenticarBean(){
             if(empresaLogin != null) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Você esta Logado!"));
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("empresaLogado", this.empresaLogin);
-                return "visualizarServicos.xhtml?faces-redirect=true";
+                return "Empresa/meusAgendamentos.xhtml?faces-redirect=true";
             }
         }
         
