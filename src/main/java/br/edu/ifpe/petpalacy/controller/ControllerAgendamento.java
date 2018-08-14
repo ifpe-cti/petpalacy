@@ -96,15 +96,26 @@ public class ControllerAgendamento implements Serializable {
         return ret;
     }
 
-    public String listar(int id) {
+    public String listarAgendamentoCliente(int id) {
+        listaAgenda = new ArrayList<>();
         for (Agendamento ag : negAgenda.listar()) {
             if (id == (ag.getCliente().getIdCliente())) {
                 listaAgenda.add(ag);
             }
-        }
+        
+    }
         return "pagina com todos os agendamentos";
     }
-
+    public String listarAgendamentoEmpresa(int id) {
+        listaAgenda = new ArrayList<>();
+        for (Agendamento ag : negAgenda.listar()) {
+            if (id == (ag.getServico().getEmpresa().getIdEmpresa())) {
+                listaAgenda.add(ag);
+            }
+        
+    }
+        return "pagina com todos os agendamentos";
+    }
     public NegocioAgendamento getNegAgenda() {
         return negAgenda;
     }
