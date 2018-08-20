@@ -31,7 +31,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import br.edu.ifpe.petpalacy.model.entidades.Empresa;
+import br.edu.ifpe.petpalacy.model.entidades.Horarios;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import org.hibernate.mapping.ManyToOne;
 
 
 /**
@@ -49,15 +54,18 @@ public class Servico implements Serializable {
     private BigDecimal valor;
     @OneToOne
     private Empresa empresa;
+    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER) 
+    private List<Horarios> listaDeHorarios;
 
     public Servico() {
     }
 
-    public Servico(String nome, Integer duracao, BigDecimal valor, Empresa empresa) {
+    public Servico(String nome, Integer duracao, BigDecimal valor, Empresa empresa, List<Horarios> listaDeHorarios) {
         this.nome = nome;
         this.duracao = duracao;
         this.valor = valor;
         this.empresa = empresa;
+        this.listaDeHorarios = listaDeHorarios;
     }
 
     public Integer getIdServico() {
@@ -92,48 +100,51 @@ public class Servico implements Serializable {
         this.valor = valor;
     }
 
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
 
-    public Empresa getEmpresa() {
-        return empresa;
+    public List<Horarios> getListaDeHorarios() {
+        return listaDeHorarios;
     }
-     
+
+    public void setListaDeHorarios(List<Horarios> listaDeHorarios) {
+        this.listaDeHorarios = listaDeHorarios;
+    }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 71 * hash + this.id;
-        hash = 71 * hash + Objects.hashCode(this.nome);
-        hash = 71 * hash + this.duracao;
-        hash = 71 * hash + Objects.hashCode(this.valor);
+        hash = 59 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
-
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Servico)) {
-            return false;
-        }
-        Servico servico = (Servico) obj;
-
-        if(servico.id == id
-                && servico.duracao == duracao
-                && servico.nome == nome
-                && servico.valor == valor
-                && servico.empresa == empresa) {
+        if (this == obj) {
             return true;
         }
-        return false;
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Servico other = (Servico) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "Servico{" + "id=" + id + ", nome=" + nome + ", duracao=" + duracao + ", valor=" + valor + ", empresa=" + empresa + '}';
+        return "Servico{" + "id=" + id + ", nome=" + nome + ", duracao=" + duracao + ", valor=" + valor + ", empresa=" + empresa + ", listaDeHorarios=" + listaDeHorarios + '}';
     }
- 
-    
+
     
 }
