@@ -22,6 +22,7 @@ package br.edu.ifpe.petpalacy.repositorio.implementacao;
 
 import br.edu.ifpe.petpalacy.model.entidades.Empresa;
 import br.edu.ifpe.petpalacy.model.entidades.Endereco;
+import br.edu.ifpe.petpalacy.model.entidades.Horarios;
 import br.edu.ifpe.petpalacy.model.entidades.Servico;
 import br.edu.ifpe.petpalacy.repositorio.implementacao.RepositorioServicoImplDB;
 import br.edu.ifpe.petpalacy.repositorio.implementacao.RepositorioServicoImplDB;
@@ -54,18 +55,31 @@ public class RepositorioServicoImplDBTest {
     private static Servico servAlterar;
     private Servico servBusca = null;
     private ArrayList<Servico> lista;
+    private static ArrayList<Horarios> horarios;
     
     public RepositorioServicoImplDBTest() {
         repSer = new RepositorioServicoImplDB();
         lista = new ArrayList<>();
+        horarios = new ArrayList<>();
         
     }
     
     @BeforeClass
     public static void setUp() {
-        serv = new Servico("tosa", 30, new BigDecimal(30.00), null);
-        servAlterar = new Servico("banho", 20, new BigDecimal(10.00), null);
-        servDeletar = new Servico("tosa", 20, new BigDecimal(40.00), null);
+    Horarios ho = new Horarios("8:00");
+    Horarios ho1 = new Horarios("8:60");
+    Horarios ho2 = new Horarios("4:00");
+    Horarios ho3 = new Horarios("7:00");
+    Horarios ho4 = new Horarios("9:00");
+horarios = new ArrayList<>();
+    horarios.add(ho);
+        horarios.add(ho1);
+        horarios.add(ho2);
+        horarios.add(ho3);
+        horarios.add(ho4);
+        serv = new Servico("tosa", 30, new BigDecimal(30.00), null, horarios);
+        servAlterar = new Servico("banho", 20, new BigDecimal(10.00), null, null);
+        servDeletar = new Servico("tosa", 20, new BigDecimal(40.00), null, null);
         
         Session session = sessionFactory.openSession();
         Transaction transacao = null;
@@ -113,7 +127,7 @@ public class RepositorioServicoImplDBTest {
     
     @Test
     public void deveSalvarUmServicoNoBancoDeDados() {
-        Servico servSalvar = new Servico("tosa", 24, new BigDecimal(45.99), null);
+        Servico servSalvar = new Servico("tosa", 24, new BigDecimal(45.99), null, null);
         repSer.salvar(servSalvar);
         
         Session session = this.sessionFactory.openSession();
