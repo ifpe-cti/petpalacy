@@ -42,7 +42,7 @@ SOFTWARE.
  */
 public class TESTE {
     public static void main(String[] args) throws Exception {
-        
+     /*   
     Endereco end = new Endereco("rua duque de caxias", 34, "são Joao", "planalto");
         Cliente cli = new Cliente("cicero", "11472554400", "0000000", end,"sao@gail.com", "sasa");
     Empresa ep = new Empresa("72522856000138", "saosap", "dkpaz@gmail.com", "00000000", "petCao", end);
@@ -64,7 +64,7 @@ public class TESTE {
     nes.salvar(ser3);
     nes.salvar(ser4);
     ag.salvar(ar);
-
+*/
     
             }
 }
