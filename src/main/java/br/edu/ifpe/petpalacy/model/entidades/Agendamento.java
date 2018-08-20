@@ -53,16 +53,15 @@ public class Agendamento implements Serializable {
     private Servico servico;
     @OneToOne(cascade={CascadeType.PERSIST,CascadeType.REFRESH}) 
     private Cliente cliente;
-    @Temporal(value = TemporalType.DATE)
-    private Date data;
-    private Date hora;
+    private String data;
+    private String hora;
     @Enumerated(EnumType.ORDINAL)
     private StatusAgen statusAgen;
 
     public Agendamento() {
     }
 
-    public Agendamento(Servico servico, Cliente cliente, Date data, Date hora, StatusAgen statusAgen) {
+    public Agendamento(Servico servico, Cliente cliente, String data, String hora, StatusAgen statusAgen) {
         this.servico = servico;
         this.cliente = cliente;
         this.data = data;
@@ -94,19 +93,19 @@ public class Agendamento implements Serializable {
         this.cliente = cliente;
     }
 
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
 
-    public Date getHora() {
+    public String getHora() {
         return hora;
     }
 
-    public void setHora(Date hora) {
+    public void setHora(String hora) {
         this.hora = hora;
     }
 

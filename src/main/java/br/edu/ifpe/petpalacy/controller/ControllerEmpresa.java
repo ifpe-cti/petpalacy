@@ -56,9 +56,7 @@ public class ControllerEmpresa implements Serializable {
 
     public String salvar() {
         try {
-            empresa.setCnpj(empresa.getCnpj().replace("-", ""));
-            empresa.setCnpj(empresa.getCnpj().replace("-", ""));
-            empresa.setCnpj(empresa.getCnpj().replace("/", ""));
+
             negEmpresa.salvar(empresa);
             Mensagens.getInstance().salvoComSucesso();
             ret = "Menu empresa";
@@ -68,10 +66,10 @@ public class ControllerEmpresa implements Serializable {
         return ret;
     }
 
-    public String alterar() {
+    public String alterar(Empresa emp) {
         try {
 
-            negEmpresa.editar(empresa);
+            negEmpresa.editar(emp);
             Mensagens.getInstance().alteradoComSucesso();
             ret = "Menu empresa";
         } catch (Exception ex) {
