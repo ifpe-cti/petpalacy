@@ -26,6 +26,7 @@ class Servico {
     -String nome
     -int duracao
     -BigDecimal valor
+    -List<Horarios> ListaDeHoras
 }
 
 enum StatusAgen{
@@ -41,8 +42,8 @@ class Agendamento {
     -Servico servico
     -Cliente cliente
     -Empresa empresa
-    -Date data
-    -Date hora
+    -String data
+    -String hora
     -BigDecimal valorTotal
 }
 
@@ -56,9 +57,14 @@ class Empresa {
     -List<Servico> servicos
     -Endereco endereco
 }
+class Horarios{
+    -int id
+    -String hora
+}
 
 Cliente "1" *-- "1" Endereco
 Empresa "1" *-- "1" Endereco
+Servico "1" *-- "*" Horarios
 Empresa "1" *-- "*" Servico
 Agendamento "*" ..> "1" Empresa
 Agendamento "1" ..> "1" Cliente
