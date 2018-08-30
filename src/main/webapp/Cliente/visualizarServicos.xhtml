@@ -29,6 +29,10 @@
                     <div class="so">
                         <h:form id="formpesquisa">
                             <p:growl id="growl" life="10000" showDetail="true" showSummary="false"/>               
+                            <h:panelGrid columns="4">
+                                <p:commandButton value="Novo" action="ProdutoCadastro.xhtml?faces-redirect=true"/>
+                                <p:commandButton value="Alterar" action="AlterareDeletarProduto.xhtml?faces-redirect=true"/>                    
+                            </h:panelGrid>
                             <center>
                             <p:dataTable emptyMessage="Nenhum registro encontrado..." value="#{controllerServico.listaServico}"
 

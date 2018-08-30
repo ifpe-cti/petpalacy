@@ -65,13 +65,10 @@
                             </p:panelGrid> 
                                 <p:panelGrid columns="4">
                                     <p:outputLabel value="Data:"/>
-                                    <p:inputMask id="sd" value="#{controllerAgendamento.agenda.data}" mask="99/99/9999"
-                                             required="true" requiredMessage="falta a data!!!"/>
+                                    <p:calendar value="#{controllerAgendamento.agenda.data}" pattern="dd/MM/yyyy" mask="true" size="10" />
                                 <p:outputLabel value="Hora:"/>
-                                <p:selectOneMenu id="lazy" value="#{controllerAgendamento.agenda.hora}"  style="width:125px">
-                                    <f:selectItem itemLabel="Horarios" itemValue=""/>
-                                    <f:selectItems value="#{controllerServico.servico.listaDeHorarios}" />
-                                </p:selectOneMenu>
+                                <p:calendar value="#{controllerAgendamento.agenda.hora}" pattern="HH:mm" timeOnly="true" size="7"/>
+              
                                 </p:panelGrid>
                                
                                 <p:commandButton value="agendar" action="#{controllerAgendamento.salvar()}" update="@form"/>
