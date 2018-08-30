@@ -28,35 +28,31 @@
                 <div class="sof">
                     <div class="so">
                         <h:form id="formpesquisa">
-                            <p:growl id="growl" life="10000" showDetail="true" showSummary="false"/>               
-                            <h:panelGrid columns="4">
-                                <p:commandButton value="Novo" action="ProdutoCadastro.xhtml?faces-redirect=true"/>
-                                <p:commandButton value="Alterar" action="AlterareDeletarProduto.xhtml?faces-redirect=true"/>                    
-                            </h:panelGrid>
+                            <p:growl id="growl" life="10000" showDetail="true" showSummary="false"/>        
                             <center>
-                            <p:dataTable emptyMessage="Nenhum registro encontrado..." value="#{controllerServico.listaServico}"
+                                <p:dataTable emptyMessage="Nenhum registro encontrado..." value="#{controllerServico.listaServico}"
 
-                                         var="servico" id="proTable" 
-                                         rowKey="#{servico.idServico}" style="width:700px">
-                                <p:column headerText="Empresa" style="width:50px">
-                                    <h:outputText value="#{servico.empresa.nome}"/>
-                                </p:column>
-                                <p:column headerText="Nome" style="width:50px">
-                                    <h:outputText value="#{servico.nome}"/>
-                                </p:column>
-                                <p:column headerText="Duração" style="width:50px">
-                                    <h:outputText value="#{servico.duracao}min"/>
+                                             var="servico" id="proTable" 
+                                             rowKey="#{servico.idServico}" style="width:700px">
+                                    <p:column headerText="Empresa" style="width:50px">
+                                        <h:outputText value="#{servico.empresa.nome}"/>
+                                    </p:column>
+                                    <p:column headerText="Nome" style="width:50px">
+                                        <h:outputText value="#{servico.nome}"/>
+                                    </p:column>
+                                    <p:column headerText="Duração" style="width:50px">
+                                        <h:outputText value="#{servico.duracao}min"/>
 
-                                </p:column> <p:column headerText="Valor" style="width:50px">
-                                    <h:outputText value="R$#{servico.valor}"/>
+                                    </p:column> <p:column headerText="Valor" style="width:50px">
+                                        <h:outputText value="R$#{servico.valor}"/>
 
-                                </p:column> <p:column  style="width:50px">
-                                    <p:commandButton value="Agendar" title="agendar" action="Cliente/agendarServico.xhtml?faces-redirect=true">
-                                        <f:setPropertyActionListener value="#{servico}" target="#{controllerServico.servico}"/>
-                                    </p:commandButton>
+                                    </p:column> <p:column  style="width:50px">
+                                        <p:commandButton value="Agendar" title="agendar" action="Cliente/agendarServico.xhtml?faces-redirect=true">
+                                            <f:setPropertyActionListener value="#{servico}" target="#{controllerServico.servico}"/>
+                                        </p:commandButton>
 
-                                </p:column>
-                            </p:dataTable>
+                                    </p:column>
+                                </p:dataTable>
                             </center>
                         </h:form>
                     </div>
