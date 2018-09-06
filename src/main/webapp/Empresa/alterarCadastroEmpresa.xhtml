@@ -29,27 +29,27 @@
                             <h1 class="titulo_cadcli">Dados pessoais</h1>
                             <p:panelGrid styleClass="panelgridcad" columns="3">
                                 <h:outputText styleClass="output_text" value="Nome:"/>
-                                <p:inputText id="txtNome" value="#{empresaBean.selectedEmpresa.nome}" required="true"
+                                <p:inputText id="txtNome" value="#{autenticarBean.empresaLogin.nome}" required="true"
                                              requiredMessage="Tá faltando preencher o campo nome!"/>
                                 <p:message for="txtNome" />
 
                                 <h:outputText styleClass="output_text" value="CNPJ:"/>
-                                <p:inputMask id="txtCnpj" value="#{empresaBean.selectedEmpresa.cnpj}" mask="99.999.999/9999-99"
+                                <p:inputMask id="txtCnpj" value="#{autenticarBean.empresaLogin.cnpj}" mask="99.999.999/9999-99"
                                              required="true" requiredMessage="Tá faltando preencher o campo CNPJ!"/>
                                 <p:message for="txtCnpj" />
 
                                 <h:outputText styleClass="output_text" value="Telefone:"/>
-                                <p:inputMask id="txtTelefone" value="#{empresaBean.selectedEmpresa.telefone}" mask="(99)99999-9999"
+                                <p:inputMask id="txtTelefone" value="#{autenticarBean.empresaLogin.telefone}" mask="(99)99999-9999"
                                              required="true" requiredMessage="Tá faltando preencher o campo telefone!"/>
                                 <p:message for="txtTelefone" />
 
                                 <h:outputText styleClass="output_text" value="Email:"/>
-                                <p:inputText id="email" value="#{empresaBean.selectedEmpresa.email}" required="true"
+                                <p:inputText id="email" value="#{autenticarBean.empresaLogin.email}" required="true"
                                              requiredMessage="Tá faltando preencher o campo email!"/>
                                 <p:message for="email"/>
 
                                 <h:outputText styleClass="output_text" value="Senha:"/>
-                                <p:password id="senha" feedback="true" value="#{empresaBean.selectedEmpresa.senha}" required="true"
+                                <p:password id="senha" feedback="true" value="#{autenticarBean.empresaLogin.senha}" required="true"
                                             requiredMessage="Tá faltando preencher o campo senha!" />
                                 <p:message for="senha"/>
                                 
@@ -59,22 +59,22 @@
 
                             <p:panelGrid styleClass="panelgrid_end" columns="3">
                                 <h:outputText styleClass="output_text" value="Rua:"/>
-                                <p:inputText id="txtRua" value="#{empresaBean.selectedEmpresa.endereco.logradouro}" required="true"
+                                <p:inputText id="txtRua" value="#{autenticarBean.empresaLogin.endereco.logradouro}" required="true"
                                              requiredMessage="Tá faltando preencher o campo rua!"/>
                                 <p:message for="txtRua" />
                                 
                                 <h:outputText styleClass="output_text" value="Número:"/>
-                                <p:inputText id="txtNumero" value="#{empresaBean.selectedEmpresa.endereco.numero}" required="true"
+                                <p:inputText id="txtNumero" value="#{autenticarBean.empresaLogin.endereco.numero}" required="true"
                                              requiredMessage="Tá faltando preencher o campo número!"/>
                                 <p:message for="txtNumero" />
 
                                 <h:outputText styleClass="output_text" value="Bairro:"/>
-                                <p:inputText id="txtBairro" value="#{empresaBean.selectedEmpresa.endereco.bairro}" required="true" 
+                                <p:inputText id="txtBairro" value="#{autenticarBean.empresaLogin.endereco.bairro}" required="true" 
                                              requiredMessage="Tá faltando preencher o campo bairro!"/>
                                 <p:message for="txtBairro" />
 
                                 <h:outputText styleClass="output_text" value="Cidade:"/>
-                                <p:selectOneMenu id="textCidade" value="#{empresaBean.selectedEmpresa.endereco.cidade}" 
+                                <p:selectOneMenu id="textCidade" value="#{autenticarBean.empresaLogin.endereco.cidade}" 
                                                  requiredMessage="Tá faltando preencher o campo cidade!">
                                     <f:selectItem itemLabel="Selecione um cidade" itemValue="" />
                                     <f:selectItem itemLabel="Arcoverde" itemValue="Arcoverde" />
@@ -97,7 +97,7 @@
 
                             </p:panelGrid>
                             <br/>
-                            <p:commandButton styleClass="button_cad" value="Cadastrar" action="#{empresaBean.editarEmpresaAction()}"
+                            <p:commandButton styleClass="button_cad" value="Cadastrar" action="#{controllerEmpresa.alterar(autenticarBean.empresaLogin)}"
                                              update=":formCad :gro" >
                                 <p:confirm header="Atenção" message="Deseja realmente salvar?" />
                             </p:commandButton>
