@@ -51,7 +51,7 @@ h1, p, a {
 
 /* Topo da pagina - barra de navegação */
 .navbar {
-    background-image: radial-gradient(circle at top left, #e22bdf, #8a2be2);
+    background-image: radial-gradient(circle at top left, #0F0B7B, #17134E);
     height: 12%;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, .4);
     position: sticky;
@@ -95,7 +95,7 @@ h1, p, a {
 
 li.menu_login:hover, .outputlinklogin:hover {
     cursor: pointer;
-    color: cyan;
+    color: #B8FF09;
 }
 
 li.menu_login:nth-child(2) {
@@ -258,13 +258,13 @@ h3 {
     position: relative;
     width: 250px;
     height: 250px;
-    background: #7fffd4;
+    background: #17134E;
     border-radius: 50%;
     margin: 3rem;
 }
 
 .flex-itens > div:hover {
-    background: cyan;
+    background: #0E0F66;
     box-shadow: 2px 15px 50px rgba(0, 0, 0, .4);
     cursor: pointer;
     transform: translateY(-12px);
@@ -293,7 +293,7 @@ h3 {
 .informativo {
     margin-top: 5rem;
     padding: 0.5rem 5rem 2rem;
-    background: #7fffd4;
+    background: #DAFF84;
 }
 
 .informativo > h1 {
@@ -348,7 +348,7 @@ h3 {
 
 /* Rodapé da pagina */
 .rodape {
-    background-image: radial-gradient(circle at top left, #e22bdf, #8a2be2);
+    background-image: radial-gradient(circle at top left, #0F0B7B, #17134E);
     min-height: 20rem;
     margin-top: 5rem;
 }
@@ -377,7 +377,7 @@ li.sobre_empresa {
 li.sobre_empresa:first-child {
     font-family: 'Hevernate', sans-serif;
     font-size: 20pt;
-    color: #111111;
+    color: #B8FF09;
     margin-bottom: 1rem;
 }
 
@@ -386,7 +386,7 @@ li.sobre_empresa a {
 }
 
 li.sobre_empresa a:hover {
-    color: cyan;
+    color: #B8FF09;
 }
 
 .copy {

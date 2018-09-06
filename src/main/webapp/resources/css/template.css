@@ -62,7 +62,7 @@ body {
 
 .navbar {
     height: 100%;
-    background-image: radial-gradient(circle at top left, #e22bdf, #8a2be2);
+    background-image: radial-gradient(circle at top left, #0F0B7B, #17134E);
     display: flex;
 }
 
@@ -137,7 +137,7 @@ body {
 }
 
 .rodape {
-    background-image: radial-gradient(circle at top left, #e22bdf, #8a2be2);
+    background-image: radial-gradient(circle at top left, #0F0B7B, #17134E);
     margin-top: 0.5rem;
     min-height: 3rem;
 }
