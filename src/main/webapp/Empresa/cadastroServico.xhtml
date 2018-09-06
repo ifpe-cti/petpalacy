@@ -45,10 +45,12 @@
                                 <p:inputText id="txtDuracao" value="#{controllerServico.servico.duracao}"></p:inputText>
                                 <p:message for="txtDuracao" />
 
-                                <h:outputText styleClass="output_text" value="Valor:#{controllerServico.servico.setEmpresa(controllerEmpresa.empresa)}"/>
+                                <h:outputText styleClass="output_text" value="Valor:#{controllerServico.servico.setEmpresa(autenticarBean.empresaLogin)}"/>
                                 <p:inputText id="txtValor" value="#{controllerServico.servico.valor}"></p:inputText>
                                 <p:message for="txtValor" />
-
+                                <h:outputText value="Horarios:"/>
+                                <p:inputText value="#{controllerServico.horas.hora}"/>
+                                <p:commandButton value="adicionar" action="#{controllerServico.adicionarHorarios()}" update=":formCad :gro"/>
                             </p:panelGrid>
 
                             <br/>

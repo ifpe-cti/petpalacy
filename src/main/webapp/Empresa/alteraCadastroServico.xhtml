@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Petpalacy</title>
     </h:head>
@@ -13,41 +14,50 @@
             <ui:define name="head">
                 <h:outputStylesheet library="css" name="cadastrar.css" />
             </ui:define>
-            
+
+            <c:if test="#{autenticarBean.empresaLogin} == null">
+                <script>
+                    location.href = "Empresa/cadastrar.xhtml?faces-redirect=true";
+                </script>
+
+            </c:if>
+
             <ui:define name="conteudo">
                 <p:growl id="gro" life="4000" />
-                
+
                 <p:toolbar>
                     <f:facet name="left"><h:outputText value="ALTERAR SERVIÇOS" /></f:facet>
                 </p:toolbar>
-                
+
                 <p:separator />
-                
+
                 <div class="container_formcad">
                     <div class="content_formcad">
                         <h:form id="formCad">
-                            <h1 class="titulo_cadservi">DADOS DO SERVIÇO</h1>
+                            <h1 class="titulo_cadservi">Dados dos serviços</h1>
                             <p:panelGrid styleClass="panelgridcad" columns="3">
                                 <h:outputText styleClass="output_text" value="Nome:"/>
                                 <p:inputText id="txtNome" value="#{controllerServico.servico.nome}" required="true"
                                              requiredMessage="Tá faltando preencher o campo nome!"/>
                                 <p:message for="txtNome" />
 
-                                <h:outputText styleClass="output_text" value="Valor:"/>
-                                <p:inputMask id="txtValor" value="#{controllerServico.servico.valor}" mask="999.99,99"
-                                             required="true" requiredMessage="Tá faltando preencher o campo valor!"/>
-                                <p:message for="txtValor" />
-
                                 <h:outputText styleClass="output_text" value="Duração:"/>
-                                <p:inputMask id="txtDuracao" value="#{controllerServico.servico.duracao}" mask="999"/>
+                                <p:inputText id="txtDuracao" value="#{controllerServico.servico.duracao}"></p:inputText>
                                 <p:message for="txtDuracao" />
-                               
+
+                                <h:outputText styleClass="output_text" value="Valor:#{controllerServico.servico.setEmpresa(autenticarBean.empresaLogin)}"/>
+                                <p:inputText id="txtValor" value="#{controllerServico.servico.valor}"></p:inputText>
+                                <p:message for="txtValor" />
+                                <h:outputText value="Horarios:"/>
+                                <p:inputText value="#{controllerServico.horas.hora}"/>
+                                <p:commandButton value="adicionar" action="#{controllerServico.adicionarHorarios()}" update=":formCad :gro"/>
                             </p:panelGrid>
 
                             <br/>
-                            <p:commandButton styleClass="button_cad" value="Alterar" action="#{controllerServico.alterar()}"
+
+                            <p:commandButton styleClass="button_cad" value="Cadastrar" action="#{controllerServico.alterar()}"
                                              update=":formCad :gro" >
-                                <p:confirm header="Atenção" message="Deseja realmente alterar?" />
+                                <p:confirm header="Atenção" message="Deseja realmente salvar?" />
                             </p:commandButton>
                         </h:form>
 
@@ -58,6 +68,7 @@
                             </h:form>
                         </p:confirmDialog>
                     </div>
+
                 </div>
             </ui:define>
         </ui:composition>

@@ -24,6 +24,7 @@ SOFTWARE.
  */
 package br.edu.ifpe.petpalacy.controller;
 
+import br.edu.ifpe.petpalacy.model.entidades.Horarios;
 import br.edu.ifpe.petpalacy.model.entidades.Servico;
 import br.edu.ifpe.petpalacy.model.negocio.NegocioServico;
 import br.edu.ifpe.petpalacy.util.Mensagens;
@@ -42,17 +43,21 @@ public class ControllerServico {
     
     private NegocioServico negServico;
     private Servico servico;
+    private Horarios horas;
     private ArrayList<Servico> listaServico;
+    private ArrayList<Horarios> listaHorarios;
     
     public ControllerServico(){
-        
+        horas = new Horarios();
         negServico = new NegocioServico();
         servico = new Servico();
         listaServico = new ArrayList<>();
+        listaHorarios = new ArrayList<>();
     }
     
     public void salvar(){
         try {
+            servico.setListaDeHorarios(listaHorarios);
             negServico.salvar(servico);
             Mensagens.getInstance().salvoComSucesso();
         } catch(Exception ex){
@@ -81,6 +86,10 @@ public class ControllerServico {
     public void listar(){
         listaServico = (ArrayList<Servico>) negServico.listar();
     }
+    public void adicionarHorarios(){
+        listaHorarios.add(horas);
+        horas = new Horarios();
+    }
     
     public void buscarId(){
         negServico.buscar(servico.getIdServico());
@@ -108,6 +117,22 @@ public class ControllerServico {
 
     public void setListaServico(ArrayList<Servico> listaServico) {
         this.listaServico = listaServico;
+    }
+
+    public Horarios getHoras() {
+        return horas;
+    }
+
+    public void setHoras(Horarios horas) {
+        this.horas = horas;
+    }
+
+    public ArrayList<Horarios> getListaHorarios() {
+        return listaHorarios;
+    }
+
+    public void setListaHorarios(ArrayList<Horarios> listaHorarios) {
+        this.listaHorarios = listaHorarios;
     }
     
     

@@ -1,8 +1,10 @@
 
+import br.edu.ifpe.petpalacy.controller.ControllerServico;
 import br.edu.ifpe.petpalacy.model.entidades.Agendamento;
 import br.edu.ifpe.petpalacy.model.entidades.Cliente;
 import br.edu.ifpe.petpalacy.model.entidades.Empresa;
 import br.edu.ifpe.petpalacy.model.entidades.Endereco;
+import br.edu.ifpe.petpalacy.model.entidades.Horarios;
 import br.edu.ifpe.petpalacy.model.entidades.Servico;
 import br.edu.ifpe.petpalacy.model.entidades.StatusAgen;
 import br.edu.ifpe.petpalacy.model.negocio.NegocioAgendamento;
@@ -10,6 +12,7 @@ import br.edu.ifpe.petpalacy.model.negocio.NegocioCliente;
 import br.edu.ifpe.petpalacy.model.negocio.NegocioEmpresa;
 import br.edu.ifpe.petpalacy.model.negocio.NegocioServico;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 
 /*
@@ -42,29 +45,49 @@ SOFTWARE.
  */
 public class TESTE {
     public static void main(String[] args) throws Exception {
-     /*   
+     
     Endereco end = new Endereco("rua duque de caxias", 34, "são Joao", "planalto");
         Cliente cli = new Cliente("cicero", "11472554400", "0000000", end,"sao@gail.com", "sasa");
     Empresa ep = new Empresa("72522856000138", "saosap", "dkpaz@gmail.com", "00000000", "petCao", end);
-    Servico ser = new Servico("banho", 20, new BigDecimal(20.90), ep);
-    Servico ser1 = new Servico("tosa", 40, new BigDecimal(20.90), ep);
-    Servico ser2 = new Servico("vacina", 15, new BigDecimal(20.90), ep);
-    Servico ser3 = new Servico("banho", 20, new BigDecimal(87.90), ep);
-    Servico ser4 = new Servico("adestramento", 56, new BigDecimal(54.90), ep);
-        Agendamento ar = new Agendamento(ser4, cli, new Date(), null, StatusAgen.REALIZADO);
+        Horarios hor = new Horarios("12:00");
+        Horarios hor1 = new Horarios("11:00");
+        Horarios hor2 = new Horarios("12:30");
+        Horarios hor3 = new Horarios("01:00");
+        Horarios hor4 = new Horarios("01:30");
+        Horarios hor5 = new Horarios("02:00");
+        ArrayList<Horarios> ho = new ArrayList<>();
+        ho.add(hor);
+        ho.add(hor1);
+        ho.add(hor2);
+        ho.add(hor3);
+        ho.add(hor4);
+        ho.add(hor5);
+    Servico ser = new Servico("banho", 20, new BigDecimal(20.90), ep, ho);
+    Servico ser1 = new Servico("tosa", 40, new BigDecimal(20.90), ep, null);
+    Servico ser2 = new Servico("vacina", 15, new BigDecimal(20.90), ep, null);
+    Servico ser3 = new Servico("banho", 20, new BigDecimal(87.90), ep, null);
+    Servico ser4 = new Servico("adestramento", 56, new BigDecimal(54.90), ep, null);
+        Agendamento ar = new Agendamento(ser4, cli, "20/12/1998", null, StatusAgen.REALIZADO);
         NegocioCliente c = new NegocioCliente();
     NegocioEmpresa neg = new NegocioEmpresa();
     NegocioServico nes = new NegocioServico();
         NegocioAgendamento ag = new NegocioAgendamento();
     c.salvar(cli);
     neg.salvar(ep);
+    ser.setEmpresa(neg.buscar(35));
+    //    ControllerServico cro = new ControllerServico();
+        //cro.setListaHorarios(ho);
+        //cro.setHoras(hor5);
+        //cro.adicionarHorarios();
+        //cro.setServico(ser);
+        //cro.salvar();
     nes.salvar(ser);
     nes.salvar(ser1);
     nes.salvar(ser2);
     nes.salvar(ser3);
     nes.salvar(ser4);
     ag.salvar(ar);
-*/
+
     
             }
 }
