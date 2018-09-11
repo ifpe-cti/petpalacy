@@ -29,27 +29,27 @@
                             <h1 class="titulo_cadcli">Dados pessoais</h1>
                             <p:panelGrid styleClass="panelgridcad" columns="3">
                                 <h:outputText styleClass="output_text" value="Nome:"/>
-                                <p:inputText id="txtNome" value="#{controllerCliente.cliente.nome}" required="true"
+                                <p:inputText id="txtNome" value="#{autenticarBean.clienteLogin.nome}" required="true"
                                              requiredMessage="Tá faltando preencher o campo nome!"/>
                                 <p:message for="txtNome" />
 
                                 <h:outputText styleClass="output_text" value="CPF:"/>
-                                <p:inputMask id="txtCpf" value="#{controllerCliente.cliente.cpf}" mask="999.999.999-99"
+                                <p:inputMask id="txtCpf" value="#{autenticarBean.clienteLogin.cpf}" mask="999.999.999-99"
                                              required="true" requiredMessage="Tá faltando preencher o campo CPF!"/>
                                 <p:message for="txtCpf" />
 
                                 <h:outputText styleClass="output_text" value="Telefone:"/>
-                                <p:inputMask id="txtTelefone" value="#{controllerCliente.cliente.telefone}" mask="(99)99999-9999"
+                                <p:inputMask id="txtTelefone" value="#{autenticarBean.clienteLogin.telefone}" mask="(99)99999-9999"
                                              required="true" requiredMessage="Tá faltando preencher o campo telefone!"/>
                                 <p:message for="txtTelefone" />
 
                                 <h:outputText styleClass="output_text" value="Email:"/>
-                                <p:inputText id="email" value="#{controllerCliente.cliente.email}" required="true"
+                                <p:inputText id="email" value="#{autenticarBean.clienteLogin.email}" required="true"
                                              requiredMessage="Tá faltando preencher o campo email!"/>
                                 <p:message for="email"/>
 
                                 <h:outputText styleClass="output_text" value="Senha:"/>
-                                <p:password id="senha" feedback="true" value="#{controllerCliente.cliente.senha}" required="true"
+                                <p:password id="senha" feedback="true" value="#{autenticarBean.clienteLogin.senha}" required="true"
                                             requiredMessage="Tá faltando preencher o campo senha!" />
                                 <p:message for="senha"/>
                                 
@@ -59,22 +59,22 @@
 
                             <p:panelGrid styleClass="panelgrid_end" columns="3">
                                 <h:outputText styleClass="output_text" value="Rua:"/>
-                                <p:inputText id="txtRua" value="#{controllerCliente.cliente.endereco.logradouro}" required="true"
+                                <p:inputText id="txtRua" value="#{autenticarBean.clienteLogin.endereco.logradouro}" required="true"
                                              requiredMessage="Tá faltando preencher o campo rua!"/>
                                 <p:message for="txtRua" />
                                 
                                 <h:outputText styleClass="output_text" value="Número:"/>
-                                <p:inputText id="txtNumero" value="#{controllerCliente.cliente.endereco.numero}" required="true"
+                                <p:inputText id="txtNumero" value="#{autenticarBean.clienteLogin.endereco.numero}" required="true"
                                              requiredMessage="Tá faltando preencher o campo número!"/>
                                 <p:message for="txtNumero" />
 
                                 <h:outputText styleClass="output_text" value="Bairro:"/>
-                                <p:inputText id="txtBairro" value="#{controllerCliente.cliente.endereco.bairro}" required="true" 
+                                <p:inputText id="txtBairro" value="#{autenticarBean.clienteLogin.endereco.bairro}" required="true" 
                                              requiredMessage="Tá faltando preencher o campo bairro!"/>
                                 <p:message for="txtBairro" />
 
                                 <h:outputText styleClass="output_text" value="Cidade:"/>
-                                <p:selectOneMenu id="textCidade" value="#{controllerCliente.cliente.endereco.cidade}" 
+                                <p:selectOneMenu id="textCidade" value="#{autenticarBean.clienteLogin.endereco.cidade}" 
                                                  requiredMessage="Tá faltando preencher o campo cidade!">
                                     <f:selectItem itemLabel="Selecione um cidade" itemValue="" />
                                     <f:selectItem itemLabel="Arcoverde" itemValue="Arcoverde" />
@@ -97,7 +97,7 @@
 
                             </p:panelGrid>
                             <br/>
-                            <p:commandButton styleClass="button_cad" value="Alterar" action="#{controllerCliente.alterar()}"
+                            <p:commandButton styleClass="button_cad" value="Alterar" action="#{controllerCliente.alterar(autenticarBean.clienteLogin)}"
                                              update=":formCad :gro" >
                                 <p:confirm header="Atenção" message="Deseja realmente salvar?" />
                             </p:commandButton>
