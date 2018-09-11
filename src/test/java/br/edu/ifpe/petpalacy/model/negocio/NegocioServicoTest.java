@@ -51,6 +51,7 @@ public class NegocioServicoTest {
     
     public NegocioServicoTest() {
         negServico = new NegocioServico();
+        negEmpresa = new NegocioEmpresa();
     }
     
     @BeforeClass
@@ -64,31 +65,38 @@ public class NegocioServicoTest {
         horas.add(hora2);
         horas.add(hora3);
         
-        empresa = new Empresa("92602190020104", "123emp", "empresa@gmail.com", "99218121", "Seu Pet", null);
+        empresa = new Empresa("80325573000124", "123emp", "empresa@gmail.com", "99218121", "Seu Pet", null);
         servico = new Servico("Tosa", 20, new BigDecimal(50.00), empresa, horas);
-        servicoDeletar = new Servico("Aparar Pelos", 45, new BigDecimal(20), empresa, horas);
+        servicoDeletar = new Servico("Aparar Pelos", 45, new BigDecimal(20), empresa, null);
         negServico = new NegocioServico();
+        negEmpresa = new NegocioEmpresa();
         
         negEmpresa.salvar(empresa);
+        negServico.salvar(servico);
         negServico.salvar(servicoDeletar);
     }
     
     @AfterClass
     public static void depoisDosTestes() throws Exception {
         negServico.deletar(servico);
-        negServico.deletar(servicoSalvar);
+        negEmpresa.deletar(empresa);
     }
     
-    @Before
+   @Before
     public void setup()throws Exception{
-        negServico.salvar(servico);
     }
 
     @Test
     public void testDeveSalvarNoBanco() throws Exception {
-        assertNotNull(negServico.buscar(servicoSalvar.getIdServico()).getIdServico());
+        assertNotNull(negServico.buscar(servico.getIdServico()).getIdServico());
     }
-
+    
+    @Test(expected = Exception.class)
+    public void testDeveDispararUmaExecaoAOSalvarServicoNuloNoBanco() throws Exception {
+        Servico texte = null;
+        negServico.salvar(texte);
+    }
+    
     @Test
     public void testDeveEditarNoBanco() throws Exception {
         servico.setDuracao(20);
@@ -96,6 +104,14 @@ public class NegocioServicoTest {
         
         negServico.editar(servico);
         servicoBuscar = negServico.buscar(servico.getIdServico());
+        
+        assertEquals(servico.getDuracao(), servicoBuscar.getDuracao());
+    }
+    
+    @Test(expected = Exception.class)
+    public void testDeveDispararUmaExecaoAOAlterarServicoNuloNoBanco() throws Exception {
+        Servico texte = null;
+        negServico.editar(texte);
     }
 
     @Test
@@ -104,6 +120,12 @@ public class NegocioServicoTest {
         
         assertNull(negServico.buscar(servicoDeletar.getIdServico()));
     }
+    
+    @Test(expected = Exception.class)
+    public void testDeveDispararUmaExecaoAODeletarServicoNaoExistenteNoBanco() throws Exception {
+        Servico texte = new Servico("", 1, BigDecimal.ZERO, empresa, null);
+        negServico.deletar(texte);
+    }  
 
     @Test
     public void testDeveListarTodos() {
@@ -114,7 +136,7 @@ public class NegocioServicoTest {
     
     @Test
     public void testDeveBuscarNoBanco() {
-        servicoBuscar = negServico.buscar(servicoSalvar.getIdServico());
+        servicoBuscar = negServico.buscar(servico.getIdServico());
         assertNotNull(servicoBuscar);
     }
     
