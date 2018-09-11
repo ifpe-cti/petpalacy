@@ -68,7 +68,7 @@ public class NegocioEmpresaTest {
 
     @AfterClass
     public static void tearsDownClass() throws Exception {
-
+        empresa.setCnpj("54357145000173");
         negocioEmpresa.deletar(empresa);
         negocioEmpresa.deletar(empresaPSalvar);
     }
@@ -105,14 +105,12 @@ public class NegocioEmpresaTest {
 
     @Test
     public void deveAlterarEmpresaNoBanco() throws Exception {
-        empresa.setEmail("novoEmailEmpresa.hotmail.com");
         empresa.setNome("PalacioDosGatos");
 
         negocioEmpresa.editar(empresa);
 
         empresaEncontrada = negocioEmpresa.buscarCnpj(empresa.getCnpj());
 
-        assertEquals(empresa.getEmail(), empresaEncontrada.getEmail());
         assertEquals(empresa.getNome(), empresaEncontrada.getNome());
 
     }
