@@ -23,11 +23,12 @@
  */
 package br.edu.ifpe.petpalacy.dao;
 
-import br.edu.ifpe.petpalacy.dao.PersistenciaDAO;
 import br.edu.ifpe.petpalacy.model.entidades.Cliente;
 import br.edu.ifpe.petpalacy.model.entidades.Endereco;
-import org.junit.Assert;
-import org.junit.Ignore;
+import java.util.List;
+import org.junit.AfterClass;
+import static org.junit.Assert.assertEquals;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -35,88 +36,96 @@ import org.junit.Test;
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
  */
 public class PersistenciaDAOTest {
-    @Test
-    @Ignore
-    public void salvarTest() {
+     private static int codigoPersiste = 0;
+    
+    @BeforeClass
+    public static void deveSalvarObjetoTest() {
         Cliente cliente = new Cliente();
-        cliente.setNome("Paulo");
+        cliente.setNome("ObjetoPersisteDAO");
         cliente.setCpf("33333333333");
         cliente.setTelefone("33333333333");
-        cliente.setEmail("paulo@ifpe.com");
-        cliente.setSenha("paulo12345");
+        cliente.setEmail("persistedao@ifpe.com");
+        cliente.setSenha("persistedao12345");
         
         Endereco end = new Endereco();
-        end.setLogradouro("Av Pedro Falcao 50");
+        end.setLogradouro("Av Pedro Falcao");
+        end.setNumero(50);
         end.setBairro("Sao Jose");
         end.setCidade("Garanhuns");
         
         cliente.setEndereco(end);
         PersistenciaDAO.getInstance().salvar(cliente);
         
-        String sql = "SELECT c FROM Cliente c";
-        Cliente cli = (Cliente) PersistenciaDAO.getInstance().listar(sql).get(0);
-        Assert.assertEquals("Paulo", cli.getNome());
+        String sql = "SELECT c FROM Cliente c"; 
+        List<Cliente> clientes = (List<Cliente>) PersistenciaDAO.getInstance().listar(sql);
+        for(Cliente lista : clientes) {
+            if("ObjetoPersisteDAO".equals(lista.getNome())) {
+                codigoPersiste = lista.getIdCliente();
+            }
+        }
+        
+        String sqlSalv = "SELECT c FROM Cliente c WHERE c.id ="+codigoPersiste;
+        Cliente cli = (Cliente) PersistenciaDAO.getInstance().listar(sqlSalv).get(0);
+        assertEquals("ObjetoPersisteDAO", cli.getNome());
     }
     
     @Test
-    @Ignore
-    public void listarTest() {
-        String sql = "SELECT a FROM Cliente a", email = "joaoemail", senha = "joao12345";
-        Cliente cliente = (Cliente) PersistenciaDAO.getInstance().autenticar(sql, email, senha);
-        Assert.assertEquals("Joao", cliente.getNome());
+    //@Ignore
+    public void deveListarObjtosTest() {
+        String sql = "SELECT c FROM Cliente c"; 
+        List<Cliente> clientes = (List<Cliente>) PersistenciaDAO.getInstance().listar(sql);
+        boolean listou = clientes.size()>0;
+        assertEquals(true, listou);
     }
     
     @Test
-    @Ignore
-    public void editarTest() {
+    //@Ignore
+    public void deveEditarObjetoTest() {
+        Cliente cliente = null;
+        
         String sql = "SELECT c FROM Cliente c";
-        Cliente cliente = (Cliente) PersistenciaDAO.getInstance().listar(sql).get(0);
+        List<Cliente> clientes = (List<Cliente>) PersistenciaDAO.getInstance().listar(sql);
+        for(Cliente lista : clientes) {
+            if("ObjetoPersisteDAO".equals(lista.getNome())) {
+                cliente = lista;
+                cliente.setNome("ObjetoPersisteDAOEdit");
+                cliente.setCpf("22222222222");
+                cliente.setTelefone("333333333");
+                cliente.setEmail("edit@ifpe.com");
+                cliente.setSenha("edit121212");
+
+                Endereco endereco = new Endereco();
+                endereco.setLogradouro("AV Frei Caneca 112");
+                endereco.setBairro("Heliopolis");
+                endereco.setCidade("Garanhuns");
+
+                cliente.setEndereco(endereco);
+                break;
+            }
+        }
         
-        cliente.setNome("Mario");
-        cliente.setCpf("22222222222");
-        cliente.setTelefone("333333333");
-        cliente.setEmail("mario@ifpe.com");
-        cliente.setSenha("121212");
-        
-        Endereco endereco = new Endereco();
-        endereco.setLogradouro("AV Frei Caneca 112");
-        endereco.setBairro("Heliopolis");
-        endereco.setCidade("Garanhuns");
-        
-        cliente.setEndereco(endereco);
         PersistenciaDAO.getInstance().editar(cliente);
         
-        Cliente cli = (Cliente) PersistenciaDAO.getInstance().listar(sql).get(0);
-        Assert.assertEquals("Mario", cli.getNome());
+        String sqlEdit = "SELECT c FROM Cliente c WHERE c.id ="+codigoPersiste;
+        Cliente cli = (Cliente) PersistenciaDAO.getInstance().listar(sqlEdit).get(0);
+        assertEquals("ObjetoPersisteDAOEdit", cli.getNome());
     }
     
     @Test
-    @Ignore
-    public void deletarTest() {
-        String sql = "SELECT c FROM Cliente c";
-        Cliente cliente = (Cliente) PersistenciaDAO.getInstance().listar(sql).get(2);
-        PersistenciaDAO.getInstance().deletar(cliente);
-    } 
-    
-    @Test
-    @Ignore
-    public void buscarTest() {
-        String sql = "SELECT c FROM Cliente c";
-        Cliente cliente = (Cliente) PersistenciaDAO.getInstance().listar(sql).get(0);
-        System.out.println(cliente.getNome());
-        
-        Assert.assertEquals("Mario", cliente.getNome());
-    }
-    
-    @Test
-    @Ignore
-    public void autenticarTest() {
-        String sql = "SELECT a FROM Cliente a", email = "mario@ifpe.com", senha = "121212";
+    //@Ignore
+    public void deveAutenticarObjetoTest() {
+        String sql = "SELECT a FROM Cliente a", email = "edit@ifpe.com", senha = "edit121212";
         Cliente cliente  = (Cliente) PersistenciaDAO.getInstance().autenticar(sql, email, senha);
         
-        System.out.println(cliente.getEmail());
-        
-        Assert.assertEquals("mario@ifpe.com", cliente.getEmail());
+        assertEquals("edit@ifpe.com", cliente.getEmail());
+    }
+    
+    @AfterClass
+    //@Ignore
+    public static void deveDeletarObjetoTest() {
+        String sql = "SELECT c FROM Cliente c WHERE c.id ="+codigoPersiste;
+        Cliente cliente = (Cliente) PersistenciaDAO.getInstance().listar(sql).get(0);
+        PersistenciaDAO.getInstance().deletar(cliente);
     }
     
 }

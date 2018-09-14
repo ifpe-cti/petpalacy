@@ -38,26 +38,23 @@ public class PersistenciaDAOExceptoinTest {
     @Ignore
     public void autenticarRuntimeExceptionTest() {
         String sql = "SELECT a FROM Cliente a";
-        String email = "joao@ifpe.com"; //Usuario invalido!!
-        String senha = "121212";
+        String email = "usuario@ifpe.com"; //Usuario invalido!!
+        String senha = "123456";
         
         Cliente cliente  = (Cliente) PersistenciaDAO.getInstance().autenticar(sql, email, senha);
         
         System.out.println(cliente.getEmail());
-
     }
     
     @Test(expected = NullPointerException.class)
-    @Ignore
+    //@Ignore
     public void autenticarNullPointerExceptionTest() {
         String sql = "SELECT a FROM Cliente a";
-        String email = null; //Usuario invalido!!
-        String senha = "121212";
+        String email = "objeto_inexistente"; //Usuario invalido!!
+        String senha = "123456";
         
         Cliente cliente  = (Cliente) PersistenciaDAO.getInstance().autenticar(sql, email, senha);
-        
         System.out.println(cliente.getEmail());
-
     }
     
 }

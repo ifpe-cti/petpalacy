@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Petpalacy</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="templates/templateSistema.xhtml">
+            <ui:define name="head">
+                <h:outputStylesheet library="css" name="comunicacao_inf.css" />
+            </ui:define>
+            
+            <ui:define name="conteudo">
+                <p:growl id="gro" life="4000" />
+                <div class="container">
+                    <div class="content-faleconosco">
+                        <h1>Fale conosco</h1>
+                        
+                        <h:form id="form_faleconosco">
+                            <h:outputText styleClass="titulo_form" value="Seu nome"/><br/>
+                            <p:inputText id="txtSeuNome" styleClass="input_form" value="#" required="true" requiredMessage="Tá faltando preencher o campo seu nome!"/>
+                            <p:message for="txtSeuNome" /><br/>
+                            
+                            <h:outputText styleClass="titulo_form" value="Telefone"/><br/>
+                            <p:inputText id="txtTelefone" styleClass="input_form" value="#" required="true" requiredMessage="Tá faltando preencher o campo telefone!"/>
+                            <p:message for="txtTelefone" /><br/>
+                            
+                            <h:outputText styleClass="titulo_form" value="E-mail"/><br/>
+                            <p:inputText id="txtEmail" styleClass="input_form" value="#" required="true" requiredMessage="Tá faltando preencher o campo email!"/>
+                            <p:message for="txtEmail" /><br/>
+                            
+                            <h:outputText styleClass="titulo_form" value="Titulo da mensagem"/><br/>
+                            <p:inputText id="txtTitulo" styleClass="input_form" value="#" required="true" requiredMessage="Tá faltando preencher o campo titulo da mensagem!"/>
+                            <p:message for="txtTitulo" /><br/>
+                            
+                            <h:outputText styleClass="titulo_form" value="Mensagem"/><br/>
+                            <p:inputTextarea id="txtMensagem" rows="5" cols="55" value="#" required="true" requiredMessage="Tá faltando preencher o campo mensagem!"/>
+                            <p:message for="txtMensagem" /><br/>
+                            
+                            <p:commandButton styleClass="button_enviar" value="Enviar" action="#" update=":form_faleconosco :gro" >
+                                <p:confirm header="Atenção" message="Mensagem enviada com sucesso?" />
+                            </p:commandButton>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
