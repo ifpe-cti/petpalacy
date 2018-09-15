@@ -83,7 +83,7 @@ public class RepositorioAgendamentoImplDBTest {
             
         repAgendamento.editar(agendamento);
         
-        assertNotEquals(StatusAgen.AGENDADO, repAgendamento.buscar(codigoAgendamento).getStatusAgen());
+        assertEquals(StatusAgen.AGENDADO, repAgendamento.buscar(codigoAgendamento).getStatusAgen());
     }
     
     @AfterClass
