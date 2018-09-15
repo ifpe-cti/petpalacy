@@ -23,15 +23,12 @@
  */
 package br.edu.ifpe.petpalacy.repositorio.implementacao;
 
-import br.edu.ifpe.petpalacy.repositorio.implementacao.RepositorioClienteImplDB;
 import br.edu.ifpe.petpalacy.model.entidades.Cliente;
 import br.edu.ifpe.petpalacy.model.entidades.Endereco;
 import java.util.List;
-import org.junit.After;
-import org.junit.Assert;
+import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
-import org.junit.Before;
-import org.junit.Ignore;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -39,87 +36,66 @@ import org.junit.Test;
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
  */
 public class RepositorioClienteImplDBTest {
-    private static Cliente cliente = new Cliente();
+    private static int codigoUsuario = 0;
     
-    @Before
-    public void pTest() {
-        cliente.setNome("Joao");
-        cliente.setCpf("22335468934");
-        cliente.setTelefone("999999999999");
-        cliente.setEmail("joao@ifpe.com");
-        cliente.setSenha("joao12345");
+    @BeforeClass
+    //@Ignore
+    public static void deveSalvarClienteTest() {
+        Cliente cliente = new Cliente();
+        cliente.setNome("UsuarioTeste");
+        cliente.setCpf("33333333333");
+        cliente.setTelefone("88888888888");
+        cliente.setEmail("usuarioteste@ifpe.com");
+        cliente.setSenha("usuarioteste12345");
         
         Endereco endereco = new Endereco();
-        endereco.setLogradouro("Rua Jose do Amaral");
-        endereco.setNumero(45);
+        endereco.setLogradouro("AV Joaquim Nabuco");
+        endereco.setNumero(26);
         endereco.setBairro("Boa Vista");
         endereco.setCidade("Garanhuns");
+        
         cliente.setEndereco(endereco);
         
         RepositorioClienteImplDB repCliente = new RepositorioClienteImplDB();
         repCliente.salvar(cliente);
-    }
-    
-    @After
-    public void downTest() {
-        RepositorioClienteImplDB repCliente = new RepositorioClienteImplDB();
-        // saber se existe esse agendamento 
-        repCliente.deletar(cliente);  
-    }
-    
-    @Test
-    @Ignore
-    public void deveSalvarClienteTest() {
-        Cliente cli = new Cliente();
-        cli.setNome("Pedro");
-        cli.setCpf("33333333333");
-        cli.setTelefone("88888888888");
-        cli.setEmail("pedro@ifpe.com");
-        cli.setSenha("pedro12345");
         
-        Endereco end = new Endereco();
-        end.setLogradouro("AV Joaquim Nabuco");
-        end.setNumero(26);
-        end.setBairro("Boa Vista");
-        end.setCidade("Garanhuns");
+        List<Cliente> clientes = repCliente.listar();
+        for (Cliente clienteLista : clientes) {
+            if("UsuarioTeste".equals(clienteLista.getNome())) {
+                codigoUsuario = clienteLista.getIdCliente();
+            }
+        }
         
-        cli.setEndereco(end);
-        
-        RepositorioClienteImplDB repCliente = new RepositorioClienteImplDB();
-        repCliente.salvar(cli);
-        
-        assertEquals("Pedro", repCliente.buscar(2).getNome());
+        assertEquals("UsuarioTeste", repCliente.buscar(codigoUsuario).getNome());
     }
     
     @Test
-    @Ignore
+    //@Ignore
     public void deveListarTodosClientesTest() {
         RepositorioClienteImplDB repCliente = new RepositorioClienteImplDB();
         List<Cliente> clientes = repCliente.listar();
-        
-        assertEquals(2, clientes.size());
-        
+        boolean listou = clientes.size()>0;
+        assertEquals(true, listou);    
     }
    
     @Test
-    @Ignore
+    //@Ignore
     public void deveBuscarClientePeloIdTest() {  
-        RepositorioClienteImplDB repCliente = new RepositorioClienteImplDB();
-        
-        Cliente cli = repCliente.buscar(cliente.getIdCliente());
-        assertEquals(cliente.getIdCliente(), cli.getIdCliente());
+        RepositorioClienteImplDB repCliente = new RepositorioClienteImplDB();        
+        assertEquals("UsuarioTeste", repCliente.buscar(codigoUsuario).getNome());
     } 
     
     @Test
-    @Ignore
+    //@Ignore
     public void deveEditarClienteCadastradoTest() {
         RepositorioClienteImplDB repCliente = new RepositorioClienteImplDB();
-        Cliente cli = repCliente.buscar(cliente.getIdCliente());
-        cli.setNome("Gustavo");
-        cli.setCpf("34578934512");
-        cli.setTelefone("333333333");
-        cli.setEmail("gustavo@ifpe.com");
-        cli.setSenha("121212");
+        
+        Cliente cliente = repCliente.buscar(codigoUsuario);
+        cliente.setNome("UsuarioTeste2");
+        cliente.setCpf("34578934512");
+        cliente.setTelefone("333333333");
+        cliente.setEmail("usuarioteste2@ifpe.com");
+        cliente.setSenha("usuarioteste2");
         
         Endereco endereco = new Endereco();
         endereco.setLogradouro("Av Frei Caneca");
@@ -127,28 +103,28 @@ public class RepositorioClienteImplDBTest {
         endereco.setBairro("Heliopolis");
         endereco.setCidade("Garanhuns");
         
-        cli.setEndereco(endereco);
+        cliente.setEndereco(endereco);
         
-        repCliente.editar(cli);
-        assertEquals(cliente.getNome(), cli.getNome());
+        repCliente.editar(cliente);
+        assertEquals("UsuarioTeste2", repCliente.buscar(codigoUsuario).getNome());
     }
     
     @Test
-    @Ignore
-    public void deveDeletarClienteCadastradoTest() {
-      RepositorioClienteImplDB repCliente = new RepositorioClienteImplDB();
-      Cliente cli = repCliente.buscar(cliente.getIdCliente());
-      
-      repCliente.deletar(cli);
-    }
-    
-    @Test
-    @Ignore
+    //@Ignore
     public void deveAutenticarClientePeloEmailSenhaTest() {
         RepositorioClienteImplDB repCliente = new RepositorioClienteImplDB();
-        Cliente cli = repCliente.autenticar("joao@ifpe.com", "joao12345");
+        Cliente cliente = repCliente.autenticar("usuarioteste@ifpe.com", "usuarioteste12345");
         
-        assertEquals("joao@ifpe.com", cli.getEmail());
+        assertEquals("usuarioteste@ifpe.com", cliente.getEmail());
     }
-
+    
+    @AfterClass
+    //@Ignore
+    public static void deveDeletarClienteCadastradoTest() {
+      RepositorioClienteImplDB repCliente = new RepositorioClienteImplDB();
+      Cliente cliente = repCliente.buscar(codigoUsuario);
+      
+      repCliente.deletar(cliente);
+    }
+    
 }
