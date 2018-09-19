@@ -23,11 +23,15 @@
  */
 package br.edu.ifpe.petpalacy.interfaces;
 
+import java.util.List;
+
 /**
  *
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
  * @param <Agendamento>
  */
 public interface InterfaceAgendamento<Agendamento> extends InterfaceGenerico<Agendamento> {
-    
+    public List listarAgendamentosEmpresa(int id);
+    public List listarAgendamentosCliente(int id);
+
 }

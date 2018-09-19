@@ -23,11 +23,13 @@
  */
 package br.edu.ifpe.petpalacy.interfaces;
 
+import java.util.List;
+
 /**
  *
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
  * @param <Servico>
  */
 public interface InterfaceServico<Servico> extends InterfaceGenerico<Servico> {
-    
+    public List buscarServicosPorEmpresa(int id);
 }

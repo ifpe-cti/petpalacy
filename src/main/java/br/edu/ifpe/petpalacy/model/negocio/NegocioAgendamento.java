@@ -94,6 +94,16 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
     }
 
     @Override
+    public List listarAgendamentosCliente(int id) {
+        return repoAgend.listarAgendamentosCliente(id);
+    }
+
+    @Override
+    public List listarAgendamentosEmpresa(int id) {
+        return repoAgend.listarAgendamentosEmpresa(id);
+    }
+
+    @Override
     public List<Agendamento> listar() {
         List lista = repoAgend.listar();
         if (lista == null) {

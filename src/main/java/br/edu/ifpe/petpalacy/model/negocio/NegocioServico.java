@@ -79,6 +79,12 @@ public class NegocioServico implements InterfaceServico<Servico>{
                 repoServico.editar(servico);
            }
     }
+
+    @Override
+    public List buscarServicosPorEmpresa(int id) {
+        return repoServico.buscarServicosPorEmpresa(id);
+    }
+    
     
     @Override
     public void deletar(Servico servico) throws Exception{

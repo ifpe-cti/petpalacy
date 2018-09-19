@@ -47,8 +47,8 @@ public class TESTE {
     public static void main(String[] args) throws Exception {
      
     Endereco end = new Endereco("rua duque de caxias", 34, "são Joao", "planalto");
-        Cliente cli = new Cliente("cicero", "11472554400", "0000000", end,"sao@gail.com", "sasa");
-    Empresa ep = new Empresa("72522856000138", "saosap", "dkpaz@gmail.com", "00000000", "petCao", end);
+        Cliente cli = new Cliente("cicero", "11472554400", "0000000", end,"danielcalado159@gmail.com", "sasa");
+    Empresa ep = new Empresa("72522856000138", "saosap", "dkinforgames15@gmail.com", "00000000", "petCao", end);
         Horarios hor = new Horarios("12:00");
         Horarios hor1 = new Horarios("11:00");
         Horarios hor2 = new Horarios("12:30");

@@ -92,6 +92,8 @@ public AutenticarBean(){
     public String sair() {
         clienteLogin = null;
         empresaLogin = null;
+        email = "";
+        senha = "";
         return "../index.xhtml?faces-redirect=true";
     }
 
