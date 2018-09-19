@@ -55,36 +55,45 @@ public class ControllerServico {
         listaHorarios = new ArrayList<>();
     }
     
-    public void salvar(){
+    public String salvar(){
         try {
             servico.setListaDeHorarios(listaHorarios);
             negServico.salvar(servico);
             Mensagens.getInstance().salvoComSucesso();
+            return "meusServicos.xhtml?faces-redirect=true";
         } catch(Exception ex){
             Mensagens.getInstance().nenhumaInformacao();
         }
+        return null;
     }
     
-    public void alterar(){
+    public String alterar(){
         try {
             negServico.editar(servico);
             Mensagens.getInstance().alteradoComSucesso();
+             return "meusServicos.xhtml?faces-redirect=true";           
         } catch (Exception ex) {
             Mensagens.getInstance().nenhumaInformacao();
         }
+        return null;
     }
     
-    public void deletar(){
+    public String deletar(){
         try {
             negServico.deletar(servico);
             Mensagens.getInstance().deletadoComSucesso();
+        return "meusServicos.xhtml?faces-redirect=true";
         } catch (Exception ex) {
             Mensagens.getInstance().nenhumaInformacao();
         }
+        return null;
     }
     
     public void listar(){
         listaServico = (ArrayList<Servico>) negServico.listar();
+    }
+    public void listarServicosDeEmpresa(int id){
+        listaServico = (ArrayList<Servico>) negServico.buscarServicosPorEmpresa(id);
     }
     public void adicionarHorarios(){
         listaHorarios.add(horas);

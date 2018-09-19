@@ -55,6 +55,15 @@ public class RepositorioServicoImplDB implements InterfaceServico<Servico> {
     }
 
     @Override
+    public List buscarServicosPorEmpresa(int id) {
+        List lista = PersistenciaDAO.getInstance().listar("SELECT ser FROM Servico ser WHERE ser.empresa=" + id);
+        if (!lista.isEmpty()) {
+            return lista;
+        }
+        return null;
+    }
+
+    @Override
     public void deletar(Servico servico) {
         PersistenciaDAO.getInstance().deletar(servico);
     }

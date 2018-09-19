@@ -55,6 +55,25 @@ public class RepositorioAgendamentoImplDB implements InterfaceAgendamento<Agenda
     }
 
     @Override
+    public List listarAgendamentosCliente(int id) {
+        List lista = PersistenciaDAO.getInstance().listar("SELECT ag FROM Agendamento ag WHERE ag.cliente=" + id);
+        if (!lista.isEmpty()) {
+            return lista;
+        }
+        return null;
+    }
+
+    @Override
+    public List listarAgendamentosEmpresa(int id) {
+List lista = PersistenciaDAO.getInstance().listar("SELECT ag FROM Agendamento ag WHERE ag.servico IN ("
+                                                   + "SELECT serv.id FROM Servico serv WHERE serv.empresa =" + id + ")");
+        if(!lista.isEmpty()){
+            return lista;
+        }
+            return null;    }
+    
+
+    @Override
     public void deletar(Agendamento agendamento) {
         PersistenciaDAO.getInstance().deletar(agendamento);
     }

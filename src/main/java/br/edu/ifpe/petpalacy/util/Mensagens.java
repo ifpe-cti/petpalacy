@@ -54,7 +54,7 @@ public class Mensagens {
     }
 
     public void nenhumaInformacao() {
-        adicionarMensagem(null, "Não foi passada nenhuma Informação!!!", FacesMessage.SEVERITY_ERROR);
+        adicionarMensagem("sfrd", "Não foi passada nenhuma Informação!!!", FacesMessage.SEVERITY_ERROR);
     }
 
     public void jaExisteNoBanco(String texto) {
@@ -66,7 +66,7 @@ public class Mensagens {
     }
     
     public void salvoComSucesso() {
-        adicionarMensagem(null, "Salvo com sucesso!!!", FacesMessage.SEVERITY_INFO);
+        adicionarMensagem("ed", "Salvo com sucesso!!!", FacesMessage.SEVERITY_INFO);
 
     }
 
