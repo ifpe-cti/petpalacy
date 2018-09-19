@@ -13,7 +13,7 @@
 
             <ui:define name="metadata">
                 <f:metadata>
-                    <f:event listener="#{controllerServico.listar()}" type="preRenderView"/>
+                    <f:event listener="#{controllerServico.listarServicosDeEmpresa(autenticarBean.empresaLogin.idEmpresa)}" type="preRenderView"/>
                 </f:metadata>
             </ui:define>
             <ui:define name="conteudo">
@@ -48,6 +48,11 @@
 
                                     </p:column> <p:column  style="width:50px">
                                         <p:commandButton value="Editar" title="editar" action="alteraCadastroServico.xhtml">
+                                            <f:setPropertyActionListener value="#{servico}" target="#{controllerServico.servico}"/>
+                                        </p:commandButton>
+
+                                    </p:column> <p:column  style="width:50px">
+                                        <p:commandButton value="Deletar" title="editar" action="#{controllerServico.deletar()}">
                                             <f:setPropertyActionListener value="#{servico}" target="#{controllerServico.servico}"/>
                                         </p:commandButton>
 
