@@ -9,7 +9,7 @@
         <title>Petpalacy</title>
     </h:head>
     <h:body>
-         <ui:composition template="../templates/templateSistema.xhtml">
+         <ui:composition template="../templates/templateCadastro.xhtml">
             <ui:define name="head">
                 <h:outputStylesheet library="css" name="cadastrar.css" />
             </ui:define>
@@ -105,7 +105,7 @@
 
                         <p:confirmDialog  id="dialConfirm" global="true" widgetVar="widDialConfirma" >
                             <h:form>
-                                <p:commandButton value="sim" styleClass="ui-confirmdialog-yes" type="button" icon="ui-icon-check"/>
+                                <p:commandButton value="sim" styleClass="ui-confirmdialog-yes" type="button" icon="ui-icon-check" />
                                 <p:commandButton value="não" styleClass="ui-confirmdialog-no" type="button" icon="ui-icon-close"/>
                             </h:form>
                         </p:confirmDialog>

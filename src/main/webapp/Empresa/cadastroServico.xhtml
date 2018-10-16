@@ -9,18 +9,12 @@
     <h:head>
         <title>Petpalacy</title>
     </h:head>
+
     <h:body>
         <ui:composition template="../templates/templateEmpresa.xhtml">
             <ui:define name="head">
                 <h:outputStylesheet library="css" name="cadastrar.css" />
             </ui:define>
-
-            <c:if test="#{autenticarBean.empresaLogin} == null">
-                <script>
-                    location.href = "Empresa/cadastrar.xhtml?faces-redirect=true";
-                </script>
-
-            </c:if>
 
             <ui:define name="conteudo">
                 <p:growl id="gro" life="4000" />
