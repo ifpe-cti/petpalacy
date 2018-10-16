@@ -30,6 +30,7 @@
                         <h:form id="formpesquisa">
                             <p:growl id="growl" life="10000" showDetail="true" showSummary="false"/>        
                             <center>
+                                <p:outputLabel value="Se cadaste ou faça o login "/> <p:commandButton value="Ir" action="index.xhtml"/>
                                 <p:dataTable emptyMessage="Nenhum registro encontrado..." value="#{controllerServico.listaServico}"
 
                                              var="servico" id="proTable" 
@@ -46,13 +47,9 @@
                                     </p:column> <p:column headerText="Valor" style="width:50px">
                                         <h:outputText value="R$#{servico.valor}"/>
 
-                                    </p:column> <p:column  style="width:50px">
-                                        <p:commandButton value="Agendar" title="agendar" action="Cliente/agendarServico.xhtml?faces-redirect=true">
-                                            <f:setPropertyActionListener value="#{servico}" target="#{controllerServico.servico}"/>
-                                        </p:commandButton>
-
-                                    </p:column>
+                                    </p:column> 
                                 </p:dataTable>
+                                
                             </center>
                         </h:form>
                     </div>

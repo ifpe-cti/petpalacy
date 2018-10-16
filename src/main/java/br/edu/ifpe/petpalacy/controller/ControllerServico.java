@@ -59,6 +59,7 @@ public class ControllerServico {
         try {
             servico.setListaDeHorarios(listaHorarios);
             negServico.salvar(servico);
+            limpar();
             Mensagens.getInstance().salvoComSucesso();
             return "meusServicos.xhtml?faces-redirect=true";
         } catch(Exception ex){
@@ -71,6 +72,7 @@ public class ControllerServico {
         try {
             negServico.editar(servico);
             Mensagens.getInstance().alteradoComSucesso();
+            limpar();
              return "meusServicos.xhtml?faces-redirect=true";           
         } catch (Exception ex) {
             Mensagens.getInstance().nenhumaInformacao();
@@ -87,6 +89,12 @@ public class ControllerServico {
             Mensagens.getInstance().nenhumaInformacao();
         }
         return null;
+    }
+    
+    public void limpar(){
+         horas = new Horarios();
+         listaHorarios = new ArrayList<>();
+         servico = new Servico();
     }
     
     public void listar(){

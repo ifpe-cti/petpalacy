@@ -55,9 +55,10 @@ public class ControllerCliente implements Serializable {
         try {
             cliente.setCpf(cliente.getCpf().replace(".", ""));
             cliente.setCpf(cliente.getCpf().replace("-", ""));
-
             negCliente.salvar(cliente);
+            limpar();
             Mensagens.getInstance().salvoComSucesso();
+            
         } catch (Exception ex) {
             Mensagens.getInstance().nenhumaInformacao();
         }
@@ -66,6 +67,7 @@ public class ControllerCliente implements Serializable {
     public void alterar(Cliente cli) {
         try {
             negCliente.editar(cliente);
+            limpar();
             Mensagens.getInstance().alteradoComSucesso();
         } catch (Exception ex) {
             Mensagens.getInstance().nenhumaInformacao();
@@ -79,6 +81,10 @@ public class ControllerCliente implements Serializable {
         } catch (Exception ex) {
             Mensagens.getInstance().nenhumaInformacao();
         }
+    }
+    public void limpar(){
+        cliente = new Cliente();
+       
     }
 
     public void listar() {

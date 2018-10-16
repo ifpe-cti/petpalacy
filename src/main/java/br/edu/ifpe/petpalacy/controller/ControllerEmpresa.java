@@ -59,6 +59,7 @@ public class ControllerEmpresa implements Serializable {
 
             negEmpresa.salvar(empresa);
             Mensagens.getInstance().salvoComSucesso();
+            limpar();
             ret = "Menu empresa";
         } catch (Exception ex) {
             Mensagens.getInstance().nenhumaInformacao();
@@ -88,7 +89,10 @@ public class ControllerEmpresa implements Serializable {
         }
         return ret;
     }
-
+    public void limpar(){
+        empresa = new Empresa();
+       
+    }
     public void listar() {
         listaEmpresa = (ArrayList<Empresa>) negEmpresa.listar();
     }

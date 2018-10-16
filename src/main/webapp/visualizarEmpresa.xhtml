@@ -31,6 +31,7 @@
                             <p:growl id="growl" life="10000" showDetail="true" showSummary="false"/>               
                             
                             <center>
+                                <p:outputLabel value="Se cadaste ou faça o login "/> <p:commandButton value="Ir" action="index.xhtml"/>
                                 <p:dataTable emptyMessage="Nenhum registro encontrado..." value="#{controllerEmpresa.listaEmpresa}" 
                                         var="empresa" id="proTable" 
                                         rowKey="#{empresa.idEmpresa}" style="width:700px">
