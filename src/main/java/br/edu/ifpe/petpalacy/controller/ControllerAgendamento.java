@@ -30,7 +30,6 @@ import br.edu.ifpe.petpalacy.model.entidades.Cliente;
 import br.edu.ifpe.petpalacy.model.entidades.Servico;
 import br.edu.ifpe.petpalacy.model.entidades.StatusAgen;
 import br.edu.ifpe.petpalacy.model.negocio.NegocioAgendamento;
-import br.edu.ifpe.petpalacy.util.JavaMail;
 import br.edu.ifpe.petpalacy.util.Mensagens;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -62,7 +61,7 @@ public class ControllerAgendamento implements Serializable {
         try {
             agenda.setStatusAgen(StatusAgen.ESPERA);
             negAgenda.salvar(agenda);
-            JavaMail.getInstance().enviarEmail(agenda, 1);
+            limpar();
             ret = "meusAgendamentos.xhtml?faces-redirect=true";
         } catch (Exception ex) {
             Mensagens.getInstance().nenhumaInformacao();
@@ -79,7 +78,7 @@ public class ControllerAgendamento implements Serializable {
         try {
             negAgenda.editar(agenda);
             Mensagens.getInstance().alteradoComSucesso();
-            JavaMail.getInstance().enviarEmail(agenda, 2);
+            limpar();
             ret = "pagina com o que foi editado";
         } catch (Exception ex) {
             Mensagens.getInstance().nenhumaInformacao();
@@ -97,7 +96,9 @@ public class ControllerAgendamento implements Serializable {
         }
         return ret;
     }
-
+    public void limpar(){
+        agenda = new Agendamento();
+    }
     public String listarAgendamentoCliente(int id) {
         listaAgenda = new ArrayList<>();
                 listaAgenda = (ArrayList<Agendamento>) negAgenda.listarAgendamentosCliente(id);
