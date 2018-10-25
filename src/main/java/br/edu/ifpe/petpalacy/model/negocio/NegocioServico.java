@@ -27,6 +27,7 @@ package br.edu.ifpe.petpalacy.model.negocio;
 import br.edu.ifpe.petpalacy.model.entidades.Servico;
 import br.edu.ifpe.petpalacy.interfaces.InterfaceServico;
 import br.edu.ifpe.petpalacy.repositorio.implementacao.RepositorioServicoImplDB;
+import br.edu.ifpe.petpalacy.util.TratamentoException;
 import java.util.List;
 
 /**
@@ -47,10 +48,10 @@ public class NegocioServico implements InterfaceServico<Servico>{
     @Override
     public void salvar(Servico servico) throws Exception{
         if (servico == null) {
-            throw new Exception("Erro!");
+            TratamentoException.trataSalvar();
         }else{
             if(buscar(servico.getIdServico()) != null){
-                throw new Exception("Erro!");
+               TratamentoException.trataSalvar();
             }else{
                 repoServico.salvar(servico);
             }
@@ -74,7 +75,7 @@ public class NegocioServico implements InterfaceServico<Servico>{
     @Override
     public void editar(Servico servico) throws Exception{
         if(servico == null){
-            throw new Exception("Erro!");
+           TratamentoException.trataEditar();
         }else{
                 repoServico.editar(servico);
            }
@@ -89,11 +90,11 @@ public class NegocioServico implements InterfaceServico<Servico>{
     @Override
     public void deletar(Servico servico) throws Exception{
         if(servico == null){
-            throw new Exception("Erro!");
+            TratamentoException.trataDeletar();
         }else{
             serv = repoServico.buscar(servico.getIdServico());
             if(serv == null){
-                throw new Exception("Erro!");
+                TratamentoException.trataDeletar();
             }else{
                 repoServico.deletar(servico);
             }

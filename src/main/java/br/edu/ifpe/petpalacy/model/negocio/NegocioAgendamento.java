@@ -29,6 +29,7 @@ import br.edu.ifpe.petpalacy.model.entidades.Agendamento;
 import br.edu.ifpe.petpalacy.interfaces.InterfaceAgendamento;
 import br.edu.ifpe.petpalacy.repositorio.implementacao.RepositorioAgendamentoImplDB;
 import br.edu.ifpe.petpalacy.util.Mensagens;
+import br.edu.ifpe.petpalacy.util.TratamentoException;
 import java.util.List;
 
 /**
@@ -48,7 +49,7 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
     public void salvar(Agendamento e) throws Exception {
 
         if (e == null) {
-            throw new Exception("ERRO!!!!!");
+            TratamentoException.trataSalvar();
         } else {
                  repoAgend.salvar(e);
             }
@@ -72,7 +73,7 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
     @Override
     public void editar(Agendamento e) throws Exception {
         if(e == null){
-            throw new Exception("Erro!");
+            TratamentoException.trataEditar();
         }else{
            
                 repoAgend.editar(e);
@@ -82,11 +83,11 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
     @Override
     public void deletar(Agendamento e) throws Exception {
                 if(e == null){
-            throw new Exception("Erro!");
+            TratamentoException.trataDeletar();
         }else{
             agenda = repoAgend.buscar(e.getId());
             if(agenda == null){
-                throw new Exception("Erro!");
+                TratamentoException.trataDeletar();
             }else{
                 repoAgend.deletar(e);
             }
