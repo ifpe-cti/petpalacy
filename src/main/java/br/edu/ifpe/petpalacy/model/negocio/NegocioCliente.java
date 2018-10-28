@@ -29,6 +29,7 @@ import br.edu.ifpe.petpalacy.interfaces.InterfaceCliente;
 import br.edu.ifpe.petpalacy.repositorio.implementacao.RepositorioClienteImplDB;
 import br.edu.ifpe.petpalacy.util.Criptografia;
 import br.edu.ifpe.petpalacy.util.Mensagens;
+import br.edu.ifpe.petpalacy.util.TratamentoException;
 import br.edu.ifpe.petpalacy.util.ValidaCPF;
 import java.util.List;
 
@@ -73,7 +74,7 @@ public class NegocioCliente implements InterfaceCliente<Cliente> {
         boolean status = ValidaCPF.isCPF(cliente.getCpf());
         if (status == true) {
             if (cliente == null || buscarCpf(cliente.getCpf()) != null) {
-                throw new Exception("Erro!");
+                TratamentoException.trataSalvar();
             }
             cliente.setSenha(Criptografia.criptografar(cliente.getSenha()));
             repCliente.salvar(cliente);
@@ -99,7 +100,7 @@ public class NegocioCliente implements InterfaceCliente<Cliente> {
     @Override
     public void editar(Cliente cliente) throws Exception {
         if (cliente == null || buscar(cliente.getIdCliente()) == null) {
-            throw new Exception("Erro");
+            TratamentoException.trataEditar();
         } else {
             repCliente.editar(cliente);
         }
@@ -108,7 +109,7 @@ public class NegocioCliente implements InterfaceCliente<Cliente> {
     @Override
     public void deletar(Cliente cliente) throws Exception {
         if (cliente == null || buscarCpf(cliente.getCpf()) == null) {
-            throw new Exception("Erro");
+            TratamentoException.trataDeletar();
         } else {
             repCliente.deletar(cliente);
         }
