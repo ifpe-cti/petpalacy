@@ -54,15 +54,15 @@ public class Mensagens {
     }
 
     public void nenhumaInformacao() {
-        adicionarMensagem("Não foi passada nenhuma Informação!!!", "", FacesMessage.SEVERITY_ERROR);
+        adicionarMensagem("campos vazios!!", "Não foi passada nenhuma Informação!!!", FacesMessage.SEVERITY_ERROR);
     }
 
     public void jaExisteNoBanco(String texto) {
-        adicionarMensagem("Não foi passada nenhuma Informação!!!", "", FacesMessage.SEVERITY_ERROR);
+        adicionarMensagem("Ja existe no Banco","Não foi passada nenhuma Informação!!!", FacesMessage.SEVERITY_ERROR);
     }
     
     public void invalido(String texto){
-        adicionarMensagem(texto + " invalido!! Digite um " + texto + " valido", "", FacesMessage.SEVERITY_ERROR);
+        adicionarMensagem( "Erro!",texto + " invalido!! Digite um " + texto + " valido", FacesMessage.SEVERITY_ERROR);
     }
     
     public void salvoComSucesso() {
@@ -76,5 +76,8 @@ public class Mensagens {
 
     public void deletadoComSucesso() {
         adicionarMensagem("Deletado com sucesso!!!", "", FacesMessage.SEVERITY_INFO);
+    }
+        public void ErroAoDeletarSoMenteEspera() {
+        adicionarMensagem("so deleta em espera!!!", "", FacesMessage.SEVERITY_INFO);
     }
 }

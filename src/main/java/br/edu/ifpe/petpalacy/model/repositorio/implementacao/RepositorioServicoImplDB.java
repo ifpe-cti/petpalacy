@@ -22,61 +22,55 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
-package br.edu.ifpe.petpalacy.repositorio.implementacao;
+package br.edu.ifpe.petpalacy.model.repositorio.implementacao;
 
-import br.edu.ifpe.petpalacy.dao.PersistenciaDAO;
-import br.edu.ifpe.petpalacy.model.entidades.Cliente;
-import br.edu.ifpe.petpalacy.interfaces.InterfaceCliente;
+import br.edu.ifpe.petpalacy.model.dao.PersistenciaDAO;
+import br.edu.ifpe.petpalacy.model.entidades.Servico;
+import br.edu.ifpe.petpalacy.model.interfaces.InterfaceServico;
 import java.util.List;
 
 /**
  *
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
  */
-public class RepositorioClienteImplDB implements InterfaceCliente<Cliente> {
-    
+public class RepositorioServicoImplDB implements InterfaceServico<Servico> {
+
     @Override
-    public void salvar(Cliente cliente) {
-        PersistenciaDAO.getInstance().salvar(cliente);
+    public void salvar(Servico servico) {
+        PersistenciaDAO.getInstance().salvar(servico);
     }
 
     @Override
-    public void editar(Cliente cliente) {
-        PersistenciaDAO.getInstance().editar(cliente);
+    public void editar(Servico servico) {
+        PersistenciaDAO.getInstance().editar(servico);
     }
 
     @Override
-    public Cliente buscar(Integer codigo) {
-        List lista = PersistenciaDAO.getInstance().listar("SELECT c FROM Cliente c WHERE c.id=" + codigo);
-        if(!lista.isEmpty()){
-            return (Cliente) lista.get(0);
+    public Servico buscar(Integer codigo) {
+        List lista = PersistenciaDAO.getInstance().listar("SELECT s FROM Servico s WHERE s.id=" + codigo);
+        if (!lista.isEmpty()) {
+            return (Servico) lista.get(0);
         }
-            return null;
-        
+        return null;
     }
 
     @Override
-    public void deletar(Cliente cliente) {
-        PersistenciaDAO.getInstance().deletar(cliente);
-    }
-
-    @Override
-    public List<Cliente> listar() {
-        return PersistenciaDAO.getInstance().listar("SELECT c FROM Cliente c");
-    }
-    
-    @Override
-    public Cliente autenticar(String email, String senha) {
-        return (Cliente) PersistenciaDAO.getInstance().autenticar("SELECT a FROM Cliente a", email, senha);
-    }
-    
-    @Override
-    public Cliente buscarCpf(String cpf){
-        List lista =  PersistenciaDAO.getInstance().listar("SELECT c FROM Cliente c WHERE c.cpf=" + cpf);
-        if(!lista.isEmpty()){
-            return (Cliente) lista.get(0);
+    public List buscarServicosPorEmpresa(int id) {
+        List lista = PersistenciaDAO.getInstance().listar("SELECT ser FROM Servico ser WHERE ser.empresa=" + id);
+        if (!lista.isEmpty()) {
+            return lista;
         }
-            return null;
+        return null;
     }
-        
+
+    @Override
+    public void deletar(Servico servico) {
+        PersistenciaDAO.getInstance().deletar(servico);
+    }
+
+    @Override
+    public List<Servico> listar() {
+        return PersistenciaDAO.getInstance().listar("SELECT s FROM Servico s");
+    }
+
 }

@@ -21,15 +21,15 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package br.edu.ifpe.petpalacy.interfaces;
+package br.edu.ifpe.petpalacy.model.interfaces;
+
+import java.util.List;
 
 /**
  *
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
- * @param <Cliente>
+ * @param <Servico>
  */
-public interface InterfaceCliente<Cliente> extends InterfaceGenerico<Cliente> {
-    
-    public Cliente autenticar(String login, String senha);
-    public Cliente buscarCpf(String cpf);
+public interface InterfaceServico<Servico> extends InterfaceGenerico<Servico> {
+    public List buscarServicosPorEmpresa(int id);
 }

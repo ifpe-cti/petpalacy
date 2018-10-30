@@ -18,17 +18,18 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
-package br.edu.ifpe.petpalacy.repositorio.implementacao;
+package br.edu.ifpe.petpalacy.repositorio.model.implementacao;
 
-import br.edu.ifpe.petpalacy.dao.PersistenciaDAO;
 import br.edu.ifpe.petpalacy.model.entidades.Empresa;
 import br.edu.ifpe.petpalacy.model.entidades.Endereco;
-import br.edu.ifpe.petpalacy.repositorio.implementacao.RepositorioEmpresaImplDB;
-import br.edu.ifpe.petpalacy.repositorio.implementacao.RepositorioEmpresaImplDB;
+import br.edu.ifpe.petpalacy.model.entidades.Horarios;
+import br.edu.ifpe.petpalacy.model.entidades.Servico;
+import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioServicoImplDB;
+import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioServicoImplDB;
 import br.edu.ifpe.petpalacy.util.HibernateUtil;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import junit.framework.Assert;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -39,42 +40,54 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 
 /**
  *
  * @author Daniel Calado <danielcalado159@gmail.com>
  */
-public class RepositorioEmpresaImplDBTest {
+public class RepositorioServicoImplDBTest {
     
-    private static Empresa emp;
-    private static Endereco end;
+    
     private static SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-    private RepositorioEmpresaImplDB repEmp;
-    private static Empresa empExcluir;
-    private static Empresa empAlterar;
-    private Empresa empBusca = null;
-    private ArrayList<Empresa> lista;
+    private RepositorioServicoImplDB repSer;
+    private static Servico serv;
+    private static Servico servDeletar;
+    private static Servico servAlterar;
+    private Servico servBusca = null;
+    private ArrayList<Servico> lista;
+    private static ArrayList<Horarios> horarios;
     
-    public RepositorioEmpresaImplDBTest() {
-        repEmp = new RepositorioEmpresaImplDB();
+    public RepositorioServicoImplDBTest() {
+        repSer = new RepositorioServicoImplDB();
         lista = new ArrayList<>();
+        horarios = new ArrayList<>();
         
     }
     
     @BeforeClass
     public static void setUp() {
-        end = new Endereco("rua duque de caxias", 12, "garanhuns", "vila nova");
-        emp = new Empresa("48608939000160", "catavento", "paulo@gmail.com", "981546578", "caoPet", end);
-        empExcluir = new Empresa("1234567890", "saopaulo", "luis@gmail.com", "981546578", "caoPet", null);
-        empAlterar = new Empresa("2222222222222", "saosao", "dkpaz@gmail.com", "981546578", "caoPet", null);        
+    Horarios ho = new Horarios("8:00");
+    Horarios ho1 = new Horarios("8:60");
+    Horarios ho2 = new Horarios("4:00");
+    Horarios ho3 = new Horarios("7:00");
+    Horarios ho4 = new Horarios("9:00");
+horarios = new ArrayList<>();
+    horarios.add(ho);
+        horarios.add(ho1);
+        horarios.add(ho2);
+        horarios.add(ho3);
+        horarios.add(ho4);
+        serv = new Servico("tosa", 30, new BigDecimal(30.00), null, horarios);
+        servAlterar = new Servico("banho", 20, new BigDecimal(10.00), null, null);
+        servDeletar = new Servico("tosa", 20, new BigDecimal(40.00), null, null);
+        
         Session session = sessionFactory.openSession();
         Transaction transacao = null;
         try {
             transacao = session.beginTransaction();
-            session.save(emp);
-            session.save(empExcluir);
-            session.save(empAlterar);
+            session.save(serv);
+            session.save(servAlterar);
+            session.save(servDeletar);
             transacao.commit();
         } catch (RuntimeException ex) {
             if (transacao != null) {
@@ -94,12 +107,13 @@ public class RepositorioEmpresaImplDBTest {
         try {
             transacao = session.beginTransaction();
             
-            Query consulta = session.createQuery("SELECT em FROM Empresa em");
+            Query consulta = session.createQuery("SELECT serv FROM Servico serv");
             List lista = (List) consulta.list();
             
             for (Object a : lista) {
                 session.delete(a);
             }
+            
             transacao.commit();
         } catch (RuntimeException ex) {
             if (transacao != null) {
@@ -112,77 +126,58 @@ public class RepositorioEmpresaImplDBTest {
     }
     
     @Test
-    public void deveSalvarUmaEmpresaNoBancoDeDados() {
-        Endereco endsa = new Endereco("rua duque", 9, "lala do lolo", "pavilhao");
-        Empresa empsa = new Empresa("390725478000199", "lalala", "toinho@gmail.com", "9876453322", "gatoPreto", endsa);
-        repEmp.salvar(empsa);
+    public void deveSalvarUmServicoNoBancoDeDados() {
+        Servico servSalvar = new Servico("tosa", 24, new BigDecimal(45.99), null, null);
+        repSer.salvar(servSalvar);
         
         Session session = this.sessionFactory.openSession();
-        Query consulta = session.createQuery("SELECT e FROM Empresa e WHERE e.cnpj=" + empsa.getCnpj());
-        empBusca =  (Empresa) consulta.list().get(0);
+        Query consulta = session.createQuery("SELECT s FROM Servico s WHERE s.id=" + servSalvar.getIdServico());
+        servBusca = (Servico) consulta.list().get(0);
         session.close();
         
-       
-        assertEquals(empsa.getCnpj(), empBusca.getCnpj());
+        assertEquals(servSalvar.getIdServico(), servBusca.getIdServico());
     }
 
     @Test
-    public void deveAlterarUmaEmpresaNoBancoDeDados() {
-        empAlterar.setCnpj("390725478000199");
-        repEmp.editar(empAlterar);
+    public void deveAlterarUmServicoNoBancoDeDados() {
+        servAlterar.setNome("banho");
+        repSer.editar(servAlterar);
         
-                Session session = this.sessionFactory.openSession();
-        Query consulta = session.createQuery("SELECT e FROM Empresa e WHERE e.cnpj=" + empAlterar.getCnpj());
-        empBusca =  (Empresa) consulta.list().get(0);
+        Session session = this.sessionFactory.openSession();
+        Query consulta = session.createQuery("SELECT s FROM Servico s WHERE s.id=" + servAlterar.getIdServico());
+        servBusca = (Servico) consulta.list().get(0);
         session.close();
         
-       
-        assertEquals(empAlterar.getCnpj(), empBusca.getCnpj());
+        assertEquals(servAlterar.getIdServico(), servBusca.getIdServico());
     }
 
     @Test
-    public void deveDeletarUmaEmpresaDoBancoDeDados() {
-        repEmp.deletar(empExcluir);
+    public void deveDeletarUmServicoDoBancoDeDados() {
+        repSer.deletar(servDeletar);
         
         Session session = this.sessionFactory.openSession();
-        Query consulta = session.createQuery("SELECT e FROM Empresa e WHERE e.cnpj=" + empExcluir.getCnpj());
+        Query consulta = session.createQuery("SELECT s FROM Servico s WHERE s.id=" + servDeletar.getIdServico());
         List lista = (List) consulta.list();
         session.close();
                 if(!lista.isEmpty()){
-            empBusca = (Empresa) lista.get(0);
+            servBusca = (Servico) lista.get(0);
         }
-            empBusca = null;
+            servBusca = null;
     
-        assertNull(empBusca);
+        assertNull(servBusca);
     }
 
     @Test
-    public void deveBuscarUmaEmpresaNoBancoPeloId() {
-        empBusca = repEmp.buscar(emp.getIdEmpresa());
-        assertEquals(emp.getIdEmpresa(), empBusca.getIdEmpresa());
+    public void deveBuscarUmServicoNoBancoPeloId() {
+        servBusca = repSer.buscar(serv.getIdServico());
+        assertEquals(serv.getIdServico(), servBusca.getIdServico());
     }
 
-    @Test
-    public void deveBuscarUmaEmpresaNoBancoPeloCnpj() {
-        empBusca = repEmp.buscarCnpj(emp.getCnpj());
-        assertEquals(emp.getCnpj(), empBusca.getCnpj());
-    }
 
     @Test
-    public void deveListarTodasAsEmpresas() {
-        lista = (ArrayList<Empresa>) repEmp.listar();
-        int cont = 0;
-        
-        for (Empresa a : lista) {
-            cont++;
-        }
+    public void deveListarTodasOsServicos() {
+        lista = (ArrayList<Servico>) repSer.listar();
         assertNotEquals(0, lista.size());
     }
-
-    @Test
-    public void deveBuscarAEmpresaPelaSenhaELogin() {
-        empBusca = repEmp.autenticar(emp.getEmail(), emp.getSenha());
-        assertEquals(emp.getCnpj(), empBusca.getCnpj());
-        
-    }
+    
 }

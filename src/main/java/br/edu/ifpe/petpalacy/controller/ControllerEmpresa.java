@@ -26,7 +26,7 @@ package br.edu.ifpe.petpalacy.controller;
 
 import br.edu.ifpe.petpalacy.model.entidades.Empresa;
 import br.edu.ifpe.petpalacy.model.negocio.NegocioEmpresa;
-import br.edu.ifpe.petpalacy.repositorio.implementacao.RepositorioEmpresaImplDB;
+import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioEmpresaImplDB;
 import br.edu.ifpe.petpalacy.util.Mensagens;
 import java.io.Serializable;
 import java.util.ArrayList;

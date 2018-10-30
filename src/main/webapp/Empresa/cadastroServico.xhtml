@@ -46,7 +46,19 @@
                                 <p:inputText value="#{controllerServico.horas.hora}"/>
                                 <p:commandButton value="adicionar" action="#{controllerServico.adicionarHorarios()}" update=":formCad :gro"/>
                             </p:panelGrid>
+                            <p:dataTable emptyMessage="Nenhum registro encontrado..." value="#{controllerServico.servico.listaDeHorarios}"
+                                             editable="true"
+                                             var="hora" id="proTable" 
+                                             rowKey="#{hora.id}" style="width:200px">
+                            <p:column headerText="horarios" style="width:50px">
+                                <h:outputText value="#{hora.hora}"/>
+                                    </p:column><p:column  style="width:65px">
+                                        <p:commandButton value="Deletar" title="editar" action="#{controllerServico.deletarHorarios()}" update="@form">
+                                            <f:setPropertyActionListener value="#{hora}" target="#{controllerServico.horas}"/>
+                                        </p:commandButton>
 
+                                    </p:column>
+                            </p:dataTable>
                             <br/>
 
                             <p:commandButton styleClass="button_cad" value="Cadastrar" action="#{controllerServico.salvar()}"

@@ -67,7 +67,11 @@ public class TESTE {
     Servico ser2 = new Servico("vacina", 15, new BigDecimal(20.90), ep, null);
     Servico ser3 = new Servico("banho", 20, new BigDecimal(87.90), ep, null);
     Servico ser4 = new Servico("adestramento", 56, new BigDecimal(54.90), ep, null);
-        Agendamento ar = new Agendamento(ser4, cli, "20/12/1998", null, StatusAgen.REALIZADO);
+        Agendamento ar = new Agendamento(ser4, cli, "20/12/1998", null, StatusAgen.ESPERA);
+                Agendamento ar2 = new Agendamento(ser4, cli, "20/12/1998", null, StatusAgen.ESPERA);
+        Agendamento ar3 = new Agendamento(ser4, cli, "20/12/1998", null, StatusAgen.AGENDADO);
+        Agendamento ar4 = new Agendamento(ser4, cli, "20/12/1998", null, StatusAgen.REALIZADO);
+
         NegocioCliente c = new NegocioCliente();
     NegocioEmpresa neg = new NegocioEmpresa();
     NegocioServico nes = new NegocioServico();
@@ -87,6 +91,9 @@ public class TESTE {
     nes.salvar(ser3);
     nes.salvar(ser4);
     ag.salvar(ar);
+    ag.salvar(ar2);
+    ag.salvar(ar3);
+    ag.salvar(ar4);
 
     
             }
