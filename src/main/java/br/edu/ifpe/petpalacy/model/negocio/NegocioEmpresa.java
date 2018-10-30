@@ -29,7 +29,6 @@ import br.edu.ifpe.petpalacy.model.entidades.Empresa;
 import br.edu.ifpe.petpalacy.interfaces.InterfaceEmpresa;
 import br.edu.ifpe.petpalacy.repositorio.implementacao.RepositorioEmpresaImplDB;
 import br.edu.ifpe.petpalacy.util.Criptografia;
-import br.edu.ifpe.petpalacy.util.TratamentoException;
 import br.edu.ifpe.petpalacy.util.ValidaCNPJ;
 import java.util.List;
 
@@ -84,7 +83,7 @@ public class NegocioEmpresa implements InterfaceEmpresa<Empresa> {
         boolean status = ValidaCNPJ.isCNPJ(e.getCnpj());
         if (status == true) {
             if (e == null || buscarCnpj(e.getCnpj()) != null) {
-                TratamentoException.trataSalvar();
+                throw new Exception("Erro!");
             }
             e.setSenha(Criptografia.criptografar(e.getSenha()));
             repoEmp.salvar(e);
@@ -111,7 +110,7 @@ public class NegocioEmpresa implements InterfaceEmpresa<Empresa> {
     public void editar(Empresa e) throws Exception {
 
         if (e == null || repoEmp.buscar(e.getIdEmpresa()) == null) {
-            TratamentoException.trataEditar();
+            throw new Exception("Erro!");
         } else {
             repoEmp.editar(e);
         }
@@ -120,7 +119,7 @@ public class NegocioEmpresa implements InterfaceEmpresa<Empresa> {
     @Override
     public void deletar(Empresa e) throws Exception {
         if (e == null || repoEmp.buscarCnpj(e.getCnpj()) == null) {
-           TratamentoException.trataDeletar();
+            throw new Exception("Erro!");
         } else {
             repoEmp.deletar(e);
         }
