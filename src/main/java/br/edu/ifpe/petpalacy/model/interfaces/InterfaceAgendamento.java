@@ -21,40 +21,17 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package br.edu.ifpe.petpalacy.dao;
+package br.edu.ifpe.petpalacy.model.interfaces;
 
-import br.edu.ifpe.petpalacy.dao.PersistenciaDAO;
-import br.edu.ifpe.petpalacy.model.entidades.Cliente;
-import org.junit.Ignore;
-import org.junit.Test;
+import java.util.List;
 
 /**
  *
  * @author Kaio César Bezerra da Silva <kaio_gus@outlook.com>
+ * @param <Agendamento>
  */
-public class PersistenciaDAOExceptoinTest {
-    
-    @Test(expected = RuntimeException.class)
-    @Ignore
-    public void autenticarRuntimeExceptionTest() {
-        String sql = "SELECT a FROM Cliente a";
-        String email = "usuario@ifpe.com"; //Usuario invalido!!
-        String senha = "123456";
-        
-        Cliente cliente  = (Cliente) PersistenciaDAO.getInstance().autenticar(sql, email, senha);
-        
-        System.out.println(cliente.getEmail());
-    }
-    
-    @Test(expected = NullPointerException.class)
-    //@Ignore
-    public void autenticarNullPointerExceptionTest() {
-        String sql = "SELECT a FROM Cliente a";
-        String email = "objeto_inexistente"; //Usuario invalido!!
-        String senha = "123456";
-        
-        Cliente cliente  = (Cliente) PersistenciaDAO.getInstance().autenticar(sql, email, senha);
-        System.out.println(cliente.getEmail());
-    }
-    
+public interface InterfaceAgendamento<Agendamento> extends InterfaceGenerico<Agendamento> {
+    public List listarAgendamentosEmpresa(int id);
+    public List listarAgendamentosCliente(int id);
+
 }

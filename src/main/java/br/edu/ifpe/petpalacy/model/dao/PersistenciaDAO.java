@@ -21,7 +21,7 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package br.edu.ifpe.petpalacy.dao;
+package br.edu.ifpe.petpalacy.model.dao;
 
 import br.edu.ifpe.petpalacy.util.HibernateUtil;
 import java.util.List;

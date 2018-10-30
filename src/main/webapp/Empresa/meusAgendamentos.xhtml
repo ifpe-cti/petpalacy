@@ -58,9 +58,14 @@
                                             <f:setPropertyActionListener value="#{agenda}" target="#{controllerAgendamento.agenda}" />
                                         </p:commandButton>
 
+                                    </p:column><p:column  headerText="Deletar"  style="width:60px">
+                                        <p:commandButton value="Deletar" title="editar" action="#{controllerAgendamento.deletarAgendamentoEmpresa()}" update="proTable">
+                                            <f:setPropertyActionListener value="#{agenda}" target="#{controllerAgendamento.agenda}"/>
+                                        </p:commandButton>
+
                                     </p:column>
                                 </p:dataTable>
-                                <p:dialog  header="Car Info" widgetVar="carDialog" showEffect="fade" hideEffect="fade"  appendTo="@(formpesquisa)">
+                                <p:dialog  header="Car Info" widgetVar="carDialog" showEffect="fade" hideEffect="fade"  >
                                     <p:outputPanel id="carDetail" style="text-align:center;">
                                         <p:panelGrid  columns="2" rendered="#{not empty controllerAgendamento.agenda}" columnClasses="label,value">
                                             <f:facet name="header">
@@ -68,7 +73,7 @@
 
                                             <h:outputText value="status" />
                                             <p:importEnum type="br.edu.ifpe.petpalacy.model.entidades.StatusAgen" var="especialidades" allSuffix="ALL_ENUM_VALUES"/>
-                                            <p:selectOneRadio value="#{controllerAgendamento.agenda.statusAgen}" id="radioEspecialidade" required="true" requiredMessage="Campo especialidade obrigátorio">
+                                            <p:selectOneRadio value="#{controllerAgendamento.agenda.statusAgen}" id="radioEspecialidade" required="true">
                                                 <f:selectItems value="#{especialidades.ALL_ENUM_VALUES}" var="especialidade" itemLabel="#{agenda.statusAgen}" itemValue="#{especialidade}"/>
                                             </p:selectOneRadio>
                                             <p:commandButton value="salvar" action="#{controllerAgendamento.alterar()}" update=":formpesquisa"/>

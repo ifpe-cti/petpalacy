@@ -74,44 +74,63 @@ public class ControllerAgendamento implements Serializable {
         return "pagina com informações da entidade";
     }
 
-    public String alterar() {
+    public void alterar() {
         try {
             negAgenda.editar(agenda);
             Mensagens.getInstance().alteradoComSucesso();
             limpar();
-            ret = "pagina com o que foi editado";
         } catch (Exception ex) {
             Mensagens.getInstance().nenhumaInformacao();
         }
-        return ret;
     }
 
-    public String deletar() {
+    public void deletarAgendamentoCliente() {
+        
         try {
-            negAgenda.deletar(agenda);
-            Mensagens.getInstance().deletadoComSucesso();
-            ret = "pagina com todos os agendamentos";
+            AutenticarBean autBen = new AutenticarBean();
+
+            if(autBen.getClienteLogin() != null && agenda.getStatusAgen() == StatusAgen.ESPERA) {
+                negAgenda.deletar(agenda);
+                Mensagens.getInstance().deletadoComSucesso();
+            }else{
+                Mensagens.getInstance().ErroAoDeletarSoMenteEspera();
+            }
+            
+
         } catch (Exception ex) {
             Mensagens.getInstance().nenhumaInformacao();
         }
-        return ret;
     }
-    public void limpar(){
+    public void deletarAgendamentoEmpresa() {
+        
+        try {     
+                negAgenda.deletar(agenda);
+                Mensagens.getInstance().deletadoComSucesso();
+           
+        } catch (Exception ex) {
+            Mensagens.getInstance().nenhumaInformacao();
+        }
+    }
+    
+    public void limpar() {
         agenda = new Agendamento();
     }
+
     public String listarAgendamentoCliente(int id) {
         listaAgenda = new ArrayList<>();
-                listaAgenda = (ArrayList<Agendamento>) negAgenda.listarAgendamentosCliente(id);
-                    
+        listaAgenda = (ArrayList<Agendamento>) negAgenda.listarAgendamentosCliente(id);
+
         return "pagina com todos os agendamentos";
 
     }
+
     public String listarAgendamentoEmpresa(int id) {
         listaAgenda = new ArrayList<>();
-                        listaAgenda = (ArrayList<Agendamento>) negAgenda.listarAgendamentosEmpresa(id);
+        listaAgenda = (ArrayList<Agendamento>) negAgenda.listarAgendamentosEmpresa(id);
 
         return "pagina com todos os agendamentos";
     }
+
     public NegocioAgendamento getNegAgenda() {
         return negAgenda;
     }

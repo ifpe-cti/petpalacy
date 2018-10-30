@@ -26,8 +26,8 @@
 package br.edu.ifpe.petpalacy.model.negocio;
 
 import br.edu.ifpe.petpalacy.model.entidades.Empresa;
-import br.edu.ifpe.petpalacy.interfaces.InterfaceEmpresa;
-import br.edu.ifpe.petpalacy.repositorio.implementacao.RepositorioEmpresaImplDB;
+import br.edu.ifpe.petpalacy.model.interfaces.InterfaceEmpresa;
+import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioEmpresaImplDB;
 import br.edu.ifpe.petpalacy.util.Criptografia;
 import br.edu.ifpe.petpalacy.util.ValidaCNPJ;
 import java.util.List;

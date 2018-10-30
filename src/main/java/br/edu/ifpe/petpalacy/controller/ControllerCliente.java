@@ -66,7 +66,7 @@ public class ControllerCliente implements Serializable {
 
     public void alterar(Cliente cli) {
         try {
-            negCliente.editar(cliente);
+            negCliente.editar(cli);
             limpar();
             Mensagens.getInstance().alteradoComSucesso();
         } catch (Exception ex) {

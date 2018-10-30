@@ -45,19 +45,16 @@ public class ControllerServico {
     private Servico servico;
     private Horarios horas;
     private ArrayList<Servico> listaServico;
-    private ArrayList<Horarios> listaHorarios;
     
     public ControllerServico(){
         horas = new Horarios();
         negServico = new NegocioServico();
         servico = new Servico();
         listaServico = new ArrayList<>();
-        listaHorarios = new ArrayList<>();
     }
     
     public String salvar(){
         try {
-            servico.setListaDeHorarios(listaHorarios);
             negServico.salvar(servico);
             limpar();
             Mensagens.getInstance().salvoComSucesso();
@@ -93,7 +90,6 @@ public class ControllerServico {
     
     public void limpar(){
          horas = new Horarios();
-         listaHorarios = new ArrayList<>();
          servico = new Servico();
     }
     
@@ -104,10 +100,13 @@ public class ControllerServico {
         listaServico = (ArrayList<Servico>) negServico.buscarServicosPorEmpresa(id);
     }
     public void adicionarHorarios(){
-        listaHorarios.add(horas);
+        servico.inserirHorario(horas);
         horas = new Horarios();
     }
-    
+        public void deletarHorarios(){
+        servico.deletarHorario(horas);
+        horas = new Horarios();
+    }
     public void buscarId(){
         negServico.buscar(servico.getIdServico());
     }
@@ -144,14 +143,7 @@ public class ControllerServico {
         this.horas = horas;
     }
 
-    public ArrayList<Horarios> getListaHorarios() {
-        return listaHorarios;
-    }
-
-    public void setListaHorarios(ArrayList<Horarios> listaHorarios) {
-        this.listaHorarios = listaHorarios;
-    }
-    
+  
     
     
 }

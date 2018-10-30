@@ -51,7 +51,13 @@
                                 </p:column> <p:column headerText="Status" style="width:50px">
                                     <h:outputText value="#{agenda.statusAgen}"/>
 
-                                </p:column>
+                                </p:column><p:column  style="width:50px">
+                                    <p:commandButton value="Deletar" title="editar" action="#{controllerAgendamento.deletarAgendamentoCliente()}" update="@form">
+                                        <f:setPropertyActionListener value="#{agenda}" target="#{controllerAgendamento.agenda}"/>
+                                        </p:commandButton>
+
+                                    </p:column>
+
                             </p:dataTable>
                             </center>
                         </h:form>

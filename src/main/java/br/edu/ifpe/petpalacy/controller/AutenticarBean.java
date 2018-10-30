@@ -24,8 +24,8 @@
 
 package br.edu.ifpe.petpalacy.controller;
 
-import br.edu.ifpe.petpalacy.repositorio.implementacao.RepositorioClienteImplDB;
-import br.edu.ifpe.petpalacy.repositorio.implementacao.RepositorioEmpresaImplDB;
+import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioClienteImplDB;
+import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioEmpresaImplDB;
 import br.edu.ifpe.petpalacy.model.entidades.Empresa;
 import br.edu.ifpe.petpalacy.model.entidades.Cliente;
 import br.edu.ifpe.petpalacy.model.negocio.NegocioCliente;
@@ -47,8 +47,8 @@ import javax.faces.context.FacesContext;
 public class AutenticarBean implements Serializable {
     private String email;
     private String senha;
-    private Cliente clienteLogin;
-    private Empresa empresaLogin;
+    private Cliente clienteLogin = null;
+    private Empresa empresaLogin = null;
 
 public AutenticarBean(){
     clienteLogin = new Cliente();

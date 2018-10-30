@@ -26,8 +26,8 @@
 package br.edu.ifpe.petpalacy.model.negocio;
 
 import br.edu.ifpe.petpalacy.model.entidades.Agendamento;
-import br.edu.ifpe.petpalacy.interfaces.InterfaceAgendamento;
-import br.edu.ifpe.petpalacy.repositorio.implementacao.RepositorioAgendamentoImplDB;
+import br.edu.ifpe.petpalacy.model.interfaces.InterfaceAgendamento;
+import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioAgendamentoImplDB;
 import br.edu.ifpe.petpalacy.util.Mensagens;
 import java.util.List;
 

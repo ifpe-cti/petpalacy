@@ -21,8 +21,9 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package br.edu.ifpe.petpalacy.repositorio.implementacao;
+package br.edu.ifpe.petpalacy.repositorio.model.implementacao;
 
+import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioClienteImplDB;
 import br.edu.ifpe.petpalacy.model.entidades.Cliente;
 import br.edu.ifpe.petpalacy.model.entidades.Endereco;
 import java.util.List;

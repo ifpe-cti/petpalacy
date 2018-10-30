@@ -32,12 +32,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import br.edu.ifpe.petpalacy.model.entidades.Horarios;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import org.hibernate.mapping.ManyToOne;
-
 
 /**
  *
@@ -45,7 +45,7 @@ import org.hibernate.mapping.ManyToOne;
  */
 @Entity
 public class Servico implements Serializable {
-    
+
     @Id
     @GeneratedValue
     private Integer id;
@@ -54,10 +54,11 @@ public class Servico implements Serializable {
     private BigDecimal valor;
     @OneToOne
     private Empresa empresa;
-    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER) 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Horarios> listaDeHorarios;
 
     public Servico() {
+        listaDeHorarios = new ArrayList<>();
     }
 
     public Servico(String nome, Integer duracao, BigDecimal valor, Empresa empresa, List<Horarios> listaDeHorarios) {
@@ -66,6 +67,14 @@ public class Servico implements Serializable {
         this.valor = valor;
         this.empresa = empresa;
         this.listaDeHorarios = listaDeHorarios;
+    }
+
+    public void inserirHorario(Horarios hora) {
+        listaDeHorarios.add(hora);
+    }
+
+    public void deletarHorario(Horarios hora) {
+        listaDeHorarios.remove(hora);
     }
 
     public Integer getIdServico() {
@@ -146,5 +155,4 @@ public class Servico implements Serializable {
         return "Servico{" + "id=" + id + ", nome=" + nome + ", duracao=" + duracao + ", valor=" + valor + ", empresa=" + empresa + ", listaDeHorarios=" + listaDeHorarios + '}';
     }
 
-    
 }
