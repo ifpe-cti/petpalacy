@@ -23,7 +23,7 @@ SOFTWARE.
  */package br.edu.ifpe.petpalacy.controller;
 
 import br.edu.ifpe.petpalacy.model.entidades.Cliente;
-import br.edu.ifpe.petpalacy.model.negocio.NegocioCliente;
+import br.edu.ifpe.petpalacy.model.negocio.ClienteModel;
 import br.edu.ifpe.petpalacy.util.Criptografia;
 import br.edu.ifpe.petpalacy.util.Mensagens;
 import br.edu.ifpe.petpalacy.util.ValidaCPF;
@@ -41,12 +41,12 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class ControllerCliente implements Serializable {
 
-    private NegocioCliente negCliente;
+    private ClienteModel negCliente;
     private Cliente cliente;
     private ArrayList<Cliente> listaCliente;
 
     public ControllerCliente() {
-        negCliente = new NegocioCliente();
+        negCliente = new ClienteModel();
         cliente = new Cliente();
         listaCliente = new ArrayList<>();
     }
@@ -99,11 +99,11 @@ public class ControllerCliente implements Serializable {
         return negCliente.buscarCpf(cliente.getCpf());
     }
 
-    public NegocioCliente getNegCliente() {
+    public ClienteModel getNegCliente() {
         return negCliente;
     }
 
-    public void setNegCliente(NegocioCliente negCliente) {
+    public void setNegCliente(ClienteModel negCliente) {
         this.negCliente = negCliente;
     }
 

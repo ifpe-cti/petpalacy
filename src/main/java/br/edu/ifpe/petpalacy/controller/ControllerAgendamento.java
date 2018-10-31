@@ -29,7 +29,7 @@ import br.edu.ifpe.petpalacy.model.entidades.Agendamento;
 import br.edu.ifpe.petpalacy.model.entidades.Cliente;
 import br.edu.ifpe.petpalacy.model.entidades.Servico;
 import br.edu.ifpe.petpalacy.model.entidades.StatusAgen;
-import br.edu.ifpe.petpalacy.model.negocio.NegocioAgendamento;
+import br.edu.ifpe.petpalacy.model.negocio.AgendamentoModel;
 import br.edu.ifpe.petpalacy.util.Mensagens;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -46,13 +46,13 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class ControllerAgendamento implements Serializable {
 
-    private NegocioAgendamento negAgenda;
+    private AgendamentoModel negAgenda;
     private Agendamento agenda;
     private ArrayList<Agendamento> listaAgenda;
     private String ret = "";
 
     public ControllerAgendamento() {
-        negAgenda = new NegocioAgendamento();
+        negAgenda = new AgendamentoModel();
         agenda = new Agendamento();
         listaAgenda = new ArrayList<>();
     }
@@ -131,11 +131,11 @@ public class ControllerAgendamento implements Serializable {
         return "pagina com todos os agendamentos";
     }
 
-    public NegocioAgendamento getNegAgenda() {
+    public AgendamentoModel getNegAgenda() {
         return negAgenda;
     }
 
-    public void setNegAgenda(NegocioAgendamento negAgenda) {
+    public void setNegAgenda(AgendamentoModel negAgenda) {
         this.negAgenda = negAgenda;
     }
 

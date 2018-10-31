@@ -48,10 +48,10 @@ public class NegocioEmpresaTest {
     private Empresa empresaEncontrada;
     private static Endereco endereco;
     private Endereco enderecoPSalvar;
-    private static NegocioEmpresa negocioEmpresa;
+    private static EmpresaModel negocioEmpresa;
 
     public NegocioEmpresaTest() {
-        negocioEmpresa = new NegocioEmpresa();
+        negocioEmpresa = new EmpresaModel();
     }
 
     @BeforeClass
@@ -61,7 +61,7 @@ public class NegocioEmpresaTest {
 
         empresaPDeletar = new Empresa("88051324000108", "emp123", "Otaempresa@hotmail.com", "991234568", "SalvaAnimal", null);
 
-        negocioEmpresa = new NegocioEmpresa();
+        negocioEmpresa = new EmpresaModel();
         negocioEmpresa.salvar(empresa);
         negocioEmpresa.salvar(empresaPDeletar);
     }

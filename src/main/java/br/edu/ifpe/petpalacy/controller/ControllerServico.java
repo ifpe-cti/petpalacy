@@ -26,7 +26,7 @@ package br.edu.ifpe.petpalacy.controller;
 
 import br.edu.ifpe.petpalacy.model.entidades.Horarios;
 import br.edu.ifpe.petpalacy.model.entidades.Servico;
-import br.edu.ifpe.petpalacy.model.negocio.NegocioServico;
+import br.edu.ifpe.petpalacy.model.negocio.ServicoModel;
 import br.edu.ifpe.petpalacy.util.Mensagens;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
@@ -41,14 +41,14 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class ControllerServico {
     
-    private NegocioServico negServico;
+    private ServicoModel negServico;
     private Servico servico;
     private Horarios horas;
     private ArrayList<Servico> listaServico;
     
     public ControllerServico(){
         horas = new Horarios();
-        negServico = new NegocioServico();
+        negServico = new ServicoModel();
         servico = new Servico();
         listaServico = new ArrayList<>();
     }
@@ -111,11 +111,11 @@ public class ControllerServico {
         negServico.buscar(servico.getIdServico());
     }
 
-    public NegocioServico getNegServico() {
+    public ServicoModel getNegServico() {
         return negServico;
     }
 
-    public void setNegServico(NegocioServico negServico) {
+    public void setNegServico(ServicoModel negServico) {
         this.negServico = negServico;
     }
 

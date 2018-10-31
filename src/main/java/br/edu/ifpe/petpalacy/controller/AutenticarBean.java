@@ -28,8 +28,8 @@ import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioClienteI
 import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioEmpresaImplDB;
 import br.edu.ifpe.petpalacy.model.entidades.Empresa;
 import br.edu.ifpe.petpalacy.model.entidades.Cliente;
-import br.edu.ifpe.petpalacy.model.negocio.NegocioCliente;
-import br.edu.ifpe.petpalacy.model.negocio.NegocioEmpresa;
+import br.edu.ifpe.petpalacy.model.negocio.ClienteModel;
+import br.edu.ifpe.petpalacy.model.negocio.EmpresaModel;
 import br.edu.ifpe.petpalacy.util.Criptografia;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
@@ -63,7 +63,7 @@ public AutenticarBean(){
             System.out.println("valor nulo para senha.");
         }
         senha = Criptografia.criptografar(senha);
-        NegocioCliente neg = new NegocioCliente();
+        ClienteModel neg = new ClienteModel();
         clienteLogin = neg.autenticar(email, senha);
         
         if(clienteLogin != null) {
@@ -71,7 +71,7 @@ public AutenticarBean(){
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("clienteLogado", this.clienteLogin);
             return "Cliente/visualizarServicos.xhtml?faces-redirect=true";
         } else {
-            NegocioEmpresa negEmp = new NegocioEmpresa();
+            EmpresaModel negEmp = new EmpresaModel();
             empresaLogin = negEmp.autenticar(email, senha);
             
             if(empresaLogin != null) {

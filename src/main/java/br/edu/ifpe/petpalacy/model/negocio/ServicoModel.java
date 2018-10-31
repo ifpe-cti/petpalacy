@@ -27,6 +27,7 @@ package br.edu.ifpe.petpalacy.model.negocio;
 import br.edu.ifpe.petpalacy.model.entidades.Servico;
 import br.edu.ifpe.petpalacy.model.interfaces.InterfaceServico;
 import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioServicoImplDB;
+import br.edu.ifpe.petpalacy.util.TratamentoException;
 import java.util.List;
 
 /**
@@ -35,22 +36,22 @@ import java.util.List;
  */
 
 
-public class NegocioServico implements InterfaceServico<Servico>{
+public class ServicoModel implements InterfaceServico<Servico>{
     
     private RepositorioServicoImplDB repoServico;
     private Servico serv;
     
-    public NegocioServico(){
+    public ServicoModel(){
         repoServico = new RepositorioServicoImplDB();
     }
     
     @Override
     public void salvar(Servico servico) throws Exception{
         if (servico == null) {
-            throw new Exception("Erro!");
+            TratamentoException.tratarSalvar();
         }else{
             if(buscar(servico.getIdServico()) != null){
-                throw new Exception("Erro!");
+                TratamentoException.tratarSalvar();
             }else{
                 repoServico.salvar(servico);
             }
@@ -74,7 +75,7 @@ public class NegocioServico implements InterfaceServico<Servico>{
     @Override
     public void editar(Servico servico) throws Exception{
         if(servico == null){
-            throw new Exception("Erro!");
+           TratamentoException.tratarEditar();
         }else{
                 repoServico.editar(servico);
            }
