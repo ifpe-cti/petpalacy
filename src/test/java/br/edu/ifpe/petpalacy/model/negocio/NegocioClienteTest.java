@@ -49,10 +49,10 @@ public class NegocioClienteTest {
     private Endereco enderecoSalv;
     private Cliente clienteBuscar;
     private static Cliente clienteDeletar;
-    private static NegocioCliente negCliente;
+    private static ClienteModel negCliente;
 
     public NegocioClienteTest() {
-        negCliente = new NegocioCliente();
+        negCliente = new ClienteModel();
     }
 
     @BeforeClass
@@ -60,7 +60,7 @@ public class NegocioClienteTest {
         endereco = new Endereco("rua antonio", 23, "sao joao", "planalto");
         cliente = new Cliente("carlos", "11419189433", "39494585439", endereco, "carlos@gmail.com", "dsdsds");
         clienteDeletar = new Cliente("toinho", "39824885080", "5432", null, "xx@gmail.com", "siy8i");
-        negCliente = new NegocioCliente();
+        negCliente = new ClienteModel();
 
         negCliente.salvar(cliente);
         negCliente.salvar(clienteDeletar);

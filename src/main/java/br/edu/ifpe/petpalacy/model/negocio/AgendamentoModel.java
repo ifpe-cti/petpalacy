@@ -29,18 +29,19 @@ import br.edu.ifpe.petpalacy.model.entidades.Agendamento;
 import br.edu.ifpe.petpalacy.model.interfaces.InterfaceAgendamento;
 import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioAgendamentoImplDB;
 import br.edu.ifpe.petpalacy.util.Mensagens;
+import br.edu.ifpe.petpalacy.util.TratamentoException;
 import java.util.List;
 
 /**
  *
  * @author izaquiel cavalcante da silva izaquiel_cavalcante@hotmail.com
  */
-public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
+public class AgendamentoModel implements InterfaceAgendamento<Agendamento> {
 
     private RepositorioAgendamentoImplDB repoAgend;
     private Agendamento agenda;
 
-    public NegocioAgendamento() {
+    public AgendamentoModel() {
         repoAgend = new RepositorioAgendamentoImplDB();
     }
 
@@ -48,7 +49,7 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
     public void salvar(Agendamento e) throws Exception {
 
         if (e == null) {
-            throw new Exception("ERRO!!!!!");
+            TratamentoException.tratarSalvar();
         } else {
                  repoAgend.salvar(e);
             }
@@ -72,7 +73,7 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
     @Override
     public void editar(Agendamento e) throws Exception {
         if(e == null){
-            throw new Exception("Erro!");
+            TratamentoException.tratarEditar();
         }else{
            
                 repoAgend.editar(e);
@@ -82,11 +83,11 @@ public class NegocioAgendamento implements InterfaceAgendamento<Agendamento> {
     @Override
     public void deletar(Agendamento e) throws Exception {
                 if(e == null){
-            throw new Exception("Erro!");
+            TratamentoException.tratarDeletar();
         }else{
             agenda = repoAgend.buscar(e.getId());
             if(agenda == null){
-                throw new Exception("Erro!");
+                TratamentoException.tratarDeletar();
             }else{
                 repoAgend.deletar(e);
             }

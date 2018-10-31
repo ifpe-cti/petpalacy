@@ -46,12 +46,12 @@ public class NegocioServicoTest {
     private static Servico servicoSalvar;
     private Servico servicoBuscar;
     private static Servico servicoDeletar;
-    private static NegocioServico negServico;
-    private static NegocioEmpresa negEmpresa;
+    private static ServicoModel negServico;
+    private static EmpresaModel negEmpresa;
     
     public NegocioServicoTest() {
-        negServico = new NegocioServico();
-        negEmpresa = new NegocioEmpresa();
+        negServico = new ServicoModel();
+        negEmpresa = new EmpresaModel();
     }
     
     @BeforeClass
@@ -68,8 +68,8 @@ public class NegocioServicoTest {
         empresa = new Empresa("80325573000124", "123emp", "empresa@gmail.com", "99218121", "Seu Pet", null);
         servico = new Servico("Tosa", 20, new BigDecimal(50.00), empresa, horas);
         servicoDeletar = new Servico("Aparar Pelos", 45, new BigDecimal(20), empresa, null);
-        negServico = new NegocioServico();
-        negEmpresa = new NegocioEmpresa();
+        negServico = new ServicoModel();
+        negEmpresa = new EmpresaModel();
         
         negEmpresa.salvar(empresa);
         negServico.salvar(servico);
