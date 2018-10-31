@@ -61,18 +61,18 @@ public class NegocioAgendamentoTest {
     private static Cliente cliente;
     private static Servico servico;
     private static Agendamento agendamento;
-    private static NegocioAgendamento negocioAgendamento;
+    private static AgendamentoModel negocioAgendamento;
     private ArrayList<Agendamento> agendamentos = null;
 
-    private static NegocioCliente negocioCliente;
-    private static NegocioEmpresa negocioEmpresa;
-    private static NegocioServico negocioServico;
+    private static ClienteModel negocioCliente;
+    private static EmpresaModel negocioEmpresa;
+    private static ServicoModel negocioServico;
     private Agendamento agendamentoAlterado;
     private static SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
 
     public NegocioAgendamentoTest() {
-        negocioAgendamento = new NegocioAgendamento();
+        negocioAgendamento = new AgendamentoModel();
         agendamentos = new ArrayList<>();
     }
 
@@ -95,9 +95,9 @@ public class NegocioAgendamentoTest {
         servico = new Servico("Limpa cao", 35, new BigDecimal(56.80), empresa, horarios);      
         agendamento = new Agendamento(servico, cliente, "02/09/1902", "00:13", StatusAgen.AGENDADO);
 
-        negocioCliente = new NegocioCliente();
-        negocioEmpresa = new NegocioEmpresa();
-        negocioServico = new NegocioServico();
+        negocioCliente = new ClienteModel();
+        negocioEmpresa = new EmpresaModel();
+        negocioServico = new ServicoModel();
 
         negocioCliente.salvar(cliente);
         negocioEmpresa.salvar(empresa);

@@ -25,7 +25,7 @@
 package br.edu.ifpe.petpalacy.controller;
 
 import br.edu.ifpe.petpalacy.model.entidades.Empresa;
-import br.edu.ifpe.petpalacy.model.negocio.NegocioEmpresa;
+import br.edu.ifpe.petpalacy.model.negocio.EmpresaModel;
 import br.edu.ifpe.petpalacy.model.repositorio.implementacao.RepositorioEmpresaImplDB;
 import br.edu.ifpe.petpalacy.util.Mensagens;
 import java.io.Serializable;
@@ -43,13 +43,13 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class ControllerEmpresa implements Serializable {
 
-    private NegocioEmpresa negEmpresa;
+    private EmpresaModel negEmpresa;
     private Empresa empresa;
     private ArrayList<Empresa> listaEmpresa;
     private String ret = "";
 
     public ControllerEmpresa() {
-        negEmpresa = new NegocioEmpresa();
+        negEmpresa = new EmpresaModel();
         empresa = new Empresa();
         listaEmpresa = new ArrayList<>();
     }
@@ -105,11 +105,11 @@ public class ControllerEmpresa implements Serializable {
         negEmpresa.buscarCnpj(empresa.getCnpj());
     }
 
-    public NegocioEmpresa getNegEmpresa() {
+    public EmpresaModel getNegEmpresa() {
         return negEmpresa;
     }
 
-    public void setNegEmpresa(NegocioEmpresa negEmpresa) {
+    public void setNegEmpresa(EmpresaModel negEmpresa) {
         this.negEmpresa = negEmpresa;
     }
 
