@@ -38,37 +38,48 @@ import org.junit.Test;
  */
 public class PersistenciaDAOTest {
      private static int codigoPersiste = 0;
+
+    private static final String CLIENTE_NOME = "ObjetoPersisteDAO";
+    private static final String CLIENTE_CPF = "33333333333";
+    private static final String CLIENTE_TELEFONE = "33333333333";
+    private static final String CLIENTE_EMAIL = "persistedao@ifpe.com";
+    private static final String CLIENTE_SENHA = "persistedao12345";
+    private static final String ENDERECO_LOGRADOURO = "Av Pedro Falcao";
+    private static final int ENDERECO_NUMERO = 50;
+    private static final String ENDERECO_BAIRRO = "Sao Jose";
+    private static final String ENDERECO_CIDADE = "Garanhuns";
     
     @BeforeClass
     public static void deveSalvarObjetoTest() {
-        Cliente cliente = new Cliente();
-        cliente.setNome("ObjetoPersisteDAO");
-        cliente.setCpf("33333333333");
-        cliente.setTelefone("33333333333");
-        cliente.setEmail("persistedao@ifpe.com");
-        cliente.setSenha("persistedao12345");
-        
-        Endereco end = new Endereco();
-        end.setLogradouro("Av Pedro Falcao");
-        end.setNumero(50);
-        end.setBairro("Sao Jose");
-        end.setCidade("Garanhuns");
-        
-        cliente.setEndereco(end);
-        PersistenciaDAO.getInstance().salvar(cliente);
-        
-        String sql = "SELECT c FROM Cliente c"; 
-        List<Cliente> clientes = (List<Cliente>) PersistenciaDAO.getInstance().listar(sql);
-        for(Cliente lista : clientes) {
-            if("ObjetoPersisteDAO".equals(lista.getNome())) {
-                codigoPersiste = lista.getIdCliente();
-            }
+    Cliente cliente = new Cliente();
+    cliente.setNome(CLIENTE_NOME);
+    cliente.setCpf(CLIENTE_CPF);
+    cliente.setTelefone(CLIENTE_TELEFONE);
+    cliente.setEmail(CLIENTE_EMAIL);
+    cliente.setSenha(CLIENTE_SENHA);
+    
+    Endereco end = new Endereco();
+    end.setLogradouro(ENDERECO_LOGRADOURO);
+    end.setNumero(ENDERECO_NUMERO);
+    end.setBairro(ENDERECO_BAIRRO);
+    end.setCidade(ENDERECO_CIDADE);
+    
+    cliente.setEndereco(end);
+    PersistenciaDAO.getInstance().salvar(cliente);
+    
+    String sql = "SELECT c FROM Cliente c"; 
+    List<Cliente> clientes = (List<Cliente>) PersistenciaDAO.getInstance().listar(sql);
+    for(Cliente lista : clientes) {
+        if(CLIENTE_NOME.equals(lista.getNome())) {
+            codigoPersiste = lista.getIdCliente();
         }
-        
-        String sqlSalv = "SELECT c FROM Cliente c WHERE c.id ="+codigoPersiste;
-        Cliente cli = (Cliente) PersistenciaDAO.getInstance().listar(sqlSalv).get(0);
-        assertEquals("ObjetoPersisteDAO", cli.getNome());
     }
+    
+    String sqlSalv = "SELECT c FROM Cliente c WHERE c.id =" + codigoPersiste;
+    Cliente cli = (Cliente) PersistenciaDAO.getInstance().listar(sqlSalv).get(0);
+    assertEquals(CLIENTE_NOME, cli.getNome());
+}
+
     
     @Test
     //@Ignore
