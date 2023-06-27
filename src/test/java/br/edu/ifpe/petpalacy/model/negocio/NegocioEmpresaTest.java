@@ -50,21 +50,39 @@ public class NegocioEmpresaTest {
     private Endereco enderecoPSalvar;
     private static EmpresaModel negocioEmpresa;
 
+    public static final String RUA= "rua cap americo";
+    public static final int NUMERO_ESTABELECIMENTO = 23;
+    public static final String BAIRRO = "brejao";
+    public static final String CIDADE = "centro";
+    public static final String CNPJ_EMPRESA = "54357145000173";
+    public static final String NOME_EMPRESA = "MultAnimal";
+    public static final String EMAIL_EMPRESA = "empresa@hotmail.com";
+    public static final String TELEFONE_EMPRESA = "1930099780";
+    public static final String CNPJ_EMPRESA_DELETAR = "88051324000108";
+    public static final String NOME_EMPRESA_DELETAR = "SalvaAnimal";
+    public static final String EMAIL_EMPRESA_DELETAR = "Otaempresa@hotmail.com";
+    public static final String TELEFONE_EMPRESA_DELETAR = "991234568";
+    public static final String SENHA_EMPRESA = "ze123";
+    public static final String SENHA_EMPRESA_DELETAR = "emp123";
+
     public NegocioEmpresaTest() {
         negocioEmpresa = new EmpresaModel();
     }
 
     @BeforeClass
-    public static void setUpClass() throws Exception {
-        endereco = new Endereco("rua cap americo", 23, "brejao", "centro");
-        empresa = new Empresa("54357145000173", "ze123", "empresa@hotmail.com", "1930099780", "MultAnimal", endereco);
+    
 
-        empresaPDeletar = new Empresa("88051324000108", "emp123", "Otaempresa@hotmail.com", "991234568", "SalvaAnimal", null);
+    public static void setUpClass() throws Exception {
+        endereco = new Endereco(RUA, NUMERO_ESTABELECIMENTO, BAIRRO, CIDADE);
+        empresa = new Empresa(CNPJ_EMPRESA, SENHA_EMPRESA, EMAIL_EMPRESA, TELEFONE_EMPRESA, NOME_EMPRESA, endereco);
+
+        empresaPDeletar = new Empresa(CNPJ_EMPRESA_DELETAR, SENHA_EMPRESA_DELETAR, EMAIL_EMPRESA_DELETAR, TELEFONE_EMPRESA_DELETAR, NOME_EMPRESA_DELETAR, null);
 
         negocioEmpresa = new EmpresaModel();
         negocioEmpresa.salvar(empresa);
         negocioEmpresa.salvar(empresaPDeletar);
     }
+
 
     @AfterClass
     public static void tearsDownClass() throws Exception {
