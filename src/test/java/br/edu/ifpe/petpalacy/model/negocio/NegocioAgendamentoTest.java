@@ -86,6 +86,12 @@ public class NegocioAgendamentoTest {
     public static final String HORARIO_AGENDAMENTO = "00:13";
     public static final StatusAgen STATUS_AGENDAMENTO = StatusAgen.AGENDADO;
 
+    public static final String SERVICO_DESCRICAO_ALTERADO = "tosa";
+    public static final int SERVICO_DURACAO_ALTERADO = 30;
+    public static final BigDecimal SERVICO_PRECO_ALTERADO = new BigDecimal(50);
+    public static final String DATA_AGENDAMENTO_ALTERADO = "03/09/1998";
+    public static final String HORARIO_AGENDAMENTO_ALTERADO = "8:00";
+    public static final StatusAgen STATUS_AGENDAMENTO_ALTERADO = StatusAgen.ESPERA;
 
 
     public NegocioAgendamentoTest() {
@@ -182,13 +188,20 @@ Session session = sessionFactory.openSession();
     }
 
     @Test(expected = java.lang.Exception.class)
+
     public void test4DeveDarErroAoAlterar() throws Exception {
         negocioAgendamento.salvar(agendamento);
-        agendamentoAlterado = new Agendamento(new Servico("tosa", 30, 
-                new BigDecimal(50), empresa, null), cliente, "03/09/1998", "8:00", StatusAgen.ESPERA);
+        agendamentoAlterado = new Agendamento(
+            new Servico(SERVICO_DESCRICAO_ALTERADO, SERVICO_DURACAO_ALTERADO, SERVICO_PRECO_ALTERADO, empresa, null),
+            cliente,
+            DATA_AGENDAMENTO_ALTERADO,
+            HORARIO_AGENDAMENTO_ALTERADO,
+            STATUS_AGENDAMENTO_ALTERADO
+        );
 
         negocioAgendamento.editar(agendamentoAlterado);
     }
+
 
     @Test
     public void test5DeveDeletarAgendamentoDoBanco() throws Exception {
