@@ -70,6 +70,23 @@ public class NegocioAgendamentoTest {
     private Agendamento agendamentoAlterado;
     private static SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
+    public static final String CLIENTE_NOME = "Carlos junio";
+    public static final String CLIENTE_CPF = "11419189433";
+    public static final String CLIENTE_TELEFONE = "879812324";
+    public static final String CLIENTE_EMAIL = "dkpaz@gmail.com";
+    public static final String CLIENTE_SENHA = "saosap";
+    public static final String EMPRESA_CNPJ = "12602190000104";
+    public static final String EMPRESA_NOME = "papapa";
+    public static final String EMPRESA_EMAIL = "emp@gmail.com";
+    public static final String EMPRESA_TELEFONE = "21212121";
+    public static final String SERVICO_DESCRICAO = "Limpa cao";
+    public static final int SERVICO_DURACAO = 35;
+    public static final BigDecimal SERVICO_PRECO = new BigDecimal(56.80);
+    public static final String DATA_AGENDAMENTO = "02/09/1902";
+    public static final String HORARIO_AGENDAMENTO = "00:13";
+    public static final StatusAgen STATUS_AGENDAMENTO = StatusAgen.AGENDADO;
+
+
 
     public NegocioAgendamentoTest() {
         negocioAgendamento = new AgendamentoModel();
@@ -78,22 +95,24 @@ public class NegocioAgendamentoTest {
 
     @BeforeClass
     public static void setUpClass() throws Exception {
-        cliente = new Cliente("Carlos junio", "11419189433", "879812324", null, "dkpaz@gmail.com", "saosap");
-    ArrayList<Horarios> horarios = new ArrayList<>();
-    Horarios ho = new Horarios("8:00");
-    Horarios ho1 = new Horarios("8:60");
-    Horarios ho2 = new Horarios("4:00");
-    Horarios ho3 = new Horarios("7:00");
-    Horarios ho4 = new Horarios("9:00");
+        cliente = new Cliente(CLIENTE_NOME, CLIENTE_CPF, CLIENTE_TELEFONE, null, CLIENTE_EMAIL, CLIENTE_SENHA);
+        
+        ArrayList<Horarios> horarios = new ArrayList<>();
+        Horarios ho = new Horarios("8:00");
+        Horarios ho1 = new Horarios("8:60");
+        Horarios ho2 = new Horarios("4:00");
+        Horarios ho3 = new Horarios("7:00");
+        Horarios ho4 = new Horarios("9:00");
 
-    horarios.add(ho);
+        horarios.add(ho);
         horarios.add(ho1);
         horarios.add(ho2);
         horarios.add(ho3);
         horarios.add(ho4);
-        empresa = new Empresa("12602190000104", "papapa", "emp@gmail.com", "21212121", "bruno Eletro", null);
-        servico = new Servico("Limpa cao", 35, new BigDecimal(56.80), empresa, horarios);      
-        agendamento = new Agendamento(servico, cliente, "02/09/1902", "00:13", StatusAgen.AGENDADO);
+
+        empresa = new Empresa(EMPRESA_CNPJ, EMPRESA_NOME, EMPRESA_EMAIL, EMPRESA_TELEFONE, "bruno Eletro", null);
+        servico = new Servico(SERVICO_DESCRICAO, SERVICO_DURACAO, SERVICO_PRECO, empresa, horarios);      
+        agendamento = new Agendamento(servico, cliente, DATA_AGENDAMENTO, HORARIO_AGENDAMENTO, STATUS_AGENDAMENTO);
 
         negocioCliente = new ClienteModel();
         negocioEmpresa = new EmpresaModel();
@@ -102,7 +121,6 @@ public class NegocioAgendamentoTest {
         negocioCliente.salvar(cliente);
         negocioEmpresa.salvar(empresa);
         negocioServico.salvar(servico);
-
     }
 
     @Before
