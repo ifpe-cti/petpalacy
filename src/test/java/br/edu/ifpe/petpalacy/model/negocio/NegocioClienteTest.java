@@ -51,20 +51,33 @@ public class NegocioClienteTest {
     private static Cliente clienteDeletar;
     private static ClienteModel negCliente;
 
+    public static final String RUA_ANTONIO = "rua antonio";
+    public static final int NUMERO_CASA = 23;
+    public static final String BAIRRO_SAO_JOAO = "sao joao";
+    public static final String CIDADE_PLANALTO = "planalto";
+    public static final String CPF_CLIENTE = "11419189433";
+    public static final String TELEFONE_CLIENTE = "39494585439";
+    public static final String EMAIL_CLIENTE = "carlos@gmail.com";
+    public static final String SENHA_CLIENTE = "dsdsds";
+    public static final String NOME_CLIENTE_DELETAR = "toinho";
+    public static final String CPF_CLIENTE_DELETAR = "39824885080";
+    public static final String TELEFONE_CLIENTE_DELETAR = "5432";
+    public static final String EMAIL_CLIENTE_DELETAR = "xx@gmail.com";
+    public static final String SENHA_CLIENTE_DELETAR = "siy8i";
+
     public NegocioClienteTest() {
         negCliente = new ClienteModel();
     }
 
     @BeforeClass
     public static void AntesDosTestes() throws Exception {
-        endereco = new Endereco("rua antonio", 23, "sao joao", "planalto");
-        cliente = new Cliente("carlos", "11419189433", "39494585439", endereco, "carlos@gmail.com", "dsdsds");
-        clienteDeletar = new Cliente("toinho", "39824885080", "5432", null, "xx@gmail.com", "siy8i");
+        endereco = new Endereco(RUA_ANTONIO, NUMERO_CASA, BAIRRO_SAO_JOAO, CIDADE_PLANALTO);
+        cliente = new Cliente("carlos", CPF_CLIENTE, TELEFONE_CLIENTE, endereco, EMAIL_CLIENTE, SENHA_CLIENTE);
+        clienteDeletar = new Cliente(NOME_CLIENTE_DELETAR, CPF_CLIENTE_DELETAR, TELEFONE_CLIENTE_DELETAR, null, EMAIL_CLIENTE_DELETAR, SENHA_CLIENTE_DELETAR);
         negCliente = new ClienteModel();
 
         negCliente.salvar(cliente);
         negCliente.salvar(clienteDeletar);
-
     }
 
     @AfterClass
